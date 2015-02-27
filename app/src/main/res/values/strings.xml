@@ -22,11 +22,18 @@
         <item>@drawable/map</item>
         <item>@drawable/awards</item> <!-- NEEDS A REAL ICON -->
     </array> <!-- Content Description -->
+
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="app_id">714005208644173</string>
     <string name="title_activity_countdown">CountdownActivity</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tab">TabActivity</string>
+
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 
 </resources>

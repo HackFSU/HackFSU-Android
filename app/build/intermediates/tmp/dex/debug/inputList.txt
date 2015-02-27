@@ -1,6 +1,8 @@
 /home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/classes/debug
+/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-1c916c48043b4617386def9083154ddf4ac060d4.jar
 /home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-f7830e0f4737c45882b4e7f1d5fc34db015167b7.jar
 /home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-d305826ffe2cf3142391e60cf884d86029fba3d0.jar
+/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-d83c7a74ee6af16c72e2888a01442865d71ae28f.jar
 /home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-ed181a9e59972f70e835002268941363aa5961c7.jar
 /home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/Parse-1.4.1-dbc79d7cade3fad9def953ca4392a7617618d923.jar
 /home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-ae9eaa55cd3641c2981853cfe6f4d2531064a520.jar

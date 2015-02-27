@@ -9,7 +9,7 @@ import java.util.Locale;
 
 import org.json.JSONArray;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,7 +31,8 @@ public class UpdatesFragment extends Fragment {
 	}
 
 	private static final String TAG_TITLE = "title";
-	private static final String TAG_MSG = "message";
+    private static final String TAG_SUBTITLE = "subtitle";
+	//private static final String TAG_MSG = "message";
 	private static final String TAG_TIME = "time";
 
 	JSONArray updates = null;
@@ -67,6 +68,7 @@ public class UpdatesFragment extends Fragment {
 
 		private ProgressDialog pDialog;
 
+        //Shows Loading Dialog.
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -81,7 +83,7 @@ public class UpdatesFragment extends Fragment {
 		protected List<ParseObject> doInBackground(String... args) {
 			List<ParseObject> updates = null;
 
-			ParseQuery<ParseObject> query = ParseQuery.getQuery("updates");
+			ParseQuery<ParseObject> query = ParseQuery.getQuery("Updates");
 			query.orderByDescending("createdAt");
 			
 			try {
@@ -108,7 +110,8 @@ public class UpdatesFragment extends Fragment {
 
 					// adding each child node to HashMap key => value
 					update.put(TAG_TITLE, updates.get(i).getString("title"));
-					update.put(TAG_MSG, updates.get(i).getString("msg"));
+                    update.put(TAG_SUBTITLE, updates.get(i).getString("subtitle"));
+					//update.put(TAG_MSG, updates.get(i).getString("msg"));
 
 					Format formatter = new SimpleDateFormat(
 							"M/d/yy h:mm a", Locale.US);
@@ -127,9 +130,9 @@ public class UpdatesFragment extends Fragment {
 			 * Updating parsed JSON data into ListView
 			 * */
 			ListAdapter adapter = new SimpleAdapter(getActivity(), updatesList,
-					R.layout.updates_item, new String[] { TAG_TITLE, TAG_TIME,
-							TAG_MSG }, new int[] { R.id.tvUpdateTitle, R.id.tvUpdatesTime,
-							R.id.tvUpdateMsg });
+					R.layout.updates_item,
+                    new String[] { TAG_TITLE, TAG_SUBTITLE, TAG_TIME },
+                    new int[] { R.id.tvUpdateTitle, R.id.tvUpdateSubtitle, R.id.tvUpdatesTime });
 
 			lv.setAdapter(adapter);
 		}

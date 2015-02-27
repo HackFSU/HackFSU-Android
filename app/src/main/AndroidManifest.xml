@@ -45,7 +45,6 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.hackfsu.hackfsu.permission.C2D_MESSAGE" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -76,7 +75,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -145,6 +143,7 @@
                 <category android:name="com.hackfsu.hackfsu" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.pascalwelsch.holocircularprogressbar/countdown_library/1.3/classes.jar"
+        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="94733cb997d299cbe79b61515c12439d4d199893">
-        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-d305826ffe2cf3142391e60cf884d86029fba3d0.jar" />
+        sha1="2c2071dcaf7a008c3b01a6381a33be55396bab09">
+        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-d83c7a74ee6af16c72e2888a01442865d71ae28f.jar" />
     </item>
     <item
         jar="/home/iv11/Documents/Casa/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
@@ -14,6 +14,27 @@
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
         <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-f7830e0f4737c45882b4e7f1d5fc34db015167b7.jar" />
+    </item>
+    <item
+        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0dcc55e70f7ebf7238fe2ec53f662eb378ab2668">
+        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-1c916c48043b4617386def9083154ddf4ac060d4.jar" />
+    </item>
+    <item
+        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-7ba6d8bcea002cba2c4ee9a7e4cb9a8f261a8b56.jar" />
+    </item>
+    <item
+        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.pascalwelsch.holocircularprogressbar/countdown_library/1.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a957713537ab47e292408d5d73ba26a78f68ec76">
+        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-d305826ffe2cf3142391e60cf884d86029fba3d0.jar" />
     </item>
     <item
         jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/libs/Parse-1.4.1.jar"
@@ -28,13 +49,6 @@
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-ae9eaa55cd3641c2981853cfe6f4d2531064a520.jar" />
-    </item>
-    <item
-        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-7ba6d8bcea002cba2c4ee9a7e4cb9a8f261a8b56.jar" />
     </item>
     <item
         jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
