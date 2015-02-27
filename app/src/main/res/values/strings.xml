@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HackFSU</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string> <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Countdown</item>
+        <item>Updates</item>
+        <item>Schedule</item>
+        <item>Map</item>
+        <item>Sponsors</item>
+    </string-array> <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/wink_1</item>
+        <item>@drawable/updates</item>
+        <item>@drawable/schedule</item>
+        <item>@drawable/map</item>
+        <item>@drawable/awards</item> <!-- NEEDS A REAL ICON -->
+    </array> <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="app_id">714005208644173</string>
+    <string name="title_activity_countdown">CountdownActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

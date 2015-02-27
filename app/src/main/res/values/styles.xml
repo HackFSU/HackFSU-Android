@@ -1,0 +1,59 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp"
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo">
+        <item name="circularProgressBarStyle">@style/CircularProgressBar</item>
+    </style>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    
+    <style name="ScheduleTimeText" parent="@android:style/Widget.TextView">
+    	<item name="android:background">@drawable/sched_time_bg</item> <!-- make this a png w/ rounded corners -->
+    	<item name="android:gravity">center</item>
+    	<item name="android:textColor">@color/black</item>
+    	<item name="android:paddingTop">3dp</item>
+    	<item name="android:paddingBottom">3dp</item>
+    	<item name="android:paddingRight">5dp</item>
+    	<item name="android:paddingLeft">5dp</item>
+    	<item name="android:textSize">16sp</item>
+    </style>
+    <style name="ScheduleTitle" parent="@android:style/Widget.TextView">
+    	<item name="android:background">@drawable/sched_title_bg</item>	<!-- make this a png w/ rounded corners -->
+    	<item name="android:gravity">center</item>
+    	<item name="android:textColor">@color/black</item>
+    	<item name="android:textSize">26sp</item>
+    	<item name="android:paddingTop">5dp</item>
+    	<item name="android:paddingBottom">5dp</item>
+    	<item name="android:paddingRight">5dp</item>
+    	<item name="android:paddingLeft">5dp</item>
+    </style>
+    
+    <style name="ScheduleDayDivider" parent="@android:style/Widget.TextView">
+    	<item name="android:background">@color/transparentOffWhite</item>	<!-- make this a png w/ rounded corners -->
+    	<item name="android:gravity">center</item>
+    	<item name="android:textColor">@color/black</item>
+    	<item name="android:textSize">26sp</item>
+    	<item name="android:paddingTop">5dp</item>
+    	<item name="android:paddingBottom">5dp</item>
+    	<item name="android:paddingRight">5dp</item>
+    	<item name="android:paddingLeft">5dp</item>
+    </style>
+
+</resources>

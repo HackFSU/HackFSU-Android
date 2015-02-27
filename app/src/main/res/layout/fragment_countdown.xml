@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.hackfsu.hackfsu.CountdownFragment">
+
+    <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
+        android:id="@+id/countdown"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="285dp"
+        android:layout_height="71dp"
+        android:id="@+id/countdownTV"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_centerInParent="true"
+        android:textSize="30dp" />
+
+</FrameLayout>

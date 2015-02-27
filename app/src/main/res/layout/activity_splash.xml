@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#37b88f"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:paddingBottom="20dp"
+        android:src="@drawable/splash_header" />
+
+    <ImageView
+        android:id="@+id/splash_wink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_splash_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="0dp"
+        android:text="Welcome, "
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Enjoy."
+        android:textColor="#ffffff"
+        android:textSize="50sp" />
+
+</LinearLayout>

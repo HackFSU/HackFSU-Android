@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp" >
+
+        <TextView
+            android:id="@+id/tvSchedEventTime"
+            style="@style/ScheduleTimeText"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="false"
+            android:fontFamily="sans-serif-light"
+            android:lines="1"
+            android:text="hh:mma"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSchedTitle"
+            style="@style/ScheduleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tvSchedEventTime"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/tvSchedEventTime"
+            android:fontFamily="sans-serif-light"
+            android:text="Title"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+<!-- From: file:/home/iv11/AndroidstudioProjects/HackFSU-Android/app/src/main/res/layout/schedule_item.xml -->
