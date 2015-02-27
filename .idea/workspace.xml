@@ -18,43 +18,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97a2559b-03a5-4d99-86ef-f5613eceda3a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pager.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/mainPagerAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_tab.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v13_21_0_3.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/test/debug/com/hackfsu/hackfsu/test/BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/DefaultItem.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/NavDrawerItem.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/NavDrawerListAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/drawer_list_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/menu.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/generated/source/buildConfig/test/debug/com/pascalwelsch/holocircularprogressbar/test/BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/generated/source/r/test/debug/com/pascalwelsch/holocircularprogressbar/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/generated/source/r/test/debug/com/pascalwelsch/holocircularprogressbar/test/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/intermediates/manifests/test/debug/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/intermediates/manifests/tmp/manifestMerger6301018283506775477.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/intermediates/res/resources-debug-test.ap_" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/intermediates/res/test/debug/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/countdown_library/build/intermediates/symbols/test/debug/R.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.pascalwelsch.holocircularprogressbar/countdown_library/1.3/classes.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.pascalwelsch.holocircularprogressbar/countdown_library/1.3/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/CountdownFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/CountdownFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/MapFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/MapFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/hackfsu/hackfsu/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/hackfsu/hackfsu/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/ScheduleFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/ScheduleFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/SponsorsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/SponsorsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/UpdatesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hackfsu/hackfsu/UpdatesFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/dex/debug/inputList.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/tmp/dex/debug/inputList.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/updates_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/updates_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="HackFSU-Android.iws" />
@@ -2408,7 +2371,11 @@
       <created>1425007561028</created>
       <updated>1425007561028</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Tab Design Done.">
+      <created>1425031985737</created>
+      <updated>1425031985737</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2513,7 +2480,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Basic Countdown Done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic Countdown Done." />
+    <MESSAGE value="Tab Design Done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tab Design Done." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

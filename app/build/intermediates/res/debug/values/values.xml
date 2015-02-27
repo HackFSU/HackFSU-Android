@@ -292,6 +292,10 @@
     <eat-comment/>
     <string name="title_activity_countdown">CountdownActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
     <!-- From: file:/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>

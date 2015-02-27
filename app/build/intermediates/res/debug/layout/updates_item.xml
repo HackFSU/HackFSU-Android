@@ -24,18 +24,20 @@
             android:paddingTop="10dp"
             android:textColor="#ff707070"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/tvUpdateMsg"
+            android:id="@+id/tvUpdateSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:paddingBottom="6dip"
+            android:paddingBottom="10dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:textColor="#ff8d8d8d"
-            android:textStyle="bold" />
+            android:paddingTop="10dp"
+            android:textColor="#ff707070"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvUpdatesTime"
