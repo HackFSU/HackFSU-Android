@@ -18,14 +18,18 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import org.json.JSONArray;
 
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -54,6 +58,12 @@ public class CountdownFragment extends Fragment {
     private static final String TAG_TITLE = "title";
     private static final String TAG_START = "startTime";
     //private static final String TAG_END = "endTime";
+
+    String title = "title";
+    String time = "00:00";
+    int start = 0;
+    int end = 0;
+    int timeLeft = 0;
 
     JSONArray countdowns = null;
     ArrayList<HashMap<String,String>> countdownsList;
@@ -99,6 +109,7 @@ public class CountdownFragment extends Fragment {
 
         PushService.subscribe(getActivity(), "Countdowns", MainSplashActivity.class);
         lv = (ListView) getActivity().findViewById(R.id.countdown_list);
+        countTv = (TextView) getActivity().findViewById(R.id.countTv);
     }
 
     @Override
@@ -235,6 +246,25 @@ public class CountdownFragment extends Fragment {
                     count.put(TAG_START, s);
                     //count.put(TAG_END, countdwns.get(i).getString("endTime"));
 
+                    //GET Start, End time.
+                    //Calculate Time Left
+                    title = countdwnsItems.get( i ).getString("title");
+                    time = formatter.format(countdwnsItems.get( 0 ).getDate(
+                            "startTime"));
+
+                    formatter = new SimpleDateFormat("ss", Locale.US);
+                    s= formatter.format(countdwnsItems.get(0).getDate("startTime"));
+                    start = Integer.parseInt(s);
+
+                    s = formatter.format(countdwnsItems.get(0).getDate("endTime"));
+                    end = Integer.parseInt(s);
+
+                    timeLeft = end - start;
+                    if(timeLeft < 0)
+                        timeLeft = 0;
+
+                    time = Integer.toString(timeLeft);
+
                     // adding to list
                     countdownsList.add(count);
                 }
@@ -252,6 +282,8 @@ public class CountdownFragment extends Fragment {
                     new int[] { R.id.countdownTV, R.id.startTimeTV });
 
             lv.setAdapter(adapter);
+
+            countTv.setText(time);
         }
     }
 }

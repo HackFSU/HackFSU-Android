@@ -1,27 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.hackfsu.hackfsu.CountdownFragment">
-
-
-    <ListView
-        android:id="@+id/countdown_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="7dp"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:listSelector="@android:color/transparent">
-    </ListView>
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hackfsu.hackfsu.CountdownFragment">
 
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
         android:id="@+id/countdown"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_gravity="center" />
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/countdown_list"
+        android:layout_width="fill_parent"
+        android:layout_height="92dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:listSelector="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/countdown">
+    </ListView>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="00:00"
+        android:textSize="80dp"
+        android:id="@+id/countTv"
+        android:layout_marginTop="80dp"
+        android:layout_alignTop="@+id/countdown"
+        android:gravity="center"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
