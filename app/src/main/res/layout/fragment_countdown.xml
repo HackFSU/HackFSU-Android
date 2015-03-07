@@ -2,18 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.hackfsu.hackfsu.CountdownFragment">
 
+
+    <ListView
+        android:id="@+id/countdown_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="7dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:listSelector="@android:color/transparent">
+    </ListView>
+
+
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
         android:id="@+id/countdown"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center" />
-
-    <TextView
-        android:layout_width="285dp"
-        android:layout_height="71dp"
-        android:id="@+id/countdownTV"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_centerInParent="true"
-        android:textSize="30dp" />
 
 </FrameLayout>

@@ -37,8 +37,9 @@ public class ScheduleFragment extends Fragment {
 	}
 
 	private static final String TAG_TITLE = "title";
-	//private static final String TAG_DESCRIPTION = "description";
+    private static final String TAG_SUBTITLE = "subtitle";
 	private static final String TAG_EVENT_TIME = "eventTime";
+    private static final String TAG_EVENT_END_TIME = "eventEndTime";
 
 	JSONArray updates = null;
 	ArrayList<HashMap<String, String>> scheduleList;
@@ -118,15 +119,20 @@ public class ScheduleFragment extends Fragment {
 					// FOR TITLE
 					item.put(TAG_TITLE, scheduleItems.get(i).getString("title"));
 
-					// FOR DESCRIPTION
-					//item.put(TAG_DESCRIPTION,
-					//		scheduleItems.get(i).getString("description"));
+                    // For Subtitle
+					item.put(TAG_SUBTITLE, scheduleItems.get(i).getString("subtitle"));
 
 					// FOR EVENT TIME
 					Format formatter = new SimpleDateFormat("h:mma", Locale.US);
 					String s = formatter.format(scheduleItems.get(i).getDate(
-							"eventTime"));
+							"startTime"));
 					item.put(TAG_EVENT_TIME, s);
+
+                    // FOR EVENT END TIME
+                    s = formatter.format(scheduleItems.get(i).getDate(
+                            "endTime"));
+
+                    item.put(TAG_EVENT_END_TIME, s);
 
 					// adding contact to contact list
 					scheduleList.add(item);
@@ -139,9 +145,10 @@ public class ScheduleFragment extends Fragment {
 			 * Updating parsed JSON data into ListView
 			 * */
 			ListAdapter adapter = new SimpleAdapter(ScheduleFragment.this.getActivity(),
-					scheduleList, R.layout.schedule_item, new String[] {
-							TAG_TITLE, TAG_EVENT_TIME }, new int[] { R.id.tvSchedTitle,
-							R.id.tvSchedEventTime });
+					scheduleList, R.layout.schedule_item,
+                    new String[] { TAG_TITLE, TAG_SUBTITLE, TAG_EVENT_TIME, TAG_EVENT_END_TIME },
+                    new int[] { R.id.tvSchedTitle,R.id.tvSchedSubtitle,
+                                R.id.tvSchedEventTime, R.id.tvSchedEventEndTime });
 
 			lv.setAdapter(adapter);
 		}

@@ -173,5 +173,9 @@
     <color name="transparentHackfsuGreen">#B037b88e</color>
     <color name="offWhite">#efeded</color>
     <color name="transparentOffWhite">#B0efeded</color>
+    <color name="hfBlue">#223060</color>
+    <color name="hfLightBlue">#5DBCD2</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

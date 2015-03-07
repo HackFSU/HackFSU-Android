@@ -9,20 +9,20 @@ package com.pascalwelsch.holocircularprogressbar;
 public final class R {
 	public static final class attr {
 		public static final int circularProgressBarStyle = 0x7f010000;
-		public static final int marker_progress = 0x7f010006;
-		public static final int marker_visible = 0x7f01000a;
-		public static final int progress = 0x7f010005;
-		public static final int progress_background_color = 0x7f010008;
-		public static final int progress_color = 0x7f010007;
-		public static final int stroke_width = 0x7f010004;
-		public static final int thumb_visible = 0x7f010009;
+		public static final int marker_progress = 0x7f010008;
+		public static final int marker_visible = 0x7f01000c;
+		public static final int progress = 0x7f010007;
+		public static final int progress_background_color = 0x7f01000a;
+		public static final int progress_color = 0x7f010009;
+		public static final int stroke_width = 0x7f010006;
+		public static final int thumb_visible = 0x7f01000b;
 	}
 	public static final class style {
-		public static final int CircularProgressBar = 0x7f0a0002;
-		public static final int CircularProgressBarLight = 0x7f0a0003;
+		public static final int CircularProgressBar = 0x7f0a0004;
+		public static final int CircularProgressBarLight = 0x7f0a0005;
 	}
 	public static final class styleable {
-		public static final int[] HoloCircularProgressBar = { 0x010100af, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a };
+		public static final int[] HoloCircularProgressBar = { 0x010100af, 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c };
 		public static final int HoloCircularProgressBar_android_gravity = 0;
 		public static final int HoloCircularProgressBar_marker_progress = 3;
 		public static final int HoloCircularProgressBar_marker_visible = 7;

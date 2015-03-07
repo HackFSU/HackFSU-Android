@@ -18,8 +18,7 @@
     <View
         android:layout_width="10dp"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="40dp"
-        android:background="@color/HackfsuGreen" />
+        android:layout_marginLeft="40dp" />
 
     <ListView
         android:id="@+id/schedule_list"

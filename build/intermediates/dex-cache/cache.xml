@@ -33,15 +33,8 @@
         jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.pascalwelsch.holocircularprogressbar/countdown_library/1.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="a957713537ab47e292408d5d73ba26a78f68ec76">
+        sha1="67f2916b313cbc3808bbb5a7db1aab92de70fa60">
         <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-d305826ffe2cf3142391e60cf884d86029fba3d0.jar" />
-    </item>
-    <item
-        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/libs/Parse-1.4.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2b6f88d4ab1161b98431c24bcab65dc84b34100e">
-        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/Parse-1.4.1-dbc79d7cade3fad9def953ca4392a7617618d923.jar" />
     </item>
     <item
         jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
@@ -49,6 +42,13 @@
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/classes-ae9eaa55cd3641c2981853cfe6f4d2531064a520.jar" />
+    </item>
+    <item
+        jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/libs/Parse-1.4.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2b6f88d4ab1161b98431c24bcab65dc84b34100e">
+        <dex dex="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/pre-dexed/debug/Parse-1.4.1-dbc79d7cade3fad9def953ca4392a7617618d923.jar" />
     </item>
     <item
         jar="/home/iv11/AndroidstudioProjects/HackFSU-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"

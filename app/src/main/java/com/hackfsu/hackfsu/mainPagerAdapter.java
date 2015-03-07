@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Adapter for the Tab Swipe
+ * ToDO: Countdown should stay on. Might have to implement it like the IOS version.
+ *
  * @author Iosif
  */
 
