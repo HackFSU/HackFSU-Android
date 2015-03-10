@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/card_background"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="285dp"
+            android:layout_height="71dp"
+            android:id="@+id/countdownTV"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_centerInParent="true"
+            android:textSize="30dp"
+            android:text="countdown"/>
+
+        <TextView
+            android:layout_width="285dp"
+            android:layout_height="71dp"
+            android:id="@+id/startTimeTV"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_centerInParent="true"
+            android:textSize="30dp"
+            android:text="starttime"/>
+    </LinearLayout>
+
+</FrameLayout><!-- From: file:/C:/Users/Daniel/androidworkspace/HackFSU-Android/app/src/main/res/layout/countdown_item.xml -->

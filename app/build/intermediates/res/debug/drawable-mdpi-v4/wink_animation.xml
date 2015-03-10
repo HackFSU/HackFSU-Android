@@ -4,4 +4,4 @@
     <item android:drawable="@drawable/wink_0" android:duration="1400" />
     <item android:drawable="@drawable/wink_1" android:duration="400" />
     <item android:drawable="@drawable/wink_2" android:duration="700" />
-</animation-list><!-- From: file:/home/iv11/AndroidstudioProjects/HackFSU-Android/app/src/main/res/drawable-mdpi/wink_animation.xml -->
+</animation-list><!-- From: file:/C:/Users/Daniel/androidworkspace/HackFSU-Android/app/src/main/res/drawable-mdpi/wink_animation.xml -->

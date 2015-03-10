@@ -5,7 +5,6 @@ ToDo:
 
 
 **Countdown:**
-  - Dynamically display time left.
   - Dynamically display title.
   - Force update every time it switches to Countdown screen.
   - Make it prettier.

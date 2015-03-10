@@ -53,9 +53,10 @@
     <application
         android:name="com.hackfsu.hackfsu.App"
         android:allowBackup="true"
-        android:icon="@drawable/icon_hf"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:icon="@drawable/hfsu2015"
+        android:label="HackFSU"
+        android:theme="@style/CustomActionBarTheme"
+        android:uiOptions="splitActionBarWhenNarrow" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -143,6 +144,13 @@
                 <category android:name="com.hackfsu.hackfsu" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="com.hackfsu.hackfsu.CountdownActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_countdown"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
     </application>
 
 </manifest>

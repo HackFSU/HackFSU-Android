@@ -5,12 +5,14 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
-import android.text.format.Time;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +20,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import org.json.JSONArray;
 
-import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -43,7 +42,6 @@ import com.parse.PushService;
  * Countdown Fragment.
  *
  * ToDo:
- * Add timer
  * Add Logo in middle.
  * Fix timing - make it so that it counts down 30hrs.
  * Improve look.
@@ -57,13 +55,12 @@ public class CountdownFragment extends Fragment {
 
     private static final String TAG_TITLE = "title";
     private static final String TAG_START = "startTime";
-    //private static final String TAG_END = "endTime";
+    private static final String TAG_END = "endTime";
+    private static final String TL = "HackFsu";
 
-    String title = "title";
-    String time = "00:00";
-    int start = 0;
-    int end = 0;
-    int timeLeft = 0;
+    Calendar startDate = Calendar.getInstance();
+    Calendar endDate = Calendar.getInstance();
+    CountDownTimer countDownTimer;
 
     JSONArray countdowns = null;
     ArrayList<HashMap<String,String>> countdownsList;
@@ -93,11 +90,11 @@ public class CountdownFragment extends Fragment {
 
 
         //Display Countdown Until Hacking Ends
-
+        //todo delete below
         //Calculate how many seconds until Hackathon ends.
         //Set it to progress.
-        animate(mHoloCircularProgressBar, null, 1f, 5000);
-        mHoloCircularProgressBar.setMarkerProgress(1f);
+        //animate(mHoloCircularProgressBar, null, 1f, 5000);
+        //mHoloCircularProgressBar.setMarkerProgress(1f);
         //countTv.setText("HackFSU in " + day + " days!");
 
         return rootView;
@@ -154,7 +151,7 @@ public class CountdownFragment extends Fragment {
                          final Animator.AnimatorListener listener) {
 
         final float progress = (float) (Math.random() * 2);
-        int duration = 3000;
+        int duration = 60000;
         animate(progressBar, listener, progress, duration);
     }
 
@@ -243,30 +240,84 @@ public class CountdownFragment extends Fragment {
                     Format formatter = new SimpleDateFormat("h:mma", Locale.US);
                     String s = formatter.format(countdwnsItems.get(i).getDate(
                             "startTime"));
+                            //formatter.format(countdwnsItems.get(i).getDate("endTime"));
                     count.put(TAG_START, s);
-                    //count.put(TAG_END, countdwns.get(i).getString("endTime"));
-
-                    //GET Start, End time.
-                    //Calculate Time Left
-                    title = countdwnsItems.get( i ).getString("title");
-                    time = formatter.format(countdwnsItems.get( 0 ).getDate(
-                            "startTime"));
-
-                    formatter = new SimpleDateFormat("ss", Locale.US);
-                    s= formatter.format(countdwnsItems.get(0).getDate("startTime"));
-                    start = Integer.parseInt(s);
-
-                    s = formatter.format(countdwnsItems.get(0).getDate("endTime"));
-                    end = Integer.parseInt(s);
-
-                    timeLeft = end - start;
-                    if(timeLeft < 0)
-                        timeLeft = 0;
-
-                    time = Integer.toString(timeLeft);
+                    count.put(TAG_END, countdwnsItems.get(i).getString("endTime"));
 
                     // adding to list
                     countdownsList.add(count);
+
+                    //Getting current, start, and end dates as well as the
+                    //difference between current and end dates
+                    startDate.setTime(countdwnsItems.get(0).getDate(TAG_START));
+                    Calendar current = Calendar.getInstance();
+                    endDate.setTime(countdwnsItems.get(0).getDate(TAG_END));
+
+                    //todo finish countdown timer: determine what will be the passed in values, what gets updated on tick,
+                    //countDownTimer updates the time value according to the
+                    // current system time and end value. It displays the time
+                    // left in the format: dd:hh:mm. Any values which become 0's
+                    // are removed along with the ":" after them except for hh:mm.
+                    //      d = Day, h = Hour, m = Minute
+                    countDownTimer = new CountDownTimer(endDate.getTimeInMillis() - Calendar.getInstance().getTimeInMillis(), 60000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            //lengths of time in milliseconds
+                            long remainingTime = millisUntilFinished;
+                            int day = 86400000;
+                            int hour = 3600000;
+                            int minute = 60000;
+                            int second = 1000;
+                            String text = "";
+
+                            if (remainingTime >= day) {
+                                text = (remainingTime/day) + ":";
+                                remainingTime = remainingTime%day;
+                                countTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 66);
+                            }else{
+                                countTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 88);
+                            }
+                            //***NOTE: To include seconds
+                            // Uncomment all line below in this method
+                            // and change the count down interval above from 60000 to 1000
+                            //if (remainingTime >= hour) {
+                                text += String.format("%02d:",(remainingTime/hour));
+                                remainingTime = remainingTime%hour;
+                            //}
+                            text += String.format("%02d", (remainingTime / minute));
+                            //remainingTime = remainingTime % minute;
+                            //if (remainingTime < hour) {
+                            //    text += String.format(":%02d",(remainingTime/second));
+                            //}
+
+                            countTv.setTextColor(Color.BLACK);
+                            countTv.setText(text);
+                            Log.d(TL,"CountDownTimer has gone into onTick and set text = " + text);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            Log.d(TL, "CountDownTimer has gone into onFinish");
+                            countTv.setText("00:00");
+                            countTv.setTextColor(Color.RED);
+                        }
+                    };
+
+                    // VERY IMPORTANT: THIS IS WHERE THE COUNTER IS CALLED TO START
+                    countDownTimer.start();
+
+                    //Setting up the Progress Circle
+                    float progress = 0f;
+                    int duration = (int)(endDate.getTimeInMillis() - startDate.getTimeInMillis());
+                    if (duration > 0) {
+                        long timeDiff = endDate.getTimeInMillis() - current.getTimeInMillis();
+                        progress = timeDiff / duration;
+                    }else{
+                        duration = 0;
+                    }
+
+                    animate(mHoloCircularProgressBar, null, progress, duration);
+                    mHoloCircularProgressBar.setMarkerProgress(progress);
                 }
             } else {
                 Log.e("ServiceHandler", "Couldn't get any data from the url");
@@ -282,8 +333,6 @@ public class CountdownFragment extends Fragment {
                     new int[] { R.id.countdownTV, R.id.startTimeTV });
 
             lv.setAdapter(adapter);
-
-            countTv.setText(time);
         }
     }
 }
