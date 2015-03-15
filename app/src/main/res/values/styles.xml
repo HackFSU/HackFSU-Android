@@ -25,8 +25,8 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     
     <style name="ScheduleTimeText" parent="@android:style/Widget.TextView">
-    	<item name="android:background">@drawable/sched_time_bg</item> <!-- make this a png w/ rounded corners -->
-    	<item name="android:gravity">center</item>
+    	<!--item name="android:background">@drawable/sched_time_bg</item--> <!-- make this a png w/ rounded corners -->
+    	<item name="android:gravity">left</item>
     	<item name="android:textColor">@color/black</item>
     	<item name="android:paddingTop">3dp</item>
     	<item name="android:paddingBottom">3dp</item>
@@ -35,7 +35,7 @@
     	<item name="android:textSize">16sp</item>
     </style>
     <style name="ScheduleTitle" parent="@android:style/Widget.TextView">
-    	<item name="android:background">@drawable/sched_title_bg</item>	<!-- make this a png w/ rounded corners -->
+    	<!--item name="android:background">@drawable/sched_title_bg</item-->	<!-- make this a png w/ rounded corners -->
     	<item name="android:gravity">center</item>
     	<item name="android:textColor">@color/black</item>
     	<item name="android:textSize">26sp</item>

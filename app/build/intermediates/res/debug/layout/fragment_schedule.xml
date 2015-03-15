@@ -8,12 +8,12 @@
     android:background="#e5e5e5"
     android:padding="0dp" >
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/slash_bg" />
+        android:src="@drawable/slash_bg" /-->
 
     <View
         android:layout_width="10dp"

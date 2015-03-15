@@ -697,7 +697,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int FrameLayout1=0x7f0c002c;
-        public static final int action_settings=0x7f0c0036;
+        public static final int action_settings=0x7f0c0037;
         public static final int adjust_height=0x7f0c0000;
         public static final int adjust_width=0x7f0c0001;
         public static final int awards_list=0x7f0c0028;
@@ -708,10 +708,10 @@ containing a value of this type.
         public static final int buy_now=0x7f0c0011;
         public static final int buy_with_google=0x7f0c0012;
         public static final int classic=0x7f0c0014;
-        public static final int countTv=0x7f0c002b;
+        public static final int countItem=0x7f0c002b;
+        public static final int countTv=0x7f0c002a;
         public static final int countdown=0x7f0c0029;
         public static final int countdownTV=0x7f0c0026;
-        public static final int countdown_list=0x7f0c002a;
         public static final int donate_with_google=0x7f0c0013;
         public static final int etEmailToRecover=0x7f0c0017;
         public static final int etPassword=0x7f0c001c;
@@ -722,7 +722,7 @@ containing a value of this type.
         public static final int hybrid=0x7f0c0003;
         public static final int imageView1=0x7f0c0019;
         public static final int imageView2=0x7f0c001a;
-        public static final int mapView=0x7f0c001f;
+        public static final int map_image=0x7f0c001f;
         public static final int match_parent=0x7f0c000e;
         public static final int monochrome=0x7f0c0016;
         public static final int none=0x7f0c0002;
@@ -741,13 +741,14 @@ containing a value of this type.
         public static final int tvAwardsDesc=0x7f0c0025;
         public static final int tvAwardsSponsor=0x7f0c0024;
         public static final int tvAwardsTitle=0x7f0c0023;
-        public static final int tvSchedEventEndTime=0x7f0c0032;
-        public static final int tvSchedEventTime=0x7f0c002f;
-        public static final int tvSchedSubtitle=0x7f0c0031;
-        public static final int tvSchedTitle=0x7f0c0030;
-        public static final int tvUpdateSubtitle=0x7f0c0034;
-        public static final int tvUpdateTitle=0x7f0c0033;
-        public static final int tvUpdatesTime=0x7f0c0035;
+        public static final int tvSchedDate=0x7f0c002f;
+        public static final int tvSchedEventEndTime=0x7f0c0031;
+        public static final int tvSchedEventTime=0x7f0c0030;
+        public static final int tvSchedSubtitle=0x7f0c0033;
+        public static final int tvSchedTitle=0x7f0c0032;
+        public static final int tvUpdateSubtitle=0x7f0c0035;
+        public static final int tvUpdateTitle=0x7f0c0034;
+        public static final int tvUpdatesTime=0x7f0c0036;
         public static final int tv_splash_welcome=0x7f0c0021;
         public static final int updates_list=0x7f0c002e;
         public static final int wrap_content=0x7f0c000f;

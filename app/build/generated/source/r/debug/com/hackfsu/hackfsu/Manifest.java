@@ -15,6 +15,8 @@ public final class Manifest {
     
          */
         public static final String C2D_MESSAGE="com.hackfsu.hackfsu.permission.C2D_MESSAGE";
+        /**  todo: Remove all unneeded permissions and clean up the code 
+         */
         public static final String MAPS_RECEIVE="com.hackfsu.hackfsu.permission.MAPS_RECEIVE";
     }
 }

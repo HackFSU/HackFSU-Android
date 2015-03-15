@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.gms.maps.MapView
+<!--com.google.android.gms.maps.MapView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/mapView" />
+    android:id="@+id/mapView" /-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/map_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map"/>
+
+        <!--ImageView
+            android:id="@+id/lib_image_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/lib_image_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/lib_image_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" /-->
+
+    </ScrollView>
+
+</FrameLayout>
 <!-- From: file:/C:/Users/Daniel/androidworkspace/HackFSU-Android/app/src/main/res/layout/activity_map.xml -->

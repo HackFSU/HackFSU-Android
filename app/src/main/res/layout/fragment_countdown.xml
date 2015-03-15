@@ -14,7 +14,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp" />
 
-    <ListView
+    <!-- todo remove if not needed -->
+    <!--ListView
         android:id="@+id/countdown_list"
         android:layout_width="fill_parent"
         android:layout_height="92dp"
@@ -27,7 +28,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/countdown">
-    </ListView>
+    </ListView-->
 
     <TextView
         android:layout_width="250dp"
@@ -36,10 +37,21 @@
         android:text="00:00"
         android:textSize="80dp"
         android:id="@+id/countTv"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:layout_alignTop="@+id/countdown"
         android:gravity="center"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/countItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/countdown"/>
 
 
 </RelativeLayout>
