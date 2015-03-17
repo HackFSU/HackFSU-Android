@@ -698,7 +698,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int FrameLayout1=0x7f0c002c;
-        public static final int action_settings=0x7f0c0037;
+        public static final int action_settings=0x7f0c0038;
         public static final int adjust_height=0x7f0c0000;
         public static final int adjust_width=0x7f0c0001;
         public static final int awards_list=0x7f0c0028;
@@ -735,6 +735,7 @@ containing a value of this type.
         public static final int schedule_list=0x7f0c002d;
         public static final int selectionDetails=0x7f0c000d;
         public static final int splash_wink=0x7f0c0020;
+        public static final int sponsor_layout=0x7f0c002e;
         public static final int startTimeTV=0x7f0c0027;
         public static final int strict_sandbox=0x7f0c000b;
         public static final int terrain=0x7f0c0006;
@@ -742,16 +743,16 @@ containing a value of this type.
         public static final int tvAwardsDesc=0x7f0c0025;
         public static final int tvAwardsSponsor=0x7f0c0024;
         public static final int tvAwardsTitle=0x7f0c0023;
-        public static final int tvSchedDate=0x7f0c002f;
-        public static final int tvSchedEventEndTime=0x7f0c0031;
-        public static final int tvSchedEventTime=0x7f0c0030;
-        public static final int tvSchedSubtitle=0x7f0c0033;
-        public static final int tvSchedTitle=0x7f0c0032;
-        public static final int tvUpdateSubtitle=0x7f0c0035;
-        public static final int tvUpdateTitle=0x7f0c0034;
-        public static final int tvUpdatesTime=0x7f0c0036;
+        public static final int tvSchedDate=0x7f0c0030;
+        public static final int tvSchedEventEndTime=0x7f0c0032;
+        public static final int tvSchedEventTime=0x7f0c0031;
+        public static final int tvSchedSubtitle=0x7f0c0034;
+        public static final int tvSchedTitle=0x7f0c0033;
+        public static final int tvUpdateSubtitle=0x7f0c0036;
+        public static final int tvUpdateTitle=0x7f0c0035;
+        public static final int tvUpdatesTime=0x7f0c0037;
         public static final int tv_splash_welcome=0x7f0c0021;
-        public static final int updates_list=0x7f0c002e;
+        public static final int updates_list=0x7f0c002f;
         public static final int wrap_content=0x7f0c000f;
     }
     public static final class integer {

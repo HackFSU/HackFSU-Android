@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import org.json.JSONArray;
 
@@ -45,6 +46,7 @@ public class ScheduleFragment extends Fragment {
     private static final String TAG_EVENT_DATE = "eventDate";
     private static final String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday"};
+    private static final String timezone = "America/New_York";
 
 	JSONArray updates = null;
 	ArrayList<HashMap<String, String>> scheduleList;
@@ -82,12 +84,6 @@ public class ScheduleFragment extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-            //todo remove if not needed
-			/*pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("Getting schedule...");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();*/
 		}
 
 		@Override
@@ -96,7 +92,7 @@ public class ScheduleFragment extends Fragment {
 
 			// Gets Parse class from database
 			ParseQuery<ParseObject> query = ParseQuery.getQuery("Schedule");
-			query.orderByAscending("eventTime");
+			query.orderByAscending("startTime");
 
 			try {
 				scheduleItems = query.find();
@@ -111,8 +107,6 @@ public class ScheduleFragment extends Fragment {
 		@Override
 		protected void onPostExecute(List<ParseObject> scheduleItems) {
 			super.onPostExecute(scheduleItems);
-            //todo remove if not needed
-			//pDialog.dismiss();
 
 			if (scheduleItems != null) {
 				// looping through all scheduleItems
@@ -130,20 +124,37 @@ public class ScheduleFragment extends Fragment {
 					item.put(TAG_SUBTITLE, scheduleItems.get(i).getString("subtitle"));
 
 					// FOR EVENT TIME
-					Format formatter = new SimpleDateFormat("h:mma", Locale.US);
-					String s = formatter.format(scheduleItems.get(i).getDate(
-							"startTime"));
+                    Calendar start = Calendar.getInstance();
+                    start.setTime(scheduleItems.get(i).getDate("startTime"));
+                    start.setTimeZone(TimeZone.getTimeZone(timezone));
+                    String start_AMPM = "PM";
+                    if (start.get(Calendar.AM_PM) == 0){
+                        start_AMPM = "AM";
+                    }
+                    String s = String.format("%d:%02d ", start.get(Calendar.HOUR),
+                            start.get(Calendar.MINUTE)) + start_AMPM;
 					item.put(TAG_EVENT_TIME, s);
 
                     // FOR EVENT END TIME
-                    s = formatter.format(scheduleItems.get(i).getDate(
-                            "endTime"));
-
+                    Calendar end = Calendar.getInstance();
+                    end.setTime(scheduleItems.get(i).getDate("endTime"));
+                    end.setTimeZone(TimeZone.getTimeZone(timezone));
+                    String end_AMPM = "PM";
+                    if (end.get(Calendar.AM_PM) == 0){
+                        end_AMPM = "AM";
+                    }
+                    if (start.before(end)) {
+                        s = String.format("%d:%02d ", end.get(Calendar.HOUR),
+                                end.get(Calendar.MINUTE)) + end_AMPM;
+                    } else {
+                        s = "";
+                    }
                     item.put(TAG_EVENT_END_TIME, s);
 
                     // FOR EVENT DATE
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(scheduleItems.get(i).getDate("startTime"));
+                    calendar.setTimeZone(TimeZone.getTimeZone(timezone));
                     String d = days[calendar.get(Calendar.DAY_OF_WEEK) - 1] + " " +
                             calendar.get(Calendar.MONTH) + "/" +
                             calendar.get(Calendar.DAY_OF_MONTH) + "/" +

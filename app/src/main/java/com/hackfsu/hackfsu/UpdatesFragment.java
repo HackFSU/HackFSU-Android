@@ -1,16 +1,11 @@
 package com.hackfsu.hackfsu;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-
-import org.json.JSONArray;
-
+import java.util.TimeZone;
 import android.support.v4.app.Fragment;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,10 +27,9 @@ public class UpdatesFragment extends Fragment {
 
 	private static final String TAG_TITLE = "title";
     private static final String TAG_SUBTITLE = "subtitle";
-	//private static final String TAG_MSG = "message";
 	private static final String TAG_TIME = "time";
+    private static final String timezone = "America/New_York";
 
-	JSONArray updates = null;
 	ArrayList<HashMap<String, String>> updatesList;
 
 	View rootView;
@@ -66,18 +60,10 @@ public class UpdatesFragment extends Fragment {
 	private class ParseUpdates extends
 			AsyncTask<String, String, List<ParseObject>> {
 
-		private ProgressDialog pDialog;
-
         //Shows Loading Dialog.
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-            //todo remove if not needed
-			/*pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("Getting updates...");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();*/
 		}
 
 		@Override
@@ -100,8 +86,6 @@ public class UpdatesFragment extends Fragment {
 		@Override
 		protected void onPostExecute(List<ParseObject> updates) {
 			super.onPostExecute(updates);
-            //todo remove if not needed
-			//pDialog.dismiss();
 
 			if (updates != null) {
 				// looping through all updates
@@ -115,10 +99,22 @@ public class UpdatesFragment extends Fragment {
                     update.put(TAG_SUBTITLE, updates.get(i).getString("subtitle"));
 					//update.put(TAG_MSG, updates.get(i).getString("msg"));
 
-					Format formatter = new SimpleDateFormat(
-							"M/d/yy h:mm a", Locale.US);
-					String s = formatter.format(updates.get(i).getCreatedAt());
-					update.put(TAG_TIME, s);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(updates.get(i).getCreatedAt());
+                    calendar.setTimeZone(TimeZone.getTimeZone(timezone));
+
+
+                    String AMPM = "PM";
+                    if (calendar.get(Calendar.AM_PM) == 0){
+                        AMPM = "AM";
+                    }
+                    String d = String.format("%d/%d/%d  %d:%02d ",calendar.get(Calendar.MONTH),
+                            calendar.get(Calendar.DAY_OF_MONTH),
+                            calendar.get(Calendar.YEAR),
+                            calendar.get(Calendar.HOUR),
+                            calendar.get(Calendar.MINUTE)) + AMPM;
+
+					update.put(TAG_TIME, d);
 
 					// adding contact to contact list
 					updatesList.add(update);

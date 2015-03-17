@@ -16,39 +16,21 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
-import org.json.JSONArray;
-
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.TimeZone;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.PushService;
 
-/**
- * Countdown Fragment.
- *
- * ToDo:
- * Add Logo in middle.
- * Fix timing - make it so that it counts down 30hrs.
- * Improve look.
- *
- * @author Iosif
- */
 public class CountdownFragment extends Fragment {
     public CountdownFragment() {
         // Required empty public constructor
@@ -57,16 +39,15 @@ public class CountdownFragment extends Fragment {
     private static final String TAG_TITLE = "title";
     private static final String TAG_START = "startTime";
     private static final String TAG_END = "endTime";
+    private static final String timezone = "America/New_York";
 
     Calendar startDate = Calendar.getInstance();
     Calendar current = Calendar.getInstance();
     Calendar endDate = Calendar.getInstance();
     CountDownTimer countDownTimer;
 
-    JSONArray countdowns = null;
     ArrayList<HashMap<String,String>> countdownsList;
 
-    //ListView lv;
     View rootView;
     private OnFragmentInteractionListener mListener;
 
@@ -98,7 +79,6 @@ public class CountdownFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         PushService.subscribe(getActivity(), "Countdowns", MainSplashActivity.class);
-        //lv = (ListView) getActivity().findViewById(R.id.countdown_list);
         countTv = (TextView) getActivity().findViewById(R.id.countTv);
     }
 
@@ -130,16 +110,9 @@ public class CountdownFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
 
-    /**
-     * Animate.
-     *
-     * @param progressBar the progress bar
-     * @param listener the listener
-     */
     private void animate(final HoloCircularProgressBar progressBar,
                          final Animator.AnimatorListener listener) {
 
@@ -188,16 +161,9 @@ public class CountdownFragment extends Fragment {
     *
     * */
     private class ParseUpdates extends AsyncTask<String,String, List<ParseObject>> {
-        private ProgressDialog loadDialog;
 
         protected void onPreExecute() {
             super.onPreExecute();
-            //todo remove if not needed
-            /*loadDialog = new ProgressDialog(getActivity());
-            loadDialog.setMessage("Getting Count .. probably.");
-            loadDialog.setIndeterminate(false);
-            loadDialog.setCancelable(true);
-            loadDialog.show();*/
         }
 
         @Override
@@ -219,8 +185,6 @@ public class CountdownFragment extends Fragment {
         @Override
         protected void onPostExecute(List<ParseObject> countdwnsItems) {
             super.onPostExecute(countdwnsItems);
-            //todo remvoe if not needed
-            //loadDialog.dismiss();
 
             if (countdwnsItems != null) {
                 Log.i("onPostExecute", "CountdwnsItems is not NULL");
@@ -236,6 +200,11 @@ public class CountdownFragment extends Fragment {
                 startDate.setTime(countdwnsItems.get(item).getDate(TAG_START));
                 current = Calendar.getInstance();
                 endDate.setTime(countdwnsItems.get(item).getDate(TAG_END));
+
+                //Locking the Time Zone
+                startDate.setTimeZone(TimeZone.getTimeZone(timezone));
+                current.setTimeZone(TimeZone.getTimeZone(timezone));
+                endDate.setTimeZone(TimeZone.getTimeZone(timezone));
 
                 //getting what will be under the timer
                 String start_AMPM = "PM";
@@ -266,27 +235,6 @@ public class CountdownFragment extends Fragment {
                 textView.setText(text);
                 Log.d("CountDown", "Event set to: " + textView.getText().toString());
 
-                //todo remove if not needed
-                // looping through all updates
-                /*for (int i = 0; i < countdwnsItems.size(); i++) {
-
-                    // tmp hashmap for single update
-                    HashMap<String, String> count = new HashMap<String, String>();
-
-                    // adding each child node to HashMap key => value
-                    count.put(TAG_TITLE, countdwnsItems.get(i).getString("title"));
-
-                    Format formatter = new SimpleDateFormat("h:mma", Locale.US);
-                    String s = formatter.format(countdwnsItems.get(i).getDate(
-                            "startTime"));
-                            //formatter.format(countdwnsItems.get(i).getDate("endTime"));
-                    count.put(TAG_START, s);
-                    count.put(TAG_END, countdwnsItems.get(i).getString("endTime"));
-
-                    // adding to list
-                    countdownsList.add(count);
-                }*/
-
                 //countDownTimer updates the time value according to the
                 // current system time and end value. It displays the time
                 // left in the format: dd:hh:mm. Any values which become 0's
@@ -300,7 +248,7 @@ public class CountdownFragment extends Fragment {
                         int day = 86400000;
                         int hour = 3600000;
                         int minute = 60000;
-                        int second = 1000;
+                        //int second = 1000;
                         String text = "";
 
                         if (remainingTime >= day) {
@@ -310,7 +258,6 @@ public class CountdownFragment extends Fragment {
                         }else{
                             countTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 88);
                         }
-                        //todo deteremine if seconds are wanted
                         //***NOTE: To include seconds
                         // Uncomment all line below in this method
                         //  and change the count down interval above (about 20 lines up)
@@ -366,17 +313,6 @@ public class CountdownFragment extends Fragment {
             } else {
                 Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
-
-            //todo remove if not needed
-            /**
-             * Updating parsed JSON data into ListView
-             * */
-            ListAdapter adapter = new SimpleAdapter(CountdownFragment.this.getActivity(),
-                    countdownsList,R.layout.countdown_item,
-                    new String[] { TAG_TITLE, TAG_START },
-                    new int[] { R.id.countdownTV, R.id.startTimeTV });
-
-            //lv.setAdapter(adapter);
         }
     }
 }
