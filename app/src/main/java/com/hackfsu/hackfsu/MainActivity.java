@@ -95,7 +95,7 @@ public class    MainActivity extends FragmentActivity
                 });
 
 
-        //Ignores Countdown, since it will be in its own activity.
+
         for (int i = 0; i < 5; i++) {
             actionBar.addTab(
                     actionBar.newTab()

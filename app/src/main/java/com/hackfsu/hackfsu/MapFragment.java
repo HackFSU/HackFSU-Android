@@ -30,9 +30,9 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.activity_map, container, false);
+        rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
-        new ParseSchedule().execute();
+        //new ParseSchedule().execute();
 
         return rootView;
     }
@@ -79,6 +79,8 @@ public class MapFragment extends Fragment {
                     //getting next image
                     ParseFile imageFile = mapItems.get(i).getParseFile("Image");
 
+                    layout.setPadding(0, 0, 0, 50);
+
                     //creating params that will be used for text and image view
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -95,6 +97,7 @@ public class MapFragment extends Fragment {
                     ParseImageView image = new ParseImageView(rootView.getContext());
                     image.setLayoutParams(params);
                     image.setParseFile(imageFile);
+
                     image.loadInBackground(new GetDataCallback() {
                         @Override
                         public void done(byte[] bytes, ParseException e) {
@@ -109,6 +112,7 @@ public class MapFragment extends Fragment {
                     //Adding both to layout
                     layout.addView(text);
                     layout.addView(image);
+
                     Log.i("Maps", text.getText() + " was added");
                 }
             } else {

@@ -34,13 +34,13 @@
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="00:00"
+        android:text="Ready?"
         android:textSize="80dp"
         android:id="@+id/countTv"
         android:layout_marginTop="100dp"
         android:layout_alignTop="@+id/countdown"
         android:gravity="center"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/countItem"

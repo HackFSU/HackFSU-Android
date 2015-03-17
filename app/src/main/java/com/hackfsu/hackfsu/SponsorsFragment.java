@@ -88,9 +88,10 @@ public class SponsorsFragment extends Fragment {
                 for (int n = 0; n < numTiers; n++){
                     tierLayouts[n] = new LinearLayout(rootView.getContext());
                     tierLayouts[n].setOrientation(LinearLayout.VERTICAL);
+
                 }
 
-                // looping through all scheduleItems
+                // looping through all SponsorItems
                 for (int i = 0; i < SponsorItems.size(); i++) {
                     //getting next image
                     ParseFile imageFile = SponsorItems.get(i).getParseFile("image");
@@ -100,9 +101,11 @@ public class SponsorsFragment extends Fragment {
                             ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
 
+
                     //creating textView
                     ParseImageView image = new ParseImageView(rootView.getContext());
                     image.setLayoutParams(params);
+                    image.setPadding(0,0,0,100);
                     image.setParseFile(imageFile);
                     image.loadInBackground(new GetDataCallback() {
                         @Override
@@ -114,11 +117,13 @@ public class SponsorsFragment extends Fragment {
                             }
                         }
                     });
+
                     tierLayouts[SponsorItems.get(i).getInt("tier") - 1].addView(image);
                 }
 
                 for (int z = numTiers - 1; z >= 0; z--){
                     layout.addView(tierLayouts[z]);
+
                     //TextView test = new TextView(rootView.getContext());
                     //test.setText("--------------------------------------");
                     //layout.addView(test);

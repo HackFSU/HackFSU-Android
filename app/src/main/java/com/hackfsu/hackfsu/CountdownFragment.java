@@ -65,6 +65,7 @@ public class CountdownFragment extends Fragment {
         mHoloCircularProgressBar = (HoloCircularProgressBar) rootView.findViewById(R.id.countdown);
         countTv = (TextView) rootView.findViewById(R.id.countdownTV);
 
+
         if(mProgressBarAnimator != null)
             mProgressBarAnimator.cancel();
 
@@ -290,7 +291,7 @@ public class CountdownFragment extends Fragment {
                     countDownTimer.start();
                 }else{
                     countTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 60);
-                    countTv.setText("HackFsu");
+                    countTv.setText("HackFSU");
                     Log.i("CountDownTimer", "Event hasn't started, countDownTimer set to 'HackFsu'");
                 }
 
