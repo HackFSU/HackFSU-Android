@@ -1,14 +1,25 @@
 package com.hackfsu.hackfsu;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ScrollView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,7 +29,20 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.ByteArrayOutputStream;
 import java.text.AttributedCharacterIterator;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.PushService;
 
 /**
  * Loads up a Google Map into the fragment and displays locations relevant to
@@ -35,8 +59,7 @@ public class MapFragment extends Fragment {
     private static final int mapZoom = 17;
 
     private View rootView;
-    private MapView mv;
-    private GoogleMap map;
+    ArrayList<HashMap<String, String>> scheduleList;
 
     public MapFragment() {
     };
@@ -46,66 +69,94 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_map, container, false);
 
+        scheduleList = new ArrayList<HashMap<String, String>>();
+
+        new ParseSchedule().execute();
+
         //todo remove if not needed
         //initializeUI(savedInstanceState);
         //loadMap();
 
         return rootView;
+    }private class ParseSchedule extends
+            AsyncTask<String, String, List<ParseObject>> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.i("Parse", "Trying to get maps from parse");
+        }
+
+        @Override
+        protected List<ParseObject> doInBackground(String... args) {
+            List<ParseObject> mapItems = null;
+
+            // Gets Parse class from database
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Maps");
+            query.orderByAscending("floor");
+
+            try {
+                mapItems = query.find();
+                return mapItems;
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return mapItems;
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(List<ParseObject> mapItems) {
+            super.onPostExecute(mapItems);
+
+            if (mapItems != null) {
+                Log.i("Parse", "Library maps where loaded. Found " + mapItems.size() + " items");
+
+                //getting the layout where the maps will be placed
+                LinearLayout layout = (LinearLayout)rootView.findViewById(R.id.map_view);
+
+                Bitmap bm = null;
+
+                // looping through all scheduleItems
+                for (int i = 0; i < mapItems.size(); i++) {
+                    //getting next image
+                    ParseFile imageFile = mapItems.get(i).getParseFile("Image");
+
+                    //creating params that will be used for text and image view
+                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                    //creating imageView
+                    TextView text = new TextView(rootView.getContext());
+                    text.setLayoutParams(params);
+                    text.setGravity(Gravity.CENTER_HORIZONTAL);
+                    text.setText(mapItems.get(i).getString("Name"));
+                    text.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+
+                    //creating textView
+                    ParseImageView image = new ParseImageView(rootView.getContext());
+                    image.setLayoutParams(params);
+                    image.setParseFile(imageFile);
+                    image.loadInBackground(new GetDataCallback() {
+                        @Override
+                        public void done(byte[] bytes, ParseException e) {
+                            if (e == null) {
+                                Log.i("Parse", "Image data loaded");
+                            } else {
+                                Log.d("Parse", "Porblem loading image data");
+                            }
+                        }
+                    });
+
+                    //Adding both to layout
+                    layout.addView(text);
+                    layout.addView(image);
+                    Log.i("Maps", text.getText() + " was added");
+                }
+            } else {
+                Log.e("ServiceHandler", "Couldn't get any data from the url");
+            }
+        }
     }
-    /*
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mv.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mv.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mv.onDestroy();
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mv.onLowMemory();
-    }
-
-    private void initializeUI(Bundle savedInstanceState) {
-        mv = (MapView) rootView.findViewById(R.id.mapView);
-        mv.onCreate(savedInstanceState);
-        map = mv.getMap();
-    }
-
-    private void loadMap() {
-        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-        // Add a new element here for each marker to set up
-        LatLng markerVenue = new LatLng(coordsVenue[0], coordsVenue[1]);
-        LatLng markerMainParking = new LatLng(coordsMainParking[0],
-                coordsMainParking[1]);
-
-        map.addMarker(new MarkerOptions().position(markerVenue)
-                .title("Dirac Science Library")
-                .snippet("Hackathon will take place here"));
-        map.addMarker(new MarkerOptions()
-                .position(markerMainParking)
-                .title("Woodward Parking Garage")
-                .snippet(
-                        "Main parking for the hackathon. Free to park for anyone on weekends."));
-
-        MapsInitializer.initialize(this.getActivity());
-
-        CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                coordsMapCenter[0], coordsMapCenter[1]), mapZoom);
-        map.animateCamera(cu);
-    }*/
-
 }

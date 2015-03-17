@@ -192,11 +192,12 @@ public class CountdownFragment extends Fragment {
 
         protected void onPreExecute() {
             super.onPreExecute();
-            loadDialog = new ProgressDialog(getActivity());
+            //todo remove if not needed
+            /*loadDialog = new ProgressDialog(getActivity());
             loadDialog.setMessage("Getting Count .. probably.");
             loadDialog.setIndeterminate(false);
             loadDialog.setCancelable(true);
-            loadDialog.show();
+            loadDialog.show();*/
         }
 
         @Override
@@ -218,7 +219,8 @@ public class CountdownFragment extends Fragment {
         @Override
         protected void onPostExecute(List<ParseObject> countdwnsItems) {
             super.onPostExecute(countdwnsItems);
-            loadDialog.dismiss();
+            //todo remvoe if not needed
+            //loadDialog.dismiss();
 
             if (countdwnsItems != null) {
                 Log.i("onPostExecute", "CountdwnsItems is not NULL");
@@ -262,7 +264,7 @@ public class CountdownFragment extends Fragment {
 
                 //setting the text
                 textView.setText(text);
-                Log.d("CountDown", "Date Set to: " + textView.getText().toString());
+                Log.d("CountDown", "Event set to: " + textView.getText().toString());
 
                 //todo remove if not needed
                 // looping through all updates
@@ -342,6 +344,7 @@ public class CountdownFragment extends Fragment {
                 }else{
                     countTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 60);
                     countTv.setText("HackFsu");
+                    Log.i("CountDownTimer", "Event hasn't started, countDownTimer set to 'HackFsu'");
                 }
 
                 //Setting up the Progress Circle

@@ -72,11 +72,12 @@ public class UpdatesFragment extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(getActivity());
+            //todo remove if not needed
+			/*pDialog = new ProgressDialog(getActivity());
 			pDialog.setMessage("Getting updates...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
-			pDialog.show();
+			pDialog.show();*/
 		}
 
 		@Override
@@ -99,7 +100,8 @@ public class UpdatesFragment extends Fragment {
 		@Override
 		protected void onPostExecute(List<ParseObject> updates) {
 			super.onPostExecute(updates);
-			pDialog.dismiss();
+            //todo remove if not needed
+			//pDialog.dismiss();
 
 			if (updates != null) {
 				// looping through all updates

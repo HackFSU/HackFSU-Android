@@ -43,8 +43,8 @@ public class ScheduleFragment extends Fragment {
 	private static final String TAG_EVENT_TIME = "eventTime";
     private static final String TAG_EVENT_END_TIME = "eventEndTime";
     private static final String TAG_EVENT_DATE = "eventDate";
-    private static final String[] days = {"Monday", "Tuesday", "Wednesday",
-            "Thursday", "Friday", "Saturday", "Sunday"};
+    private static final String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday"};
 
 	JSONArray updates = null;
 	ArrayList<HashMap<String, String>> scheduleList;
@@ -82,11 +82,12 @@ public class ScheduleFragment extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(getActivity());
+            //todo remove if not needed
+			/*pDialog = new ProgressDialog(getActivity());
 			pDialog.setMessage("Getting schedule...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
-			pDialog.show();
+			pDialog.show();*/
 		}
 
 		@Override
@@ -110,7 +111,8 @@ public class ScheduleFragment extends Fragment {
 		@Override
 		protected void onPostExecute(List<ParseObject> scheduleItems) {
 			super.onPostExecute(scheduleItems);
-			pDialog.dismiss();
+            //todo remove if not needed
+			//pDialog.dismiss();
 
 			if (scheduleItems != null) {
 				// looping through all scheduleItems

@@ -54,7 +54,7 @@
     <application
         android:name="com.hackfsu.hackfsu.App"
         android:allowBackup="true"
-        android:icon="@drawable/hfsu2015"
+        android:icon="@drawable/hficon"
         android:label="HackFSU"
         android:theme="@style/CustomActionBarTheme"
         android:uiOptions="splitActionBarWhenNarrow" >
@@ -83,8 +83,6 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

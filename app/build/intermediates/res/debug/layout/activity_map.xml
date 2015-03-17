@@ -9,30 +9,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/map_image"
+        <LinearLayout
+            android:id="@+id/map_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/map"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <!--ImageView
-            android:id="@+id/lib_image_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/lib_image_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/lib_image_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" /-->
+            </LinearLayout>
 
     </ScrollView>
 
