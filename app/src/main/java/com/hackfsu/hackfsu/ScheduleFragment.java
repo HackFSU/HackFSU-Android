@@ -17,6 +17,7 @@ import java.util.TimeZone;
 
 import org.json.JSONArray;
 
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -159,8 +160,8 @@ public class ScheduleFragment extends Fragment {
                             calendar.get(Calendar.MONTH) + "/" +
                             calendar.get(Calendar.DAY_OF_MONTH) + "/" +
                             calendar.get(Calendar.YEAR);
-                    item.put(TAG_EVENT_DATE, d);
 
+                    item.put(TAG_EVENT_DATE, d);
                     // adding contact to contact list
 					scheduleList.add(item);
 				}
@@ -171,7 +172,7 @@ public class ScheduleFragment extends Fragment {
 			/**
 			 * Updating parsed JSON data into ListView
 			 * */
-			ListAdapter adapter = new SimpleAdapter(ScheduleFragment.this.getActivity(),
+  			ListAdapter adapter = new SimpleAdapter(ScheduleFragment.this.getActivity(),
 					scheduleList, R.layout.schedule_item,
                     new String[] { TAG_TITLE, TAG_SUBTITLE, TAG_EVENT_TIME,
                             TAG_EVENT_END_TIME, TAG_EVENT_DATE},
@@ -180,6 +181,7 @@ public class ScheduleFragment extends Fragment {
                                 R.id.tvSchedDate});
 
 			lv.setAdapter(adapter);
+
 		}
 	}
 }

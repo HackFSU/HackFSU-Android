@@ -7,13 +7,13 @@
     android:paddingTop="20dp" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/day_div"
         style="@style/ScheduleDayDivider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
-        android:text="Large Text"
+        android:text="Test"
         android:textAppearance="?android:attr/textAppearanceLarge" >
         
     </TextView>

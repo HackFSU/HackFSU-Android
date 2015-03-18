@@ -65,6 +65,13 @@ public class CountdownFragment extends Fragment {
         mHoloCircularProgressBar = (HoloCircularProgressBar) rootView.findViewById(R.id.countdown);
         countTv = (TextView) rootView.findViewById(R.id.countdownTV);
 
+        int hfsuColor = Color.rgb(34, 48, 96);
+        mHoloCircularProgressBar.setProgressBackgroundColor(hfsuColor);
+
+        hfsuColor = Color.rgb(93, 188, 210);
+        mHoloCircularProgressBar.setProgressColor(hfsuColor);
+        
+
 
         if(mProgressBarAnimator != null)
             mProgressBarAnimator.cancel();
@@ -273,7 +280,7 @@ public class CountdownFragment extends Fragment {
                         //    text += String.format(":%02d",(remainingTime/second));
                         //}
 
-                        countTv.setTextColor(Color.BLACK);
+                        countTv.setTextColor(Color.rgb(34,48,96));
                         countTv.setText(text);
                         Log.i("CountDownTimer","Finished onTick and set text = " + text);
                     }

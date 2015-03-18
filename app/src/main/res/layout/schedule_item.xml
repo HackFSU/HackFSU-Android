@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="3dp"
         android:background="@drawable/card_background">
 
         <TextView
@@ -17,25 +13,23 @@
             style="@style/ScheduleTimeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:lines="1"
-            android:text="Error loading schedule"
-            android:textStyle="bold"/>
+            android:background="@color/hfBlue"
+            android:textColor="#ffff"
+            android:textStyle="bold"
+            android:text="Error loading schedule" />
 
         <TextView
             android:id="@+id/tvSchedEventTime"
             style="@style/ScheduleTimeText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dip"
             android:fontFamily="sans-serif-light"
-            android:lines="1"
             android:text="hh:mma"
-            android:textStyle="bold"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/tvSchedDate"/>
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvSchedEventEndTime"
@@ -45,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-light"
             android:lines="1"
-            android:text="hh:mma"
+            android:text="Subtitle"
             android:textStyle="bold"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/tvSchedEventTime"/>
@@ -54,24 +48,29 @@
             android:id="@+id/tvSchedTitle"
             style="@style/ScheduleTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_height="fill_parent"
+            android:layout_alignTop="@id/tvSchedDate"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_toRightOf="@id/tvSchedEventTime"
+
             android:fontFamily="sans-serif-light"
             android:text="Title"
             android:textStyle="bold"
-            android:layout_alignTop="@+id/tvSchedEventTime"
-            android:layout_toRightOf="@+id/tvSchedEventTime" />
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tvSchedSubtitle"
             style="@style/ScheduleTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/tvSchedEventTime"
             android:fontFamily="sans-serif-light"
             android:text="Subtitle"
-            android:layout_below="@+id/tvSchedTitle"
-            android:layout_toRightOf="@+id/tvSchedEventTime" />
+            android:textSize="12sp"/>
 
     </RelativeLayout>
 </FrameLayout>

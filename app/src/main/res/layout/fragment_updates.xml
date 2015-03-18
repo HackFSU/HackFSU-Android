@@ -3,16 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e5e5"
+    android:background="@color/hfBlue"
     android:orientation="vertical" >
 
     <ListView
         android:id="@+id/updates_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:divider="@null"
         android:dividerHeight="0dp"  
         android:focusable="false"

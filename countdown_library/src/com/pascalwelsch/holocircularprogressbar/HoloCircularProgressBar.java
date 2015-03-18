@@ -85,7 +85,7 @@ public class HoloCircularProgressBar extends View {
     /**
      * The stroke width used to paint the circle.
      */
-    private int mCircleStrokeWidth = 10;
+    private int mCircleStrokeWidth = 25;
 
     /**
      * The gravity of the view. Where should the Circle be drawn within the given bounds
@@ -247,7 +247,7 @@ public class HoloCircularProgressBar extends View {
                         attributes.getFloat(R.styleable.HoloCircularProgressBar_marker_progress,
                                 0.0f));
                 setWheelSize((int) attributes
-                        .getDimension(R.styleable.HoloCircularProgressBar_stroke_width, 10));
+                        .getDimension(R.styleable.HoloCircularProgressBar_stroke_width, 25));
                 setThumbEnabled(attributes
                         .getBoolean(R.styleable.HoloCircularProgressBar_thumb_visible, true));
                 setMarkerEnabled(attributes
