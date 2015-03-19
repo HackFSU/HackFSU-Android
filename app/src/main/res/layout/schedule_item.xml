@@ -55,7 +55,7 @@
             android:layout_alignWithParentIfMissing="true"
             android:layout_toRightOf="@id/tvSchedEventTime"
 
-            android:fontFamily="sans-serif-light"
+
             android:text="Title"
             android:textStyle="bold"
             android:textSize="16sp"/>
@@ -68,7 +68,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@id/tvSchedEventTime"
-            android:fontFamily="sans-serif-light"
+
             android:text="Subtitle"
             android:textSize="12sp"/>
 

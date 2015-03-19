@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.hackfsu.hackfsu"
+        applicationId "com.hackfsu15.hackfsu15"
         minSdkVersion 14
         targetSdkVersion 19
     }

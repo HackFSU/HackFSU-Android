@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hackfsu.hackfsu.CountdownFragment">
+    tools:context="com.hackfsu.hackfsu15.CountdownFragment">
 
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
         android:id="@+id/countdown"
