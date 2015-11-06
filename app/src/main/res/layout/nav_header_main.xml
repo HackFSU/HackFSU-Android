@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="@dimen/nav_header_height"
+    android:background="@drawable/side_nav_bar"
+
+    android:theme="@style/ThemeOverlay.AppCompat.Dark" android:orientation="vertical"
+    android:gravity="start|bottom">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView2"
+        android:src="@drawable/abstractbg"
+        android:scaleType="center" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HackFSU"
+            android:id="@+id/textView3"
+            android:textSize="16sp"
+            android:textColor="@color/primaryTextLight"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+
+</RelativeLayout>

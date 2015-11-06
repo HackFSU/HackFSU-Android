@@ -1,77 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hackfsu.hackfsu15"
-    android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
-    <!-- todo: Remove all unneeded permissions and clean up the code -->
-
-    <permission android:name="com.hackfsu.hackfsu15.permission.MAPS_RECEIVE" >
-    </permission>
-
-    <uses-permission android:name="com.hackfsu.hackfsu.permission.MAPS_RECEIVE" >
-    </uses-permission>
-
-    <!-- Access Internet -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-
-    <!-- External storage for caching. -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- Location -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
-
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
-    <!--
-  IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
-    -->
-    <permission
-        android:name="com.hackfsu.hackfsu15.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.hackfsu.hackfsu.permission.C2D_MESSAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+    package="com.andrewsosa.hackfsu_test" >
 
     <application
-        android:name="com.hackfsu.hackfsu15.App"
         android:allowBackup="true"
-        android:icon="@drawable/hficon"
-        android:label="HackFSU"
-        android:theme="@style/CustomActionBarTheme"
-        android:uiOptions="splitActionBarWhenNarrow">
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA3TS8pKFMpQbBOaJaTZ0qdXxXI8QE4JeA" />
-
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.NoActionBar" >
         <activity
-            android:name="com.hackfsu.hackfsu15.MainSplashActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,82 +17,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hackfsu.hackfsu15.MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.hackfsu.hackfsu15.SplashActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
-        </activity>
-        <!--
-        <activity
-            android:name=".LoginActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="Password Reset"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".HomeActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="Updates"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.facebook.LoginActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".FacebookLogin"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:name=".HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.HelpRequest" >
             <meta-data
-                android:name="com.facebook.sdk.ApplicationId"
-                android:value="@string/app_id" />
-        </activity>
-        -->
-
-        <service android:name="com.parse.PushService" />
-
-        <receiver android:name="com.parse.ParseBroadcastReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
-                <category android:name="com.hackfsu.hackfsu" />
-            </intent-filter>
-        </receiver>
-
-        <activity
-            android:name=".CountdownActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_countdown"
-            android:theme="@style/FullscreenTheme" >
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.andrewsosa.hackfsu_test.MainActivity" />
         </activity>
     </application>
 

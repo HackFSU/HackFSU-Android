@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="false">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/timer_box"
+        android:background="@color/background">
+
+        <include layout="@layout/content_feed"/>
+
+        <!-- Layout height used to be wrap_content-->
+        <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/action_bar"
+            android:background="@color/primary">
+
+            <!-- Old Toolbar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:theme="@style/AppTheme.Toolbar"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_width="match_parent"
+                    android:contentInsetEnd="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="HackFSU"
+                        android:gravity="center"
+                        android:textColor="@color/primaryTextLight"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingEnd="16dp" />
+
+                </android.support.v7.widget.Toolbar>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:background="@color/primary"
+                    android:layout_height="50dp"
+                    app:layout_anchor="@id/toolbar"
+                    app:layout_anchorGravity="bottom"
+                    app:tabGravity="center"
+                    app:tabMode="fixed"
+                    android:gravity="bottom"
+                    style="@style/AppTheme.Tabs"/>
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey_50"
+        android:elevation="6dp"
+        android:id="@+id/timer_box"
+        android:padding="16dp">
+
+        <TextView
+            style="@style/AppTheme.Countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Countdown"
+            android:id="@+id/textView"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            style="@style/AppTheme.Countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00h 00m 00s"
+            android:id="@+id/textView2"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

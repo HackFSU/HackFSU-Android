@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="false"
+    tools:context=".MainActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/content_maps"/>
+
+        <!-- Layout height used to be wrap_content-->
+        <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/action_bar"
+            android:background="@color/maps">
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:theme="@style/AppTheme.Toolbar"
+                android:layout_height="56dp"
+                android:layout_width="match_parent"
+                app:titleTextAppearance="@style/Toolbar.TitleText"
+                android:contentInsetStart="72dp"
+                android:contentInsetEnd="16dp"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            </android.support.v7.widget.Toolbar>
+
+
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>

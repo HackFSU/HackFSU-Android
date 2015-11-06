@@ -1,78 +1,80 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="20dp"
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Theme Colors. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="windowActionBar">false</item>
+
+        <!-- Enable dialog stuff -->
+        <item name="android:dialogTheme">@style/AppTheme.DialogTheme</item>
+
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo">
-        <item name="circularProgressBarStyle">@style/CircularProgressBar</item>
+    <!-- Style for Material Status Bar -->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+    <!-- Styles for subactivities -->
+    <style name="AppTheme.HelpRequest" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/help</item>
+        <item name="colorPrimaryDark">@color/help_dark</item>
+    </style>
+
+    <!-- Styles for main pop-up dialogs -->
+    <style name="AppTheme.DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:textColorPrimary">@color/primary_text_default_material_dark</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="android:textColorPrimary">@color/primaryTextLight</item>
+        <item name="android:textColorSecondary">@color/primaryTextLight</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+
+    </style>
+
+    <style name="AppTheme.Tabs" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/AppTheme.Tabs.Text</item>
+        <item name="tabSelectedTextColor">@color/primaryTextLight</item>
+        <item name="tabIndicatorColor">@color/primaryTextLight</item>
+
+        <item name="tabPaddingStart">24dp</item>
+        <item name="tabPaddingEnd">24dp</item>
+    </style>
+
+    <style name="AppTheme.Tabs.Text" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/primaryTextLight</item>
+    </style>
     
-    <style name="ScheduleTimeText" parent="@android:style/Widget.TextView">
-    	<!--item name="android:background">@drawable/sched_time_bg</item--> <!-- make this a png w/ rounded corners -->
-    	<item name="android:gravity">left</item>
-    	<item name="android:textColor">@color/black</item>
-    	<item name="android:paddingTop">3dp</item>
-    	<item name="android:paddingBottom">3dp</item>
-    	<item name="android:paddingRight">5dp</item>
-    	<item name="android:paddingLeft">5dp</item>
-    	<item name="android:textSize">16sp</item>
-    </style>
-    <style name="ScheduleTitle" parent="@android:style/Widget.TextView">
-    	<!--item name="android:background">@drawable/sched_title_bg</item-->	<!-- make this a png w/ rounded corners -->
-    	<item name="android:gravity">center</item>
-    	<item name="android:textColor">@color/black</item>
-    	<item name="android:textSize">26sp</item>
-    	<item name="android:paddingTop">5dp</item>
-    	<item name="android:paddingBottom">5dp</item>
-    	<item name="android:paddingRight">5dp</item>
-    	<item name="android:paddingLeft">5dp</item>
-    </style>
-    
-    <style name="ScheduleDayDivider" parent="@android:style/Widget.TextView">
-    	<item name="android:background">@color/transparentOffWhite</item>	<!-- make this a png w/ rounded corners -->
-    	<item name="android:gravity">center</item>
-    	<item name="android:textColor">@color/black</item>
-    	<item name="android:textSize">26sp</item>
-    	<item name="android:paddingTop">5dp</item>
-    	<item name="android:paddingBottom">5dp</item>
-    	<item name="android:paddingRight">5dp</item>
-    	<item name="android:paddingLeft">5dp</item>
+    <style name="AppTheme.Update" parent="AppTheme"/>
+
+    <style name="AppTheme.Update.Title" parent="AppTheme.Update">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primaryTextDark</item>
     </style>
 
-    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="metaButtonBarStyle">@style/ButtonBar</item>
-        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+    <style name="AppTheme.Countdown" parent="AppTheme">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/secondaryTextDark</item>
     </style>
 
-    <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
-    <style name="ButtonBar">
-        <item name="android:paddingLeft">2dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingRight">2dp</item>
-        <item name="android:paddingBottom">0dp</item>
-        <item name="android:background">@android:drawable/bottom_bar</item>
-    </style>
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
-    <style name="ButtonBarButton" />
 
 </resources>

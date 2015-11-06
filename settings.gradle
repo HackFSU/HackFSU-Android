@@ -1,1 +1,1 @@
-include ':app', ':countdown_library'
+include ':app'

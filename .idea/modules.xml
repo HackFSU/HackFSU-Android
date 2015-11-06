@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HackFSU-Android.iml" filepath="$PROJECT_DIR$/HackFSU-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/countdown_library/countdown_library.iml" filepath="$PROJECT_DIR$/countdown_library/countdown_library.iml" />
     </modules>
   </component>
 </project>
-
