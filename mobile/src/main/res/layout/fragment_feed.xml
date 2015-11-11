@@ -1,71 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<!-- <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:animateLayoutChanges="true"
-    android:fitsSystemWindows="false">
+    android:fitsSystemWindows="true"> -->
 
     <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_content"
+        android:background="@color/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/timer_box"
-        android:background="@color/background">
+        android:layout_above="@+id/timer_box">
 
         <include layout="@layout/content_feed"/>
 
         <!-- Layout height used to be wrap_content-->
         <android.support.design.widget.AppBarLayout
-            android:layout_height="wrap_content"
+            android:layout_height="230dp"
             android:layout_width="match_parent"
             android:id="@+id/action_bar"
-            android:background="@color/primary">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <!-- Old Toolbar -->
-            <LinearLayout
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_scrollFlags="scroll|enterAlways|snap">
+                android:layout_height="180dp"
+                app:statusBarScrim="@color/primaryDark"
+                app:contentScrim="@color/primaryDark"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:theme="@style/AppTheme.Toolbar"
-                    android:layout_height="?attr/actionBarSize"
+
+                <ImageView
                     android:layout_width="match_parent"
-                    android:contentInsetEnd="16dp">
+                    android:layout_height="match_parent"
+                    android:id="@+id/toolbar_background"
+                    app:layout_collapseMode="parallax"
+                    android:background="@color/primary"
+                    android:scaleType="centerCrop"/>
 
-                    <TextView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                </LinearLayout>
+
+
+
+
+                <!-- <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="parallax"
+                    android:fitsSystemWindows="true">
+
+                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="HackFSU"
-                        android:gravity="center"
-                        android:textColor="@color/primaryTextLight"
-                        android:textSize="20sp"
-                        android:fontFamily="sans-serif-medium"
-                        android:paddingEnd="16dp" />
+                        android:id="@+id/toolbar_background"
+                        app:layout_collapseMode="parallax"
+                        android:background="@color/indigo_500"
+                        android:scaleType="centerCrop"/>
 
-                </android.support.v7.widget.Toolbar>
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                </RelativeLayout>
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
-                    android:background="@color/primary"
-                    android:layout_height="50dp"
-                    app:layout_anchor="@id/toolbar"
-                    app:layout_anchorGravity="bottom"
-                    app:tabGravity="center"
-                    app:tabMode="fixed"
-                    android:gravity="bottom"
-                    style="@style/AppTheme.Tabs"/>
-            </LinearLayout>
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_gravity="bottom"
+                    app:tabIndicatorColor="@color/grey_white_1000"
+                    app:tabMode="fixed" /> -->
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                app:tabIndicatorColor="@color/grey_white_1000"
+                app:tabMode="fixed"/>
 
         </android.support.design.widget.AppBarLayout>
 
     </android.support.design.widget.CoordinatorLayout>
-
+<!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -96,4 +132,4 @@
     </RelativeLayout>
 
 
-</RelativeLayout>
+</RelativeLayout> -->

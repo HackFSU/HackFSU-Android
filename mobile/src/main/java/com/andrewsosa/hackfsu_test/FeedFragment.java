@@ -2,6 +2,7 @@ package com.andrewsosa.hackfsu_test;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -29,6 +30,8 @@ public class FeedFragment extends BaseFragment {
     Toolbar mToolbar;
     TabLayout mTabLayout;
     ViewPager mViewPager;
+
+    CollapsingToolbarLayout ctl;
 
     public static FeedFragment newInstance() {
         return new FeedFragment();
@@ -62,6 +65,7 @@ public class FeedFragment extends BaseFragment {
         mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
         mToolbar.inflateMenu(R.menu.menu_main);
         mListener.registerToolbar(mToolbar);
+
 
 
         // View Pager setup
