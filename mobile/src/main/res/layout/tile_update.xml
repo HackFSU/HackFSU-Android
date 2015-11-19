@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Title"
-                android:id="@+id/update_title"
+                android:id="@+id/tv_title"
                 android:layout_marginLeft="72dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="2dp"
@@ -40,26 +40,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1/01/2016 12:00 AM"
-                android:id="@+id/update_subtitle"
-                android:layout_below="@+id/update_title"
-                android:layout_alignLeft="@+id/update_title" />
+                android:id="@+id/tv_subtitle"
+                android:layout_below="@+id/tv_title"
+                android:layout_alignLeft="@+id/tv_title" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lorem"
-                android:id="@+id/update_content"
+                android:id="@+id/tv_content"
                 android:layout_marginLeft="16dp"
-                android:layout_below="@+id/update_subtitle"
+                android:layout_below="@+id/tv_subtitle"
                 android:layout_marginTop="16dp"
                 android:textSize="14dp" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/imageView"
-                android:layout_alignTop="@+id/update_title"
-                android:layout_alignStart="@+id/update_content"
+                android:id="@+id/iv_icon"
+                android:layout_alignTop="@+id/tv_title"
+                android:layout_alignStart="@+id/tv_content"
                 android:src="@drawable/update_image" />
         </RelativeLayout>
 

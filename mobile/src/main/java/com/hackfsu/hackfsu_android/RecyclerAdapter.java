@@ -1,4 +1,4 @@
-package com.andrewsosa.hackfsu_test;
+package com.hackfsu.hackfsu_android;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +25,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public ViewHolder(View v) {
             super(v);
             card = v;
-            mTextView = (TextView) v.findViewById(R.id.update_title);
+            mTextView = (TextView) v.findViewById(R.id.tv_title);
         }
     }
 
@@ -40,7 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                                                    int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.update, parent, false);
+                .inflate(R.layout.tile_update, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;

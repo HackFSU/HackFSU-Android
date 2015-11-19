@@ -1,15 +1,12 @@
-package com.andrewsosa.hackfsu_test;
+package com.hackfsu.hackfsu_android;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -18,32 +15,20 @@ public class UpdateFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
 
-    // TODO: Rename and change types and number of parameters
     public static UpdateFragment newInstance() {
-        UpdateFragment fragment = new UpdateFragment();
-        return fragment;
+        return new UpdateFragment();
     }
 
-    public UpdateFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public UpdateFragment() {}
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_update, container, false);
-
-
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
-
-
+        View v =  inflater.inflate(R.layout.fragment_list, container, false);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         return v;
     }
 
@@ -84,11 +69,17 @@ public class UpdateFragment extends BaseFragment {
         // you provide access to all the views for a data item in a view holder
         public static class ViewHolder extends RecyclerView.ViewHolder {
             public View card;
-            public TextView mTextView;
+            public TextView mTitleText;
+            public TextView mSubtitleText;
+            public TextView mContentText;
+            public ImageView mIcon;
             public ViewHolder(View v) {
                 super(v);
                 card = v;
-                mTextView = (TextView) v.findViewById(R.id.update_title);
+                mTitleText = (TextView) v.findViewById(R.id.tv_title);
+                mSubtitleText = (TextView) v.findViewById(R.id.tv_subtitle);
+                mContentText = (TextView) v.findViewById(R.id.tv_content);
+                mIcon = (ImageView) v.findViewById(R.id.iv_icon);
             }
         }
 
@@ -103,7 +94,7 @@ public class UpdateFragment extends BaseFragment {
                                                              int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.update, parent, false);
+                    .inflate(R.layout.tile_update, parent, false);
 
             ViewHolder vh = new ViewHolder(v);
             return vh;
@@ -114,7 +105,7 @@ public class UpdateFragment extends BaseFragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
-            holder.mTextView.setText(mDataset[position]);
+            holder.mTitleText.setText(mDataset[position]);
 
         }
 
