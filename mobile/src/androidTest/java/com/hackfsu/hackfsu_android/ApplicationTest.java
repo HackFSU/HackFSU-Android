@@ -1,4 +1,4 @@
-package com.andrewsosa.hackfsu_test;
+package com.hackfsu.hackfsu_android;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

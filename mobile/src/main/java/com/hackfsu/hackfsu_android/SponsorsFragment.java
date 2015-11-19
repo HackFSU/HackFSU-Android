@@ -1,19 +1,13 @@
-package com.andrewsosa.hackfsu_test;
+package com.hackfsu.hackfsu_android;
 
 
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.andrewsosa.hackfsu_test.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.

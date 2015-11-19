@@ -1,16 +1,14 @@
-package com.andrewsosa.hackfsu_test;
+package com.hackfsu.hackfsu_android;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 
 public class ScheduleFragment extends BaseFragment {
@@ -19,31 +17,20 @@ public class ScheduleFragment extends BaseFragment {
     LinearLayoutManager mLayoutManager;
 
     // TODO: Rename and change types and number of parameters
-    public static UpdateFragment newInstance() {
-        UpdateFragment fragment = new UpdateFragment();
-        return fragment;
+    public static ScheduleFragment newInstance() {
+        return new ScheduleFragment();
     }
 
-    public ScheduleFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public ScheduleFragment() {}
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_update, container, false);
-
-
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
-
-
+        View v =  inflater.inflate(R.layout.fragment_list, container, false);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         return v;
     }
 
@@ -58,7 +45,7 @@ public class ScheduleFragment extends BaseFragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
 
         // specify an adapter (see also next example)
         ScheduleRecyclerAdapter mAdapter = new ScheduleRecyclerAdapter(new String[]{"Hello",
@@ -83,11 +70,15 @@ public class ScheduleFragment extends BaseFragment {
         // you provide access to all the views for a data item in a view holder
         public static class ViewHolder extends RecyclerView.ViewHolder {
             public View card;
-            public TextView mTextView;
+            public TextView mTitleText;
+            public TextView mSubtitleText;
+            public TextView mTimeText;
             public ViewHolder(View v) {
                 super(v);
                 card = v;
-                mTextView = (TextView) v.findViewById(R.id.update_title);
+                mTitleText = (TextView) v.findViewById(R.id.tv_title);
+                mSubtitleText = (TextView) v.findViewById(R.id.tv_subtitle);
+                mTimeText = (TextView) v.findViewById(R.id.tv_time);
             }
         }
 
@@ -102,10 +93,9 @@ public class ScheduleFragment extends BaseFragment {
                                                                     int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.update, parent, false);
+                    .inflate(R.layout.tile_schedule, parent, false);
 
-            ViewHolder vh = new ViewHolder(v);
-            return vh;
+            return new ViewHolder(v);
         }
 
         // Replace the contents of a view (invoked by the layout manager)
@@ -113,7 +103,7 @@ public class ScheduleFragment extends BaseFragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
-            holder.mTextView.setText(mDataset[position]);
+            holder.mSubtitleText.setText(mDataset[position]);
 
         }
 

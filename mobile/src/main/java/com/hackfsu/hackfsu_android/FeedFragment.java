@@ -1,10 +1,12 @@
-package com.andrewsosa.hackfsu_test;
+package com.hackfsu.hackfsu_android;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -30,8 +32,8 @@ public class FeedFragment extends BaseFragment {
     Toolbar mToolbar;
     TabLayout mTabLayout;
     ViewPager mViewPager;
-
-    CollapsingToolbarLayout ctl;
+    AppBarLayout mAppBar;
+    CollapsingToolbarLayout mCollasping;
 
     public static FeedFragment newInstance() {
         return new FeedFragment();
@@ -50,6 +52,8 @@ public class FeedFragment extends BaseFragment {
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mTabLayout = (TabLayout) v.findViewById(R.id.tabs);
         mViewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        mAppBar = (AppBarLayout) v.findViewById(R.id.action_bar);
+        mCollasping = (CollapsingToolbarLayout) v.findViewById(R.id.collapsing_toolbar);
 
         return v;
     }
@@ -71,12 +75,23 @@ public class FeedFragment extends BaseFragment {
         // View Pager setup
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(UpdateFragment.newInstance());
-        fragments.add(UpdateFragment.newInstance());
-        //fragments.add(UpdateFragment.newInstance());
-        //fragments.add(UpdateFragment.newInstance());
+        fragments.add(ScheduleFragment.newInstance());
         PagerAdapter mPagerAdapter = new PagerAdapter(getChildFragmentManager(), fragments);
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        AppBarLayout.OnOffsetChangedListener barListener = new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if(mCollasping.getHeight() + verticalOffset < 2 * ViewCompat.getMinimumHeight(mCollasping)) {
+                    //hello.animate().alpha(1).setDuration(600);
+                } else {
+                    //hello.animate().alpha(0).setDuration(600);
+                }
+            }
+        };
+
+        mAppBar.addOnOffsetChangedListener(barListener);
 
     }
 

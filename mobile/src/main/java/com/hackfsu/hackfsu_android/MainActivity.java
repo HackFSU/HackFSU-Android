@@ -1,8 +1,7 @@
-package com.andrewsosa.hackfsu_test;
+package com.hackfsu.hackfsu_android;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Toolbar.OnMenuItemClickListener,
@@ -74,6 +72,9 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
+
+
     }
 
     @Override
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity
         switch(id) {
             //case R.id.action_settings:
             //    return true;
-            case R.id.action_countdown:
+            /*case R.id.action_countdown:
                 RelativeLayout countdown = (RelativeLayout) findViewById(R.id.timer_box);
 
                 if(countdown.getVisibility() == View.VISIBLE) {
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity
                     countdown.setVisibility(View.VISIBLE);
                 }
 
-                return true;
+                return true;*/
         }
 
 
@@ -150,7 +151,6 @@ public class MainActivity extends AppCompatActivity
                     startActivity(new Intent(this, HelpActivity.class));
                     break;
                 case R.id.nav_settings:
-                    startActivity(new Intent(this, TestActivity.class));
                     break;
             }
         }
