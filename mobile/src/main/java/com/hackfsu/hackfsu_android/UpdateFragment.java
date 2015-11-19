@@ -3,17 +3,32 @@ package com.hackfsu.hackfsu_android;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseClassName;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
+
 
 public class UpdateFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
+    UpdatesRecyclerAdapter mAdapter;
 
     public static UpdateFragment newInstance() {
         return new UpdateFragment();
@@ -46,15 +61,22 @@ public class UpdateFragment extends BaseFragment {
 
 
         // specify an adapter (see also next example)
-        UpdatesRecyclerAdapter mAdapter = new UpdatesRecyclerAdapter(new String[]{"Hello",
-                "World", "HackFSU","World", "HackFSU","World", "HackFSU","World", "HackFSU"});
+        mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateItem>());
         mRecyclerView.setAdapter(mAdapter);
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        //mRecyclerView.scrollToPosition(0);
+        ParseQuery<UpdateItem> query = ParseQuery.getQuery("Update");
+        query.orderByDescending("createdAt");
+        query.findInBackground(new FindCallback<UpdateItem>() {
+            @Override
+            public void done(List<UpdateItem> list, ParseException e) {
+                if(e != null) {
+                    Log.e("HackFSU", e.getMessage());
+                } else {
+                    mAdapter.replaceData(list);
+                    mAdapter.notifyItemRangeInserted(0, list.size());
+                }
+            }
+        });
     }
 
 
@@ -62,7 +84,7 @@ public class UpdateFragment extends BaseFragment {
     private static class UpdatesRecyclerAdapter extends
             RecyclerView.Adapter<UpdatesRecyclerAdapter.ViewHolder> {
 
-        private String[] mDataset;
+        private List<UpdateItem> mDataset;
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
@@ -84,7 +106,7 @@ public class UpdateFragment extends BaseFragment {
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public UpdatesRecyclerAdapter(String[] myDataset) {
+        public UpdatesRecyclerAdapter(List<UpdateItem> myDataset) {
             mDataset = myDataset;
         }
 
@@ -105,14 +127,43 @@ public class UpdateFragment extends BaseFragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
-            holder.mTitleText.setText(mDataset[position]);
+
+            holder.mTitleText.setText(mDataset.get(position).getTitle());
+            holder.mContentText.setText(mDataset.get(position).getContent());
+
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+            String timeStamp = formatter.format(mDataset.get(position).getTimestamp());
+            holder.mSubtitleText.setText(timeStamp);
 
         }
 
         // Return the size of your dataset (invoked by the layout manager)
         @Override
         public int getItemCount() {
-            return mDataset.length;
+            return mDataset.size();
+        }
+
+        public void replaceData(List<UpdateItem> data) {
+            mDataset = data;
+        }
+    }
+
+    @ParseClassName("Update")
+    public static class UpdateItem extends ParseObject {
+
+        public UpdateItem() {}
+
+        public String getContent() {
+            return getString("subtitle");
+        }
+
+        public Date getTimestamp() {
+            return getCreatedAt();
+        }
+
+        public String getTitle() {
+            return getString("title");
         }
     }
 }

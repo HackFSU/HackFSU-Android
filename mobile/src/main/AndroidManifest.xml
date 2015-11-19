@@ -11,7 +11,7 @@
 
     <permission android:protectionLevel="signature"
         android:name="com.hackfsu.hackfsu_android.permission.C2D_MESSAGE" />
-    <uses-permission android:name="com.andrewsosa.hackfsu_android.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.hackfsu.hackfsu_android.permission.C2D_MESSAGE" />
 
     <application
         android:name="com.hackfsu.hackfsu_android.HackFSU"
@@ -53,7 +53,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <category android:name="com.andrewsosa.hackfsu_android" />
+                <category android:name="com.hackfsu.hackfsu_android" />
             </intent-filter>
         </receiver>
 

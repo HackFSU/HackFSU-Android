@@ -3,18 +3,37 @@ package com.hackfsu.hackfsu_android;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseClassName;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class ScheduleFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
+    ScheduleRecyclerAdapter mAdapter;
+
+    final String SCHEDULEITEM = "ScheduleItem";
 
     // TODO: Rename and change types and number of parameters
     public static ScheduleFragment newInstance() {
@@ -48,22 +67,29 @@ public class ScheduleFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
 
         // specify an adapter (see also next example)
-        ScheduleRecyclerAdapter mAdapter = new ScheduleRecyclerAdapter(new String[]{"Hello",
-                "World", "HackFSU","World", "HackFSU","World", "HackFSU","World", "HackFSU"});
+        mAdapter = new ScheduleRecyclerAdapter(new ArrayList<ScheduleItem>());
         mRecyclerView.setAdapter(mAdapter);
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        //mRecyclerView.scrollToPosition(0);
+        ParseQuery<ScheduleItem> query = ParseQuery.getQuery("ScheduleItem");
+        query.orderByAscending("startTime");
+        query.findInBackground(new FindCallback<ScheduleItem>() {
+            @Override
+            public void done(List<ScheduleItem> list, ParseException e) {
+                if(e != null) {
+                    Log.e("HackFSU", "Error: " + e.getMessage());
+                } else {
+                    mAdapter.replaceDataset(list);
+                    mAdapter.notifyItemRangeInserted(0, list.size());
+                }
+            }
+        });
     }
 
     // Adapter used by this fragment
     private static class ScheduleRecyclerAdapter extends
             RecyclerView.Adapter<ScheduleRecyclerAdapter.ViewHolder> {
 
-        private String[] mDataset;
+        private List<ScheduleItem> mDataset;
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
@@ -83,7 +109,7 @@ public class ScheduleFragment extends BaseFragment {
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public ScheduleRecyclerAdapter(String[] myDataset) {
+        public ScheduleRecyclerAdapter(ArrayList<ScheduleItem> myDataset) {
             mDataset = myDataset;
         }
 
@@ -103,14 +129,49 @@ public class ScheduleFragment extends BaseFragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
-            holder.mSubtitleText.setText(mDataset[position]);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a", Locale.US);
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+            String startTime = formatter.format(mDataset.get(position).getStartTime());
+
+            holder.mTimeText.setText(startTime);
+            holder.mTitleText.setText(mDataset.get(position).getTitle());
+            holder.mSubtitleText.setText(mDataset.get(position).getSubtitle());
 
         }
 
         // Return the size of your dataset (invoked by the layout manager)
         @Override
         public int getItemCount() {
-            return mDataset.length;
+            return mDataset.size();
+        }
+
+        public void replaceDataset(List<ScheduleItem> data) {
+            mDataset = data;
+        }
+    }
+
+    @ParseClassName("ScheduleItem")
+    public static class ScheduleItem extends ParseObject {
+
+        public ScheduleItem(){
+
+        }
+
+        public Date getEndTime() {
+            return getDate("endTime");
+        }
+
+        public Date getStartTime() {
+            return getDate("startTime");
+        }
+
+        public String getSubtitle() {
+            return getString("subtitle");
+        }
+
+        public String getTitle() {
+            return getString("title");
         }
     }
 }
