@@ -4,7 +4,8 @@
     android:background="@drawable/side_nav_bar"
 
     android:theme="@style/ThemeOverlay.AppCompat.Dark" android:orientation="vertical"
-    android:gravity="start|bottom">
+    android:gravity="start|bottom"
+    android:paddingTop="24dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -15,8 +16,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:layout_alignParentBottom="true"
@@ -27,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HackFSU"
-            android:id="@+id/textView3"
-            android:textSize="16sp"
+            android:id="@+id/tv_navtitle"
+            android:textSize="34sp"
             android:textColor="@color/primaryTextLight"
             android:fontFamily="sans-serif-medium" />
     </LinearLayout>

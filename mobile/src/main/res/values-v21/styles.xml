@@ -10,8 +10,9 @@
     <style name="AppTheme.HelpRequest" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/help</item>
         <item name="colorPrimaryDark">@color/help_dark</item>
+        <item name="colorAccent">@color/hackfsu_blueDark</item>
         <item name="android:statusBarColor">@color/help_dark</item>
-        <item name="colorAccent">@color/red_400</item>
+
     </style>
 
 </resources>

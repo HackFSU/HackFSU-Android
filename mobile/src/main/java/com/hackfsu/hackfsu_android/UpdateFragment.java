@@ -109,6 +109,7 @@ public class UpdateFragment extends BaseFragment {
                 });
             }
         });
+        mSwipeLayout.setColorSchemeResources(R.color.accent);
     }
 
 

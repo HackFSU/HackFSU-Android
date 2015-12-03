@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:id="@+id/action_bar"
+            app:elevation="2dp"
             android:background="@color/maps">
 
 
@@ -35,8 +36,6 @@
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
             </android.support.v7.widget.Toolbar>
-
-
 
         </android.support.design.widget.AppBarLayout>
 

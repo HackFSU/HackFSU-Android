@@ -23,7 +23,7 @@
     <style name="AppTheme.HelpRequest" parent="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/help</item>
         <item name="colorPrimaryDark">@color/help_dark</item>
-        <item name="colorAccent">@color/cyan_A700</item>
+        <item name="colorAccent">@color/hackfsu_blueDark</item>
     </style>
 
     <!-- Styles for main pop-up dialogs -->
@@ -80,7 +80,7 @@
 
     <style name="AppTheme.CollapsedTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">#0000</item>
+        <item name="android:textColor">#0fff</item>
     </style>
 
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
