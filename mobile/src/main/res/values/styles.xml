@@ -79,7 +79,7 @@
     </style>
 
     <style name="AppTheme.CollapsedTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">#0fff</item>
     </style>
 

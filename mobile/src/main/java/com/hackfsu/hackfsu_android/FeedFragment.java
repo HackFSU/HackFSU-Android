@@ -91,7 +91,7 @@ public class FeedFragment extends BaseFragment {
         face = Typeface.createFromAsset(getContext().getAssets(), "unisans.OTF");
         mCollasping.setCollapsedTitleTypeface(face);
         mCollasping.setExpandedTitleTypeface(face);
-        mCollasping.setTitle("HACKFSU");
+        mCollasping.setTitle("HackFSU");
     }
 
     @Override
