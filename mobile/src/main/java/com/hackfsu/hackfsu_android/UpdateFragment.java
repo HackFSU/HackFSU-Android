@@ -1,6 +1,8 @@
 package com.hackfsu.hackfsu_android;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +29,7 @@ import java.util.TimeZone;
 public class UpdateFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
+    SwipeRefreshLayout mSwipeLayout;
     LinearLayoutManager mLayoutManager;
     UpdatesRecyclerAdapter mAdapter;
 
@@ -42,8 +45,9 @@ public class UpdateFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_list, container, false);
+        View v =  inflater.inflate(R.layout.fragment_list_refresh, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
         return v;
     }
 
@@ -64,17 +68,45 @@ public class UpdateFragment extends BaseFragment {
         mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateItem>());
         mRecyclerView.setAdapter(mAdapter);
 
+
+        // Initial Load
         ParseQuery<UpdateItem> query = ParseQuery.getQuery("Update");
         query.orderByDescending("createdAt");
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
         query.findInBackground(new FindCallback<UpdateItem>() {
             @Override
             public void done(List<UpdateItem> list, ParseException e) {
-                if(e != null) {
+                if (e != null) {
                     Log.e("HackFSU", e.getMessage());
                 } else {
                     mAdapter.replaceData(list);
-                    mAdapter.notifyItemRangeInserted(0, list.size());
+                    mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
                 }
+            }
+        });
+
+        // Swipe Reload
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ParseQuery<UpdateItem> query = ParseQuery.getQuery("Update");
+                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
+                query.orderByDescending("createdAt");
+                query.findInBackground(new FindCallback<UpdateItem>() {
+                    @Override
+                    public void done(List<UpdateItem> list, ParseException e) {
+                        if (e != null) {
+                            Log.e("HackFSU", e.getMessage());
+                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
+                                    .show();
+                        } else {
+                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+                            mAdapter.replaceData(list);
+                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+                        }
+                        mSwipeLayout.setRefreshing(false);
+                    }
+                });
             }
         });
     }

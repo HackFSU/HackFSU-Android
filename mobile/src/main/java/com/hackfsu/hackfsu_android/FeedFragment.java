@@ -1,6 +1,7 @@
 package com.hackfsu.hackfsu_android;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -80,19 +81,23 @@ public class FeedFragment extends BaseFragment {
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        AppBarLayout.OnOffsetChangedListener barListener = new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if(mCollasping.getHeight() + verticalOffset < 2 * ViewCompat.getMinimumHeight(mCollasping)) {
-                    //hello.animate().alpha(1).setDuration(600);
-                } else {
-                    //hello.animate().alpha(0).setDuration(600);
-                }
-            }
-        };
+        if(savedInstanceState != null) {
+            mViewPager.setCurrentItem(savedInstanceState.getInt("pos"));
+        }
 
-        mAppBar.addOnOffsetChangedListener(barListener);
 
+        // Custom toolbar font
+        Typeface face;
+        face = Typeface.createFromAsset(getContext().getAssets(), "unisans.OTF");
+        mCollasping.setCollapsedTitleTypeface(face);
+        mCollasping.setExpandedTitleTypeface(face);
+        mCollasping.setTitle("HACKFSU");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("pos", mViewPager.getCurrentItem());
     }
 
     @Override

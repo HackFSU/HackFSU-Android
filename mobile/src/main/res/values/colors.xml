@@ -18,8 +18,8 @@
     <color name="maps">@color/blue_grey_500</color>
     <color name="maps_dark">@color/blue_grey_700</color>
     <color name="maps_bg">@color/grey_50</color>
-    <color name="help">@color/blue_grey_500</color>
-    <color name="help_dark">@color/blue_grey_700</color>
+    <color name="help">@color/blue_500</color>
+    <color name="help_dark">@color/blue_700</color>
 
     <!-- Text Colors -->
     <color name="primaryTextLight">@color/abc_primary_text_material_dark</color>

@@ -48,6 +48,8 @@
                 app:collapsedTitleGravity="center"
                 app:expandedTitleGravity="center"
                 app:title="HackFSU"
+                app:expandedTitleTextAppearance="@style/AppTheme.ExpandedTitle"
+                app:collapsedTitleTextAppearance="@style/AppTheme.CollapsedTitle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 

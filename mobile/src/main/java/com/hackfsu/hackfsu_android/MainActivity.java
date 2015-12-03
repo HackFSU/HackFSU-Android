@@ -18,6 +18,10 @@ public class MainActivity extends AppCompatActivity
         BaseFragment.OnFragmentInteractionListener {
 
     DrawerLayout drawer;
+    NavigationView navigationView;
+
+    String activeFragmentTag;
+    int activeFragmentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,55 +29,27 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        /*// Toolbar stuff
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.inflateMenu(R.menu.menu_main);
-        //setSupportActionBar(mToolbar);
-        //mToolbar.setTitle("HackFSU");
-        mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.openDrawer(GravityCompat.START);
-                }
-            }
-        });
-        mToolbar.setOnMenuItemClickListener(this);
-        mToolbar.inflateMenu(R.menu.menu_main);*/
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        // Restore or Init state
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_live);
+        if(savedInstanceState != null) {
+            restoreFragmentTransaction(savedInstanceState);
+        } else {
+            newFragmentTransaction(R.id.nav_live);
+        }
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-
-        // Tab Layout setup
-        /*mTabLayout = (TabLayout) findViewById(R.id.tabs);
-
-
-        // View Pager setup
-        ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(UpdateFragment.newInstance());
-        fragments.add(UpdateFragment.newInstance());
-        fragments.add(UpdateFragment.newInstance());
-        fragments.add(UpdateFragment.newInstance());
-        PagerAdapter mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setAdapter(mPagerAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);*/
-
-        FragmentManager fm = getSupportFragmentManager();
-        FeedFragment ff = FeedFragment.newInstance();
-        fm.beginTransaction().replace(R.id.fragment_anchor, ff).commit();
-
-
-
-
-
-
-
+        //Save the fragment's instance
+        /*FragmentManager fm = getSupportFragmentManager();
+        Fragment fg = fm.findFragmentByTag(activeFragmentTag);
+        fm.putFragment(outState, "fragment", fg);
+        outState.putString("tag", activeFragmentTag); */
+        outState.putInt("id", activeFragmentId);
 
     }
 
@@ -126,26 +102,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(item.getGroupId() == R.id.primary) {
 
-            FragmentManager fm = getSupportFragmentManager();
-            Fragment fg;
+        if(item.getGroupId() == R.id.primary && shouldChangeFragments(id)) {
 
-            switch (id) {
-                case R.id.nav_live:
-                    fg = FeedFragment.newInstance(); break;
-                case R.id.nav_map:
-                    fg = MapsFragment.newInstance(); break;
-                default: return true;
-            }
+            newFragmentTransaction(id);
 
-            updateUI(id);
-
-            fm.beginTransaction().replace(R.id.fragment_anchor, fg).commit();
-
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if (item.getGroupId() == R.id.secondary) {
             switch (id) {
                 case R.id.nav_help:
                     startActivity(new Intent(this, HelpActivity.class));
@@ -155,7 +117,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -182,5 +144,67 @@ public class MainActivity extends AppCompatActivity
                 drawer.setStatusBarBackgroundColor(getResources().getColor(R.color.maps_dark));
                 break;
         }
+    }
+
+    public void newFragmentTransaction(int id) {
+
+        // Be Prepared~!
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fg = null;
+
+        // How can IDs be real if our eyes aren't real?
+        switch (id) {
+            case R.id.nav_live:
+                fg = FeedFragment.newInstance(); break;
+            case R.id.nav_map:
+                fg = MapsFragment.newInstance(); break;
+        }
+
+        // Actual cannibal shia transaction
+        if(fg != null) {
+            updateUI(id);
+            activeFragmentTag = getFragmentTag(id);
+            activeFragmentId = id;
+            navigationView.setCheckedItem(R.id.nav_live);
+            fm.beginTransaction().replace(R.id.fragment_anchor, fg, activeFragmentTag).commit();
+        }
+    }
+
+    public void restoreFragmentTransaction(Bundle savedInstanceState) {
+
+        activeFragmentId = savedInstanceState.getInt("id");
+        newFragmentTransaction(activeFragmentId);
+
+        /* Fuck all of this
+        // Prepare Fragment
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fg = fm.getFragment(savedInstanceState, "fragment");
+
+        // Handle the metadata updates
+        activeFragmentId = savedInstanceState.getInt("id");
+        activeFragmentTag = getFragmentTag(activeFragmentId);
+        navigationView.setCheckedItem(activeFragmentId);
+        updateUI(activeFragmentId);
+
+        // Just do it!!
+        fm.beginTransaction().replace(R.id.fragment_anchor, fg, activeFragmentTag).commit();
+        */
+    }
+
+    public String getFragmentTag(int id) {
+
+        switch (id) {
+            case R.id.nav_live: return "Live";
+            case R.id.nav_map: return "Map";
+            case R.id.nav_sponsors: return "Sponsors";
+            default: return "";
+        }
+    }
+
+    public boolean shouldChangeFragments(int id) {
+
+        FragmentManager fm = getSupportFragmentManager();
+        return (fm.findFragmentByTag(getFragmentTag(id)) == null);
+
     }
 }

@@ -59,7 +59,7 @@ public class ScheduleFragment extends BaseFragment {
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(false);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -71,6 +71,7 @@ public class ScheduleFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
 
         ParseQuery<ScheduleItem> query = ParseQuery.getQuery("ScheduleItem");
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.orderByAscending("startTime");
         query.findInBackground(new FindCallback<ScheduleItem>() {
             @Override
@@ -79,7 +80,7 @@ public class ScheduleFragment extends BaseFragment {
                     Log.e("HackFSU", "Error: " + e.getMessage());
                 } else {
                     mAdapter.replaceDataset(list);
-                    mAdapter.notifyItemRangeInserted(0, list.size());
+                    mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
                 }
             }
         });
@@ -130,13 +131,23 @@ public class ScheduleFragment extends BaseFragment {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
 
-            SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a", Locale.US);
-            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-            String startTime = formatter.format(mDataset.get(position).getStartTime());
+            if(mDataset.get(position) instanceof ScheduleDivider) {
 
-            holder.mTimeText.setText(startTime);
-            holder.mTitleText.setText(mDataset.get(position).getTitle());
-            holder.mSubtitleText.setText(mDataset.get(position).getSubtitle());
+                holder.mTimeText.setText("Upcoming");
+                holder.mTitleText.setText("");
+                holder.mSubtitleText.setText("");
+
+            } else {
+                SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a", Locale.US);
+                formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+                String startTime = formatter.format(mDataset.get(position).getStartTime());
+
+                holder.mTimeText.setText(startTime);
+                holder.mTitleText.setText(mDataset.get(position).getTitle());
+                holder.mSubtitleText.setText(mDataset.get(position).getSubtitle());
+            }
+
+
 
         }
 
@@ -148,6 +159,12 @@ public class ScheduleFragment extends BaseFragment {
 
         public void replaceDataset(List<ScheduleItem> data) {
             mDataset = data;
+            /*GregorianCalendar gc = new GregorianCalendar(Locale.US);
+            for(ScheduleItem u : mDataset) {
+                if(u.getStartTime().compareTo(gc.getTime()) < 0) {
+                    mDataset.add(mDataset.indexOf(u), new ScheduleDivider());
+                }
+            }*/
         }
     }
 
@@ -173,5 +190,10 @@ public class ScheduleFragment extends BaseFragment {
         public String getTitle() {
             return getString("title");
         }
+    }
+
+    @ParseClassName("ScheduleDivider")
+    public static class ScheduleDivider extends ScheduleItem {
+
     }
 }

@@ -14,7 +14,9 @@ public class HackFSU extends Application {
     public void onCreate() {
         super.onCreate();
         ParseObject.registerSubclass(ScheduleFragment.ScheduleItem.class);
+        ParseObject.registerSubclass(ScheduleFragment.ScheduleDivider.class);
         ParseObject.registerSubclass(UpdateFragment.UpdateItem.class);
+        //Parse.enableLocalDatastore(this);
         Parse.initialize(this, "7MgItVIkvSmADkIdIVPmEbIOOZQ84ilW224wXsgS", "hHoLbbe3SWIzt6JiXaNY5gdPQ47QBGH6AlbHHTih");
         ParseInstallation.getCurrentInstallation().saveInBackground();
         ParsePush.subscribeInBackground("announcements");
