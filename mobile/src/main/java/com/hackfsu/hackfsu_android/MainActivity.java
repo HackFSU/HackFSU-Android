@@ -1,15 +1,18 @@
 package com.hackfsu.hackfsu_android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initPrefs();
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -72,37 +77,31 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onMenuItemClick(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        SharedPreferences sp = getSharedPreferences(HackFSU.PREFERENCES, MODE_PRIVATE);
 
         switch(id) {
-            //case R.id.action_settings:
-            //    return true;
-            /*case R.id.action_countdown:
-                RelativeLayout countdown = (RelativeLayout) findViewById(R.id.timer_box);
-
-                if(countdown.getVisibility() == View.VISIBLE) {
-                    countdown.setVisibility(View.GONE);
-                } else {
-                    countdown.setVisibility(View.VISIBLE);
-                }
-
-                return true;*/
+            case R.id.action_countdown:
+                boolean showCountdown = !sp.getBoolean(HackFSU.COUNTDOWN, true);
+                Log.d("HackFSU", ""+showCountdown);
+                item.setIcon(showCountdown ? R.drawable.ic_timer_24dp : R.drawable.ic_timer_off_white_24dp);
+                sp.edit().putBoolean(HackFSU.COUNTDOWN, showCountdown).apply();
+                break;
+            case R.id.action_notifications:
+                boolean allowNotifications = !sp.getBoolean(HackFSU.NOTIFICATIONS, true);
+                Log.d("HackFSU", ""+allowNotifications);
+                item.setIcon(allowNotifications ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
+                sp.edit().putBoolean(HackFSU.NOTIFICATIONS, allowNotifications).apply();
+                Snackbar.make(drawer, (allowNotifications ? "Notifications Enabled" : "Notifications Disabled"), Snackbar.LENGTH_SHORT).show();
+                break;
         }
 
-
-        return false;
+        return true;
     }
 
     @Override
@@ -120,13 +119,18 @@ public class MainActivity extends AppCompatActivity
                 case R.id.nav_help:
                     startActivity(new Intent(this, HelpActivity.class));
                     break;
-                case R.id.nav_settings:
-                    break;
+
             }
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void initPrefs() {
+        SharedPreferences sp = getSharedPreferences(HackFSU.PREFERENCES, MODE_PRIVATE);
+        if(!sp.contains(HackFSU.NOTIFICATIONS)) sp.edit().putBoolean(HackFSU.NOTIFICATIONS, true).apply();
+        if(!sp.contains(HackFSU.COUNTDOWN)) sp.edit().putBoolean(HackFSU.COUNTDOWN, true).apply();
     }
 
     @Override
@@ -141,6 +145,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
         toolbar.setOnMenuItemClickListener(this);
+
+
     }
 
     public void updateUI(int id) {

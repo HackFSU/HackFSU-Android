@@ -10,6 +10,10 @@ import com.parse.ParsePush;
 
 public class HackFSU extends Application {
 
+    public static final String PREFERENCES = "preferences";
+    public static final String NOTIFICATIONS = "notifications";
+    public static final String COUNTDOWN = "countdown";
+
     @Override
     public void onCreate() {
         super.onCreate();

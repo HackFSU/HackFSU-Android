@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HackFSU-Android.iml" filepath="$PROJECT_DIR$/HackFSU-Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hackfsu-android.iml" filepath="$PROJECT_DIR$/hackfsu-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/mobile/mobile.iml" filepath="$PROJECT_DIR$/mobile/mobile.iml" />
     </modules>
   </component>

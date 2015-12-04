@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hackfsu.hackfsu_android" >
+    package="com.hackfsu.hackfsu_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,19 +9,22 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-    <permission android:protectionLevel="signature"
-        android:name="com.hackfsu.hackfsu_android.permission.C2D_MESSAGE" />
+    <permission
+        android:name="com.hackfsu.hackfsu_android.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
     <uses-permission android:name="com.hackfsu.hackfsu_android.permission.C2D_MESSAGE" />
 
     <application
-        android:name="com.hackfsu.hackfsu_android.HackFSU"
+        android:name=".HackFSU"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.hackfsu.hackfsu_android.MainActivity"
-            android:label="@string/app_name" >
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,17 +32,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hackfsu.hackfsu_android.HelpActivity"
+            android:name=".HelpActivity"
             android:label="@string/title_activity_help"
-            android:parentActivityName="com.hackfsu.hackfsu_android.MainActivity"
-            android:theme="@style/AppTheme.HelpRequest" >
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.HelpRequest">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hackfsu.hackfsu_android.MainActivity" />
         </activity>
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity"/>
+
 
         <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
+
+        <receiver
+            android:name=".CustomPushReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
@@ -47,7 +55,8 @@
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />

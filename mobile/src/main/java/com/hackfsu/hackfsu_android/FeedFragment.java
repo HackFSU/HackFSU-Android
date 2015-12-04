@@ -1,6 +1,7 @@
 package com.hackfsu.hackfsu_android;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -10,21 +11,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FeedFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FeedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FeedFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
@@ -40,9 +35,8 @@ public class FeedFragment extends BaseFragment {
         return new FeedFragment();
     }
 
-    public FeedFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public FeedFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,6 +65,15 @@ public class FeedFragment extends BaseFragment {
         mToolbar.inflateMenu(R.menu.menu_main);
         mListener.registerToolbar(mToolbar);
 
+        // Init toolbar icons
+        SharedPreferences sp = getContext().getSharedPreferences(HackFSU.PREFERENCES, Context.MODE_PRIVATE);
+        Menu menu = mToolbar.getMenu();
+        MenuItem notifs = menu.findItem(R.id.action_notifications);
+        notifs.setIcon(sp.getBoolean(HackFSU.NOTIFICATIONS, true) ?
+                R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
+        MenuItem countdown = menu.findItem(R.id.action_countdown);
+        countdown.setIcon(sp.getBoolean(HackFSU.COUNTDOWN, true) ?
+                R.drawable.ic_timer_24dp : R.drawable.ic_timer_off_white_24dp);
 
 
         // View Pager setup
