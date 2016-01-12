@@ -3,6 +3,7 @@ package com.hackfsu.hackfsu_android;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -13,7 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -119,6 +119,9 @@ public class MainActivity extends AppCompatActivity
                 case R.id.nav_help:
                     startActivity(new Intent(this, HelpActivity.class));
                     break;
+                case R.id.nav_website:
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.hackfsu.com"));
+                    startActivity(browserIntent);
 
             }
         }
@@ -157,6 +160,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_map:
                 drawer.setStatusBarBackgroundColor(getResources().getColor(R.color.maps_dark));
                 break;
+            case R.id.nav_sponsors:
+                drawer.setStatusBarBackgroundColor(getResources().getColor(R.color.sponsors_dark));
+                break;
         }
     }
 
@@ -172,6 +178,8 @@ public class MainActivity extends AppCompatActivity
                 fg = FeedFragment.newInstance(); break;
             case R.id.nav_map:
                 fg = MapsFragment.newInstance(); break;
+            case R.id.nav_sponsors:
+                fg = SponsorsFragment.newInstance(); break;
         }
 
         // Actual cannibal shia transaction

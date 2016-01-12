@@ -32,6 +32,7 @@ public class UpdateFragment extends BaseFragment {
     SwipeRefreshLayout mSwipeLayout;
     LinearLayoutManager mLayoutManager;
     UpdatesRecyclerAdapter mAdapter;
+    View mEmptyView;
 
     public static UpdateFragment newInstance() {
         return new UpdateFragment();
@@ -48,6 +49,7 @@ public class UpdateFragment extends BaseFragment {
         View v =  inflater.inflate(R.layout.fragment_list_refresh, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
+        mEmptyView = v.findViewById(R.id.empty_view);
         return v;
     }
 
@@ -70,7 +72,7 @@ public class UpdateFragment extends BaseFragment {
 
 
         // Initial Load
-        ParseQuery<UpdateItem> query = ParseQuery.getQuery("Update");
+        ParseQuery<UpdateItem> query = ParseQuery.getQuery(ParseName.UPDATE);
         query.orderByDescending("createdAt");
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
         query.findInBackground(new FindCallback<UpdateItem>() {
@@ -114,7 +116,7 @@ public class UpdateFragment extends BaseFragment {
 
 
     // Adapter used by this fragment
-    private static class UpdatesRecyclerAdapter extends
+    private class UpdatesRecyclerAdapter extends
             RecyclerView.Adapter<UpdatesRecyclerAdapter.ViewHolder> {
 
         private List<UpdateItem> mDataset;
@@ -122,7 +124,7 @@ public class UpdateFragment extends BaseFragment {
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             public View card;
             public TextView mTitleText;
             public TextView mSubtitleText;
@@ -179,6 +181,10 @@ public class UpdateFragment extends BaseFragment {
 
         public void replaceData(List<UpdateItem> data) {
             mDataset = data;
+
+            if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
+            else mEmptyView.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -188,7 +194,7 @@ public class UpdateFragment extends BaseFragment {
         public UpdateItem() {}
 
         public String getContent() {
-            return getString("subtitle");
+            return getString(ParseName.UPDATE_SUBTITLE);
         }
 
         public Date getTimestamp() {
@@ -196,7 +202,7 @@ public class UpdateFragment extends BaseFragment {
         }
 
         public String getTitle() {
-            return getString("title");
+            return getString(ParseName.UPDATE_TITLE);
         }
     }
 }

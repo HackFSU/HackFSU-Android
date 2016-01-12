@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:showIn="@layout/app_bar_main"
     tools:context=".MainActivity"
     android:id="@+id/viewpager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_anchor="@id/action_bar"
+    app:layout_anchor="@id/app_bar"
     app:layout_anchorGravity="bottom"/>

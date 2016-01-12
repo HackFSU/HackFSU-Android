@@ -16,12 +16,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -32,6 +29,7 @@ public class ScheduleFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     ScheduleRecyclerAdapter mAdapter;
+    View mEmptyView;
 
     final String SCHEDULEITEM = "ScheduleItem";
 
@@ -50,6 +48,7 @@ public class ScheduleFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_list, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mEmptyView = v.findViewById(R.id.empty_view);
         return v;
     }
 
@@ -70,7 +69,7 @@ public class ScheduleFragment extends BaseFragment {
         mAdapter = new ScheduleRecyclerAdapter(new ArrayList<ScheduleItem>());
         mRecyclerView.setAdapter(mAdapter);
 
-        ParseQuery<ScheduleItem> query = ParseQuery.getQuery("ScheduleItem");
+        ParseQuery<ScheduleItem> query = ParseQuery.getQuery(ParseName.SCHEDULEITEM);
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.orderByAscending("startTime");
         query.findInBackground(new FindCallback<ScheduleItem>() {
@@ -87,7 +86,7 @@ public class ScheduleFragment extends BaseFragment {
     }
 
     // Adapter used by this fragment
-    private static class ScheduleRecyclerAdapter extends
+    private class ScheduleRecyclerAdapter extends
             RecyclerView.Adapter<ScheduleRecyclerAdapter.ViewHolder> {
 
         private List<ScheduleItem> mDataset;
@@ -95,7 +94,7 @@ public class ScheduleFragment extends BaseFragment {
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             public View card;
             public TextView mTitleText;
             public TextView mSubtitleText;
@@ -139,7 +138,7 @@ public class ScheduleFragment extends BaseFragment {
 
             } else {
                 SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a", Locale.US);
-                formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+                formatter.setTimeZone(TimeZone.getTimeZone("EST"));
                 String startTime = formatter.format(mDataset.get(position).getStartTime());
 
                 holder.mTimeText.setText(startTime);
@@ -159,8 +158,11 @@ public class ScheduleFragment extends BaseFragment {
 
         public void replaceDataset(List<ScheduleItem> data) {
             mDataset = data;
+            if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
+            else mEmptyView.setVisibility(View.VISIBLE);
+
             /*GregorianCalendar gc = new GregorianCalendar(Locale.US);
-            for(ScheduleItem u : mDataset) {
+            for(Sponsor u : mDataset) {
                 if(u.getStartTime().compareTo(gc.getTime()) < 0) {
                     mDataset.add(mDataset.indexOf(u), new ScheduleDivider());
                 }

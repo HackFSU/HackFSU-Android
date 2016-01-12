@@ -77,9 +77,21 @@
 
     <style name="AppTheme.ExpandedTitle" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
         <item name="android:textSize">45sp</item>
+        <item name="android:textColor">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.CollapsedTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+
+    <style name="AppTheme.CountdownTime" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="AppTheme.CountdownLabel" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">#fff</item>
     </style>

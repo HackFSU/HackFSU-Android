@@ -19,7 +19,7 @@
 
     <include layout="@layout/content_help" />
 
-    <android.support.design.widget.FloatingActionButton
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +27,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_send_24dp"
         android:tint="@color/grey_50"
-        app:backgroundTint="@color/hackfsu_red"/>
+        app:backgroundTint="@color/help_submit"/> -->
 
 </android.support.design.widget.CoordinatorLayout>

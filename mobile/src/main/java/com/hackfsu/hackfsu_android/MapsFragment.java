@@ -39,8 +39,6 @@ public class MapsFragment extends BaseFragment {
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
-
-
         return v;
     }
 

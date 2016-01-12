@@ -15,11 +15,27 @@
     <!-- Primary View Colors -->
     <color name="live_feed">@color/primary</color>
     <!-- <color name="live_feed_dark">@color/primaryDark</color> -->
+
+
+    <color name="maps">@color/primary</color>
+    <color name="maps_dark">@color/primaryDark</color>
+    <color name="maps_bg">@color/grey_50</color>
+    <color name="help">@color/primary</color>
+    <color name="help_dark">@color/primaryDark</color>
+    <color name="help_submit">@color/primaryDark</color>
+    <color name="sponsors">@color/primary</color>
+    <color name="sponsors_dark">@color/primaryDark</color>
+    
+    <!--
     <color name="maps">@color/hackfsu_yellow</color>
     <color name="maps_dark">@color/hackfsu_yellowDark</color>
     <color name="maps_bg">@color/grey_50</color>
-    <color name="help">@color/hackfsu_blue</color>
-    <color name="help_dark">@color/hackfsu_blueDark</color>
+    <color name="help">@color/primary</color>
+    <color name="help_dark">@color/primaryDark</color>
+    <color name="help_submit">@color/hackfsu_tealDark</color>
+    <color name="sponsors">@color/hackfsu_teal</color>
+    <color name="sponsors_dark">@color/hackfsu_tealDark</color>
+    -->
 
     <!-- Text Colors -->
     <color name="primaryTextLight">@color/abc_primary_text_material_dark</color>
