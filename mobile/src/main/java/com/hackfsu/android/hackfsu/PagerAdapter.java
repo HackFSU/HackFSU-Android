@@ -1,4 +1,4 @@
-package com.hackfsu.hackfsu_android;
+package com.hackfsu.android.hackfsu;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

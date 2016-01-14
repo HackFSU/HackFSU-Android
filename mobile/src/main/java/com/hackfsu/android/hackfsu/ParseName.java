@@ -1,4 +1,4 @@
-package com.hackfsu.hackfsu_android;
+package com.hackfsu.android.hackfsu;
 
 public class ParseName {
 

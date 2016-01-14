@@ -1,4 +1,4 @@
-package com.hackfsu.hackfsu_android;
+package com.hackfsu.android.hackfsu;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hackfsu.android.hackfsu.R;
 import com.parse.FindCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
