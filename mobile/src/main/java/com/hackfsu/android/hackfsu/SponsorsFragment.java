@@ -1,23 +1,20 @@
-package com.hackfsu.hackfsu_android;
+package com.hackfsu.android.hackfsu;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hackfsu.android.hackfsu.R;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseClassName;

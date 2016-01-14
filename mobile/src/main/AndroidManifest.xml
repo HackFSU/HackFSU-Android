@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hackfsu.hackfsu_android">
+    package="com.hackfsu.android.hackfsu">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,19 +10,19 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
-        android:name="com.hackfsu.hackfsu_android.permission.C2D_MESSAGE"
+        android:name="com.hackfsu.android.hackfsu.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.hackfsu.hackfsu_android.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.hackfsu.android.hackfsu.permission.C2D_MESSAGE" />
 
     <application
-        android:name=".HackFSU"
+        android:name="com.hackfsu.android.hackfsu.HackFSU"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.hackfsu.android.hackfsu.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -32,19 +32,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HelpActivity"
+            android:name="com.hackfsu.android.hackfsu.HelpActivity"
             android:label="@string/title_activity_help"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.hackfsu.android.hackfsu.MainActivity"
             android:theme="@style/AppTheme.HelpRequest">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hackfsu.hackfsu_android.MainActivity" />
+                android:value="com.hackfsu.android.hackfsu.MainActivity" />
         </activity>
 
         <service android:name="com.parse.PushService" />
 
         <receiver
-            android:name=".CustomPushReceiver"
+            android:name="com.hackfsu.android.hackfsu.CustomPushReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
@@ -59,7 +59,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <category android:name="com.hackfsu.hackfsu_android" />
+                <category android:name="com.hackfsu.android.hackfsu" />
             </intent-filter>
         </receiver>
 

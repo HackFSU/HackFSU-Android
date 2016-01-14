@@ -101,9 +101,9 @@
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="parseui-widget-android-0.0.1" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-flexibledivider-1.2.6" level="project" />
+    <orderEntry type="library" exported="" name="parse-android-1.12.0" level="project" />
     <orderEntry type="library" exported="" name="bolts-tasks-1.3.0" level="project" />
     <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="parse-android-1.11.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="multidex-instrumentation-1.0.1" level="project" />
   </component>

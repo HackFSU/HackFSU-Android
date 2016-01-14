@@ -1,4 +1,4 @@
-package com.hackfsu.hackfsu_android;
+package com.hackfsu.android.hackfsu;
 
 import android.app.Application;
 
@@ -28,6 +28,6 @@ public class HackFSU extends Application {
         Parse.initialize(this, "7MgItVIkvSmADkIdIVPmEbIOOZQ84ilW224wXsgS", "hHoLbbe3SWIzt6JiXaNY5gdPQ47QBGH6AlbHHTih");
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        ParsePush.subscribeInBackground("announcements");
+        ParsePush.subscribeInBackground("updates");
     }
 }

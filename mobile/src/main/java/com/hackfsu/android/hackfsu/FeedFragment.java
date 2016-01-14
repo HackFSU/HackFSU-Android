@@ -1,4 +1,4 @@
-package com.hackfsu.hackfsu_android;
+package com.hackfsu.android.hackfsu;
 
 import android.content.Context;
 import android.content.SharedPreferences;
