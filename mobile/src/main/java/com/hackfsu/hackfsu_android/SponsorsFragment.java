@@ -36,13 +36,11 @@ public class SponsorsFragment extends BaseFragment {
 
     Toolbar mToolbar;
     AppBarLayout mAppBar;
-    CollapsingToolbarLayout mCollapsing;
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     SponsorRecyclerAdapter mAdapter;
     BaseFragment.OnFragmentInteractionListener mListener;
 
-    int recyclerScroll = 0;
 
     // TODO: Rename and change types and number of parameters
     public static SponsorsFragment newInstance() {
@@ -61,7 +59,6 @@ public class SponsorsFragment extends BaseFragment {
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
-        //mCollapsing = (CollapsingToolbarLayout) v.findViewById(R.id.collapsing_toolbar);
         return v;
     }
 

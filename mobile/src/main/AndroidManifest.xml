@@ -18,7 +18,7 @@
     <application
         android:name=".HackFSU"
         android:allowBackup="true"
-        android:icon="@mipmap/hackfsu_2016"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity

@@ -17,14 +17,17 @@ public class HackFSU extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         ParseObject.registerSubclass(ScheduleFragment.ScheduleItem.class);
         ParseObject.registerSubclass(ScheduleFragment.ScheduleDivider.class);
         ParseObject.registerSubclass(UpdateFragment.UpdateItem.class);
         ParseObject.registerSubclass(SponsorsFragment.Sponsor.class);
+        ParseObject.registerSubclass(MapsFragment.MapItem.class);
         ParseObject.registerSubclass(FeedFragment.CountdownItem.class);
-        //Parse.enableLocalDatastore(this);
+
         Parse.initialize(this, "7MgItVIkvSmADkIdIVPmEbIOOZQ84ilW224wXsgS", "hHoLbbe3SWIzt6JiXaNY5gdPQ47QBGH6AlbHHTih");
         ParseInstallation.getCurrentInstallation().saveInBackground();
+
         ParsePush.subscribeInBackground("announcements");
     }
 }
