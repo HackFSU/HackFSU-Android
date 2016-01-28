@@ -15,12 +15,18 @@
 
     <uses-permission android:name="com.hackfsu.android.hackfsu.permission.C2D_MESSAGE" />
 
+
+
     <application
         android:name="com.hackfsu.android.hackfsu.HackFSU"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.parse.push.notification_icon"
+            android:resource="@drawable/ic_notification_icon"/>
+
         <activity
             android:name="com.hackfsu.android.hackfsu.MainActivity"
             android:label="@string/app_name"

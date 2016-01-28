@@ -71,7 +71,7 @@ public class SponsorsFragment extends BaseFragment {
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -84,7 +84,7 @@ public class SponsorsFragment extends BaseFragment {
 
         ParseQuery<Sponsor> query = ParseQuery.getQuery(ParseName.SPONSOR);
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
-        query.orderByDescending(ParseName.SPONSOR_LEVEL);
+        query.orderByAscending(ParseName.SPONSOR_LEVEL);
         query.findInBackground(new FindCallback<Sponsor>() {
             @Override
             public void done(List<Sponsor> list, ParseException e) {
@@ -92,7 +92,8 @@ public class SponsorsFragment extends BaseFragment {
                     Log.e("HackFSU", "Error: " + e.getMessage());
                 } else {
                     mAdapter.replaceDataset(list);
-                    mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
+                    //mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
+                    mAdapter.notifyDataSetChanged();
                 }
             }
         });

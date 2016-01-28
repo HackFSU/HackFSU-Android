@@ -78,7 +78,7 @@ public class MapsFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
 
         ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
         query.orderByAscending(ParseName.MAP_FLOOR);
         query.findInBackground(new FindCallback<MapItem>() {
             @Override

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hackfsu.android.hackfsu.R;
 import com.parse.FindCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
@@ -92,7 +91,7 @@ public class UpdateFragment extends BaseFragment {
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ParseQuery<UpdateItem> query = ParseQuery.getQuery("Update");
+                ParseQuery<UpdateItem> query = ParseQuery.getQuery(ParseName.UPDATE);
                 query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
                 query.orderByDescending("createdAt");
                 query.findInBackground(new FindCallback<UpdateItem>() {
@@ -154,8 +153,7 @@ public class UpdateFragment extends BaseFragment {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.tile_update, parent, false);
 
-            ViewHolder vh = new ViewHolder(v);
-            return vh;
+            return new ViewHolder(v);
         }
 
         // Replace the contents of a view (invoked by the layout manager)

@@ -115,9 +115,16 @@ public class FeedFragment extends BaseFragment {
 
         // Countdown
 
+        initNextTimer();
+
+    }
+
+    public void initNextTimer() {
+
         Date now = Calendar.getInstance().getTime();
 
         ParseQuery<CountdownItem> query = new ParseQuery<CountdownItem>(ParseName.COUNTDOWNITEM);
+        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.whereGreaterThan(ParseName.COUNTDOWN_TIME, now);
         query.getFirstInBackground(new GetCallback<CountdownItem>() {
             @Override
@@ -135,6 +142,7 @@ public class FeedFragment extends BaseFragment {
                         public void onFinish() {
                             mCountdownTime.setText("HackFSU");
                             mCountdownLabel.setText("");
+                            initNextTimer();
                         }
 
                         @Override

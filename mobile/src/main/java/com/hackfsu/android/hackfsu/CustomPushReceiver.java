@@ -1,8 +1,10 @@
 package com.hackfsu.android.hackfsu;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import com.parse.ParsePushBroadcastReceiver;
 
@@ -22,4 +24,12 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
 
     }
 
+    @Override
+    protected Notification getNotification(Context context, Intent intent) {
+        Notification notification = super.getNotification(context, intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            notification.color = context.getResources().getColor(R.color.hackfsu_red);
+        }
+        return notification;
+    }
 }
