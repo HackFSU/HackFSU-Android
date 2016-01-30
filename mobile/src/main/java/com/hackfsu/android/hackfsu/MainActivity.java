@@ -2,6 +2,7 @@ package com.hackfsu.android.hackfsu;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         TextView navHeader = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_navtitle);
         navHeader.setText("HACKFSU");
-        navHeader.setTypeface(Typeface.createFromAsset(getAssets(), "unisans.OTF"));
+        navHeader.setTypeface(Typeface.createFromAsset(getAssets(), getResources().getString(R.string.hackfsu_font)));
 
     }
 
@@ -115,6 +116,12 @@ public class MainActivity extends AppCompatActivity
         if(item.getGroupId() == R.id.primary && shouldChangeFragments(id)) {
 
             newFragmentTransaction(id);
+
+            if(id == R.id.nav_sponsors) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+            }
 
         } else if (item.getGroupId() == R.id.secondary) {
             switch (id) {

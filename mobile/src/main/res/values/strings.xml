@@ -12,4 +12,6 @@
     <string name="title_activity_help">HelpActivity</string>
     <string name="title_activity_test">TestActivity</string>
 
+    <string name="hackfsu_font">uni_sans_heavy-webfont.ttf</string>
+
 </resources>

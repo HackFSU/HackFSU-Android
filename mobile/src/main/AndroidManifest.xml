@@ -15,20 +15,18 @@
 
     <uses-permission android:name="com.hackfsu.android.hackfsu.permission.C2D_MESSAGE" />
 
-
-
     <application
-        android:name="com.hackfsu.android.hackfsu.HackFSU"
+        android:name=".HackFSU"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="com.parse.push.notification_icon"
-            android:resource="@drawable/ic_notification_icon"/>
+        <meta-data
+            android:name="com.parse.push.notification_icon"
+            android:resource="@drawable/ic_notification_icon" />
 
         <activity
-            android:name="com.hackfsu.android.hackfsu.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -38,9 +36,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hackfsu.android.hackfsu.HelpActivity"
+            android:name=".HelpActivity"
             android:label="@string/title_activity_help"
-            android:parentActivityName="com.hackfsu.android.hackfsu.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.HelpRequest">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -50,7 +48,7 @@
         <service android:name="com.parse.PushService" />
 
         <receiver
-            android:name="com.hackfsu.android.hackfsu.CustomPushReceiver"
+            android:name=".CustomPushReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
@@ -69,6 +67,9 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".MapViewActivity">
+
+        </activity>
     </application>
 
 </manifest>

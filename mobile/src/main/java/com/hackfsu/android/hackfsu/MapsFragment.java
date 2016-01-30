@@ -1,6 +1,9 @@
 package com.hackfsu.android.hackfsu;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +25,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,17 +150,32 @@ public class MapsFragment extends BaseFragment {
 
         // Populate the viewholder with data
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position) {
 
             holder.mMapItemImage.setParseFile(mDataset.get(position).getImage());
             holder.mMapItemImage.loadInBackground(new GetDataCallback() {
                 @Override
-                public void done(byte[] data, ParseException e) {
+                public void done(final byte[] data, ParseException e) {
                     if(e != null) {
                         Log.e("HackFSU", e.getMessage());
+                    } else {
+
+                        holder.mMapItemImage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent = new Intent(getContext(), MapViewActivity.class);
+                                intent.putExtra("map", data);
+                                getContext().startActivity(intent);
+
+                            }
+                        });
                     }
+
                 }
             });
+
+
 
         }
 

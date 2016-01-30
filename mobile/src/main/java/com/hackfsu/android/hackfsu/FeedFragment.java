@@ -105,7 +105,7 @@ public class FeedFragment extends BaseFragment {
 
         // Custom toolbar font
         Typeface face;
-        face = Typeface.createFromAsset(getContext().getAssets(), "unisans.OTF");
+        face = Typeface.createFromAsset(getContext().getAssets(), getResources().getString(R.string.hackfsu_font));
         mCollasping.setCollapsedTitleTypeface(face);
         mCollasping.setExpandedTitleTypeface(face);
         mCollasping.setTitle("HackFSU");

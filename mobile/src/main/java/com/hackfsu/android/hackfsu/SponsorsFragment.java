@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hackfsu.android.hackfsu.R;
@@ -81,6 +82,7 @@ public class SponsorsFragment extends BaseFragment {
         // specify an adapter (see also next example)
         mAdapter = new SponsorRecyclerAdapter(new ArrayList<Sponsor>());
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemViewCacheSize(13);
 
         ParseQuery<Sponsor> query = ParseQuery.getQuery(ParseName.SPONSOR);
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
@@ -126,14 +128,14 @@ public class SponsorsFragment extends BaseFragment {
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public View tile;
+            public LinearLayout tile;
             public TextView mSponsorName;
             public ParseImageView mSponsorImage;
             public TextView mSponsorLevel;
             public View mLevelLayout;
             public ViewHolder(View v) {
                 super(v);
-                tile = v;
+                tile = (LinearLayout) v;
                 mSponsorName = (TextView) v.findViewById(R.id.tv_sponsor_name);
                 mSponsorImage = (ParseImageView) v.findViewById(R.id.iv_sponsor_image);
                 mSponsorLevel = (TextView) v.findViewById(R.id.tv_sponsor_level);
@@ -158,7 +160,7 @@ public class SponsorsFragment extends BaseFragment {
 
         // Populate the viewholder with data
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position) {
 
             // Retrieve Data
             final String name = mDataset.get(position).getName();
@@ -173,6 +175,12 @@ public class SponsorsFragment extends BaseFragment {
                 public void done(byte[] data, ParseException e) {
                     if(e != null) {
                         Log.e("HackFSU Sponsors", "Someone fucked up uploading the image for " + name);
+                    } else {
+                        /*int height = holder.mSponsorImage.getHeight();
+                        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.mSponsorImage.getLayoutParams();
+                        params.height = height;
+                        holder.mSponsorImage.setLayoutParams(params);
+                        */
                     }
                 }
             });
@@ -180,7 +188,7 @@ public class SponsorsFragment extends BaseFragment {
             // Level
 
             Typeface face;
-            face = Typeface.createFromAsset(getContext().getAssets(), "unisans.OTF");
+            face = Typeface.createFromAsset(getContext().getAssets(), getResources().getString(R.string.hackfsu_font));
 
             String tier = "Tier " + String.valueOf(level);
             holder.mSponsorLevel.setText(tier);
