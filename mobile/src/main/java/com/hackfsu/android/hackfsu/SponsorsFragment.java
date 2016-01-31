@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +39,8 @@ public class SponsorsFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     SponsorRecyclerAdapter mAdapter;
+    SwipeRefreshLayout mSwipeLayout;
+
     BaseFragment.OnFragmentInteractionListener mListener;
 
 
@@ -57,6 +61,7 @@ public class SponsorsFragment extends BaseFragment {
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
         return v;
     }
 
@@ -84,6 +89,7 @@ public class SponsorsFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemViewCacheSize(13);
 
+        // Initial load
         ParseQuery<Sponsor> query = ParseQuery.getQuery(ParseName.SPONSOR);
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.orderByAscending(ParseName.SPONSOR_LEVEL);
@@ -93,12 +99,38 @@ public class SponsorsFragment extends BaseFragment {
                 if(e != null) {
                     Log.e("HackFSU", "Error: " + e.getMessage());
                 } else {
+                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
                     mAdapter.replaceDataset(list);
-                    //mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
-                    mAdapter.notifyDataSetChanged();
+                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
                 }
             }
         });
+
+        // Swipe Reload
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ParseQuery<Sponsor> query = ParseQuery.getQuery(ParseName.SPONSOR);
+                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
+                query.orderByAscending(ParseName.SPONSOR_LEVEL);
+                query.findInBackground(new FindCallback<Sponsor>() {
+                    @Override
+                    public void done(List<Sponsor> list, ParseException e) {
+                        if (e != null) {
+                            Log.e("HackFSU", e.getMessage());
+                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
+                                    .show();
+                        } else {
+                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+                            mAdapter.replaceDataset(list);
+                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+                        }
+                        mSwipeLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
+        mSwipeLayout.setColorSchemeResources(R.color.accent);
     }
 
     @Override

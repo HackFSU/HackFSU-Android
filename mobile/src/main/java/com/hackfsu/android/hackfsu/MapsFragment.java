@@ -90,8 +90,9 @@ public class MapsFragment extends BaseFragment {
                 if(e != null) {
                     Log.e("HackFSU", "Error: " + e.getMessage());
                 } else {
+                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
                     mAdapter.replaceDataset(list);
-                    mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
+                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
                 }
             }
         });

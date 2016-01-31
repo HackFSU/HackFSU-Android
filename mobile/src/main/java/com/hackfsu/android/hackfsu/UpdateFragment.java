@@ -75,17 +75,29 @@ public class UpdateFragment extends BaseFragment {
         ParseQuery<UpdateItem> query = ParseQuery.getQuery(ParseName.UPDATE);
         query.orderByDescending("createdAt");
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
+
+        mSwipeLayout.post(new Runnable() {
+            // Show that we're loading if slow
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(true);
+            }
+        });
+
         query.findInBackground(new FindCallback<UpdateItem>() {
             @Override
             public void done(List<UpdateItem> list, ParseException e) {
                 if (e != null) {
                     Log.e("HackFSU", e.getMessage());
                 } else {
-                    mAdapter.replaceData(list);
-                    mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
+                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+                    mAdapter.replaceDataset(list);
+                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+                    mSwipeLayout.setRefreshing(false);
                 }
             }
         });
+
 
         // Swipe Reload
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -103,7 +115,7 @@ public class UpdateFragment extends BaseFragment {
                                     .show();
                         } else {
                             mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-                            mAdapter.replaceData(list);
+                            mAdapter.replaceDataset(list);
                             mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
                         }
                         mSwipeLayout.setRefreshing(false);
@@ -166,7 +178,7 @@ public class UpdateFragment extends BaseFragment {
             holder.mContentText.setText(mDataset.get(position).getContent());
 
             SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
-            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
             String timeStamp = formatter.format(mDataset.get(position).getTimestamp());
             holder.mSubtitleText.setText(timeStamp);
 
@@ -178,7 +190,7 @@ public class UpdateFragment extends BaseFragment {
             return mDataset.size();
         }
 
-        public void replaceData(List<UpdateItem> data) {
+        public void replaceDataset(List<UpdateItem> data) {
             mDataset = data;
 
             if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
