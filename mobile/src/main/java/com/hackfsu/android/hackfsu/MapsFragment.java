@@ -105,7 +105,23 @@ public class MapsFragment extends BaseFragment {
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mSwipeLayout.setRefreshing(false);
+
+                ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
+                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+                query.orderByAscending(ParseName.MAP_FLOOR);
+                query.findInBackground(new FindCallback<MapItem>() {
+                    @Override
+                    public void done(List<MapItem> list, ParseException e) {
+                        if(e != null) {
+                            Log.e("HackFSU", "Error: " + e.getMessage());
+                        } else {
+                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+                            mAdapter.replaceDataset(list);
+                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+                        }
+                        mSwipeLayout.setRefreshing(false);
+                    }
+                });
             }
         });
         mSwipeLayout.setColorSchemeResources(R.color.accent);
