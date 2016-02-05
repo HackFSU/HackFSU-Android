@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,8 @@ public class MapsFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     MapItemRecyclerAdapter mAdapter;
+    SwipeRefreshLayout mSwipeLayout;
+
     BaseFragment.OnFragmentInteractionListener mListener;
 
 
@@ -56,6 +59,8 @@ public class MapsFragment extends BaseFragment {
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
+
         return v;
     }
 
@@ -96,6 +101,14 @@ public class MapsFragment extends BaseFragment {
                 }
             }
         });
+
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeLayout.setRefreshing(false);
+            }
+        });
+        mSwipeLayout.setColorSchemeResources(R.color.accent);
     }
 
     @Override
