@@ -1,4 +1,4 @@
-package com.hackfsu.android.hackfsu;
+package com.hackfsu.android.app.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.hackfsu.android.hackfsu.R;
+import com.hackfsu.android.app.ParseName;
+import com.hackfsu.android.app.R;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;

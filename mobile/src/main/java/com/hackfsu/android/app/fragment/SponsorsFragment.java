@@ -1,4 +1,4 @@
-package com.hackfsu.android.hackfsu;
+package com.hackfsu.android.app.fragment;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -17,7 +17,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hackfsu.android.hackfsu.R;
+import com.hackfsu.android.app.ParseName;
+import com.hackfsu.android.app.R;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseClassName;

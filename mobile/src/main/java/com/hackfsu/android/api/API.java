@@ -1,12 +1,12 @@
-package com.hackfsu.api;
+package com.hackfsu.android.api;
 
 import android.util.Log;
 
-import com.hackfsu.api.model.AnnouncementModel;
-import com.hackfsu.api.model.BaseModel;
-import com.hackfsu.api.model.MapModel;
-import com.hackfsu.api.model.SponsorModel;
-import com.hackfsu.api.model.ScheduleModel;
+import com.hackfsu.android.api.model.AnnouncementModel;
+import com.hackfsu.android.api.model.BaseModel;
+import com.hackfsu.android.api.model.MapModel;
+import com.hackfsu.android.api.model.SponsorModel;
+import com.hackfsu.android.api.model.ScheduleModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.hackfsu.android.hackfsu;
+package com.hackfsu.android.app.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hackfsu.android.app.HackFSU;
+import com.hackfsu.android.app.adapter.PagerAdapter;
+import com.hackfsu.android.app.ParseName;
+import com.hackfsu.android.app.R;
 import com.parse.GetCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;

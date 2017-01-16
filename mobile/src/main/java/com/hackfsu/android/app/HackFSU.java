@@ -1,7 +1,12 @@
-package com.hackfsu.android.hackfsu;
+package com.hackfsu.android.app;
 
 import android.app.Application;
 
+import com.hackfsu.android.app.fragment.FeedFragment;
+import com.hackfsu.android.app.fragment.MapsFragment;
+import com.hackfsu.android.app.fragment.ScheduleFragment;
+import com.hackfsu.android.app.fragment.SponsorsFragment;
+import com.hackfsu.android.app.fragment.UpdateFragment;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;

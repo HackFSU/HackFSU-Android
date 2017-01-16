@@ -1,4 +1,4 @@
-package com.hackfsu.api;
+package com.hackfsu.android.api;
 
 import java.io.IOException;
 

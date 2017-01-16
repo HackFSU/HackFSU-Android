@@ -1,4 +1,4 @@
-package com.hackfsu.android.hackfsu;
+package com.hackfsu.android.app.fragment;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -9,14 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hackfsu.android.app.ParseName;
+import com.hackfsu.android.app.R;
 import com.parse.FindCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,20 +28,20 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 
-public class UpdateFragment extends BaseFragment {
+public class ScheduleFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
-    SwipeRefreshLayout mSwipeLayout;
     LinearLayoutManager mLayoutManager;
-    UpdatesRecyclerAdapter mAdapter;
+    ScheduleRecyclerAdapter mAdapter;
+    SwipeRefreshLayout mSwipeLayout;
     View mEmptyView;
 
-    public static UpdateFragment newInstance() {
-        return new UpdateFragment();
+    public static ScheduleFragment newInstance() {
+        return new ScheduleFragment();
     }
 
     // Required empty public constructor
-    public UpdateFragment() {}
+    public ScheduleFragment() {}
 
 
     @Override
@@ -59,56 +61,54 @@ public class UpdateFragment extends BaseFragment {
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(false);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
 
         // specify an adapter (see also next example)
-        mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateItem>());
+        mAdapter = new ScheduleRecyclerAdapter(new ArrayList<ScheduleItem>());
         mRecyclerView.setAdapter(mAdapter);
 
-
-        // Initial Load
-        ParseQuery<UpdateItem> query = ParseQuery.getQuery(ParseName.UPDATE);
-        query.orderByDescending("createdAt");
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
-
-        mSwipeLayout.post(new Runnable() {
-            // Show that we're loading if slow
+        ParseQuery<ScheduleItem> query = ParseQuery.getQuery(ParseName.SCHEDULEITEM);
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
+        query.orderByAscending("startTime");
+        query.findInBackground(new FindCallback<ScheduleItem>() {
             @Override
-            public void run() {
-                mSwipeLayout.setRefreshing(true);
-            }
-        });
-
-        query.findInBackground(new FindCallback<UpdateItem>() {
-            @Override
-            public void done(List<UpdateItem> list, ParseException e) {
-                if (e != null) {
-                    Log.e("HackFSU", e.getMessage());
+            public void done(List<ScheduleItem> list, ParseException e) {
+                if(e != null) {
+                    Log.e("HackFSU", "Error: " + e.getMessage());
                 } else {
                     mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
                     mAdapter.replaceDataset(list);
                     mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-                    mSwipeLayout.setRefreshing(false);
                 }
             }
         });
+
+//        API api = new API();
+//        api.getSchedule(new API.APICallback<ScheduleModel>() {
+//            @Override
+//            public void onDataReady(List<ScheduleModel> dataSet) {
+//
+//            }
+//        });
+
+
 
 
         // Swipe Reload
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ParseQuery<UpdateItem> query = ParseQuery.getQuery(ParseName.UPDATE);
-                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
-                query.orderByDescending("createdAt");
-                query.findInBackground(new FindCallback<UpdateItem>() {
+                ParseQuery<ScheduleItem> query = ParseQuery.getQuery(ParseName.SCHEDULEITEM);
+                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+                query.orderByAscending("startTime");
+                query.findInBackground(new FindCallback<ScheduleItem>() {
                     @Override
-                    public void done(List<UpdateItem> list, ParseException e) {
+                    public void done(List<ScheduleItem> list, ParseException e) {
                         if (e != null) {
                             Log.e("HackFSU", e.getMessage());
                             Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
@@ -126,12 +126,11 @@ public class UpdateFragment extends BaseFragment {
         mSwipeLayout.setColorSchemeResources(R.color.accent);
     }
 
-
     // Adapter used by this fragment
-    private class UpdatesRecyclerAdapter extends
-            RecyclerView.Adapter<UpdatesRecyclerAdapter.ViewHolder> {
+    private class ScheduleRecyclerAdapter extends
+            RecyclerView.Adapter<ScheduleRecyclerAdapter.ViewHolder> {
 
-        private List<UpdateItem> mDataset;
+        private List<ScheduleItem> mDataset;
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
@@ -140,30 +139,28 @@ public class UpdateFragment extends BaseFragment {
             public View card;
             public TextView mTitleText;
             public TextView mSubtitleText;
-            public TextView mContentText;
-            public ImageView mIcon;
+            public TextView mTimeText;
             public ViewHolder(View v) {
                 super(v);
                 card = v;
                 mTitleText = (TextView) v.findViewById(R.id.tv_title);
                 mSubtitleText = (TextView) v.findViewById(R.id.tv_subtitle);
-                mContentText = (TextView) v.findViewById(R.id.tv_content);
-                mIcon = (ImageView) v.findViewById(R.id.iv_icon);
+                mTimeText = (TextView) v.findViewById(R.id.tv_time);
             }
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public UpdatesRecyclerAdapter(List<UpdateItem> myDataset) {
+        public ScheduleRecyclerAdapter(ArrayList<ScheduleItem> myDataset) {
             mDataset = myDataset;
         }
 
         // Create new views (invoked by the layout manager)
         @Override
-        public UpdatesRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                             int viewType) {
+        public ScheduleRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                    int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.tile_update, parent, false);
+                    .inflate(R.layout.tile_schedule, parent, false);
 
             return new ViewHolder(v);
         }
@@ -174,13 +171,24 @@ public class UpdateFragment extends BaseFragment {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
 
-            holder.mTitleText.setText(mDataset.get(position).getTitle());
-            holder.mContentText.setText(mDataset.get(position).getContent());
+            // ssshhhh ignore this bit it never got finished
+            if(mDataset.get(position) instanceof ScheduleDivider) {
 
-            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
-            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
-            String timeStamp = formatter.format(mDataset.get(position).getTimestamp());
-            holder.mSubtitleText.setText(timeStamp);
+                //holder.mTimeText.setText("Upcoming");
+                holder.mTitleText.setText("");
+                holder.mSubtitleText.setText("");
+
+            } else {
+                SimpleDateFormat formatter = new SimpleDateFormat("EEE hh:mm a", Locale.US);
+                formatter.setTimeZone(TimeZone.getTimeZone("EST"));
+                String startTime = formatter.format(mDataset.get(position).getStartTime());
+
+                holder.mTimeText.setText(startTime);
+                holder.mTitleText.setText(mDataset.get(position).getTitle());
+                holder.mSubtitleText.setText(mDataset.get(position).getSubtitle());
+            }
+
+
 
         }
 
@@ -190,30 +198,48 @@ public class UpdateFragment extends BaseFragment {
             return mDataset.size();
         }
 
-        public void replaceDataset(List<UpdateItem> data) {
+        public void replaceDataset(List<ScheduleItem> data) {
             mDataset = data;
-
             if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
             else mEmptyView.setVisibility(View.VISIBLE);
 
+            /*GregorianCalendar gc = new GregorianCalendar(Locale.US);
+            for(Sponsor u : mDataset) {
+                if(u.getStartTime().compareTo(gc.getTime()) < 0) {
+                    mDataset.add(mDataset.indexOf(u), new ScheduleDivider());
+                }
+            }*/
         }
     }
 
-    @ParseClassName("Update")
-    public static class UpdateItem extends ParseObject {
+    @ParseClassName("ScheduleItem")
+    public static class ScheduleItem extends ParseObject {
 
-        public UpdateItem() {}
+        public ScheduleItem(){
 
-        public String getContent() {
-            return getString(ParseName.UPDATE_SUBTITLE);
         }
 
-        public Date getTimestamp() {
-            return getCreatedAt();
+        /*public Date getEndTime() {
+            return getDate("endTime");
+        }*/
+
+        public Date getStartTime() {
+            return getDate("startTime");
+        }
+
+        public String getSubtitle() {
+            return getString("subtitle");
         }
 
         public String getTitle() {
-            return getString(ParseName.UPDATE_TITLE);
+            return getString("title");
         }
+    }
+
+    @ParseClassName("ScheduleDivider")
+    public static class ScheduleDivider extends ScheduleItem {
+
+        // This never got used. IGNORE ME.
+
     }
 }

@@ -1,9 +1,7 @@
-package com.hackfsu.android.hackfsu;
+package com.hackfsu.android.app.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hackfsu.android.hackfsu.R;
+import com.hackfsu.android.app.ParseName;
+import com.hackfsu.android.app.R;
+import com.hackfsu.android.app.activity.MapViewActivity;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseClassName;
@@ -26,7 +26,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 

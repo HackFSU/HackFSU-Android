@@ -1,4 +1,4 @@
-package com.hackfsu.api.model;
+package com.hackfsu.android.api.model;
 
 import java.util.Calendar;
 

@@ -1,23 +1,24 @@
-package com.hackfsu.api.model;
+package com.hackfsu.android.api.model;
+
 
 /**
  * Created by andrew on 11/14/16.
  */
 
-public class MapModel extends BaseModel {
+public class SponsorModel extends BaseModel {
 
-    String label;
+    String name;
     String URL;
     int ordering;
 
-    public MapModel(String label, String URL, int ordering) {
-        this.label = label;
+    public SponsorModel(String name, String URL, int ordering) {
+        this.name = name;
         this.URL = URL;
         this.ordering = ordering;
     }
 
-    public String getLabel() {
-        return label;
+    public String getName() {
+        return name;
     }
 
     public String getURL() {

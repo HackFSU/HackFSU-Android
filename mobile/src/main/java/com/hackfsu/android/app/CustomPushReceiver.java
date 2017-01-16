@@ -1,4 +1,4 @@
-package com.hackfsu.android.hackfsu;
+package com.hackfsu.android.app;
 
 import android.app.Notification;
 import android.content.Context;

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hackfsu.android.hackfsu.UpdateFragment">
+    tools:context="com.hackfsu.android.app.fragment.UpdateFragment">
 
     <ImageView
         android:layout_width="match_parent"
