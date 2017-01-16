@@ -13,7 +13,7 @@
         android:scaleType="centerInside"
         android:adjustViewBounds="true" /> -->
 
-    <com.hackfsu.android.app.ui.CustomParseImageView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/iv_sponsor_image"

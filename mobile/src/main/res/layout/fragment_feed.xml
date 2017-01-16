@@ -32,23 +32,6 @@
             app:collapsedTitleTextAppearance="@style/AppTheme.CollapsedTitle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-
-            <!--<ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/toolbar_background"
-                android:background="@color/primary"
-                android:layout_marginTop="?attr/actionBarSize"
-                android:scaleType="fitCenter"
-                android:tint="@color/primaryDark"
-                android:src="@drawable/simple_logo"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:visibility="gone"
-                app:layout_collapseMode="parallax"/> -->
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -108,16 +91,6 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-
-
-
-
-
-
-
-
-
 
 
 </android.support.design.widget.CoordinatorLayout>
