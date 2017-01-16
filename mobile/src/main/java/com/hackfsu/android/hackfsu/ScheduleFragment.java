@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hackfsu.api.API;
+import com.hackfsu.api.model.ScheduleModel;
 import com.parse.FindCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
@@ -85,6 +87,16 @@ public class ScheduleFragment extends BaseFragment {
                 }
             }
         });
+
+//        API api = new API();
+//        api.getSchedule(new API.APICallback<ScheduleModel>() {
+//            @Override
+//            public void onDataReady(List<ScheduleModel> dataSet) {
+//
+//            }
+//        });
+
+
 
 
         // Swipe Reload
