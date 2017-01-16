@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,18 +19,16 @@ import android.widget.TextView;
 
 import com.hackfsu.android.app.HackFSU;
 import com.hackfsu.android.app.adapter.PagerAdapter;
-import com.hackfsu.android.app.ParseName;
 import com.hackfsu.android.app.R;
-import com.parse.GetCallback;
-import com.parse.ParseClassName;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+//import com.parse.GetCallback;
+//import com.parse.ParseClassName;
+//import com.parse.ParseException;
+//import com.parse.ParseObject;
+//import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class FeedFragment extends BaseFragment {
 
@@ -127,49 +123,49 @@ public class FeedFragment extends BaseFragment {
 
         Date now = Calendar.getInstance().getTime();
 
-        ParseQuery<CountdownItem> query = new ParseQuery<CountdownItem>(ParseName.COUNTDOWNITEM);
-        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-        query.whereGreaterThan(ParseName.COUNTDOWN_TIME, now);
-        query.getFirstInBackground(new GetCallback<CountdownItem>() {
-            @Override
-            public void done(final CountdownItem object, ParseException e) {
-
-                if(e == null && object != null) {
-                    mCountdownLabel.setText(object.getLabel());
-                    Log.d("HackFSU", "Object label: " + object.getLabel());
-                    Log.d("HackFSU", "Object time: " + object.getTime().toString());
-
-
-                    long until = (object.getTime().getTime() - System.currentTimeMillis());
-                    new CountDownTimer(until, 1000) {
-                        @Override
-                        public void onFinish() {
-                            mCountdownTime.setText("HackFSU");
-                            mCountdownLabel.setText("");
-                            initNextTimer();
-                        }
-
-                        @Override
-                        public void onTick(long millis) {
-                            String out = String.format("%02d:%02d:%02d",
-                                    TimeUnit.MILLISECONDS.toHours(millis),
-                                    TimeUnit.MILLISECONDS.toMinutes(millis) -
-                                            TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
-                                    TimeUnit.MILLISECONDS.toSeconds(millis) -
-                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-
-                            mCountdownTime.setText(out);
-
-                        }
-                    }.start();
-                } else if(object == null) {
-                    mCountdownTime.setText("HackFSU");
-                    mCountdownLabel.setText("");
-                } else if(e != null) {
-                    Log.e("HackFSU", e.getMessage());
-                }
-            }
-        });
+//        ParseQuery<CountdownItem> query = new ParseQuery<CountdownItem>(ParseName.COUNTDOWNITEM);
+//        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+//        query.whereGreaterThan(ParseName.COUNTDOWN_TIME, now);
+//        query.getFirstInBackground(new GetCallback<CountdownItem>() {
+//            @Override
+//            public void done(final CountdownItem object, ParseException e) {
+//
+//                if(e == null && object != null) {
+//                    mCountdownLabel.setText(object.getLabel());
+//                    Log.d("HackFSU", "Object label: " + object.getLabel());
+//                    Log.d("HackFSU", "Object time: " + object.getTime().toString());
+//
+//
+//                    long until = (object.getTime().getTime() - System.currentTimeMillis());
+//                    new CountDownTimer(until, 1000) {
+//                        @Override
+//                        public void onFinish() {
+//                            mCountdownTime.setText("HackFSU");
+//                            mCountdownLabel.setText("");
+//                            initNextTimer();
+//                        }
+//
+//                        @Override
+//                        public void onTick(long millis) {
+//                            String out = String.format("%02d:%02d:%02d",
+//                                    TimeUnit.MILLISECONDS.toHours(millis),
+//                                    TimeUnit.MILLISECONDS.toMinutes(millis) -
+//                                            TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
+//                                    TimeUnit.MILLISECONDS.toSeconds(millis) -
+//                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+//
+//                            mCountdownTime.setText(out);
+//
+//                        }
+//                    }.start();
+//                } else if(object == null) {
+//                    mCountdownTime.setText("HackFSU");
+//                    mCountdownLabel.setText("");
+//                } else if(e != null) {
+//                    Log.e("HackFSU", e.getMessage());
+//                }
+//            }
+//        });
 
     }
 
@@ -199,20 +195,20 @@ public class FeedFragment extends BaseFragment {
     }
 
 
-    @ParseClassName(ParseName.COUNTDOWNITEM)
-    public static class CountdownItem extends ParseObject {
-
-        public CountdownItem(){}
-
-        public String getLabel() {
-            return getString(ParseName.COUNTDOWN_LABEL);
-        }
-
-        public Date getTime() {
-            return getDate(ParseName.COUNTDOWN_TIME);
-        }
-
-
-    }
+//    @ParseClassName(ParseName.COUNTDOWNITEM)
+//    public static class CountdownItem extends ParseObject {
+//
+//        public CountdownItem(){}
+//
+//        public String getLabel() {
+//            return getString(ParseName.COUNTDOWN_LABEL);
+//        }
+//
+//        public Date getTime() {
+//            return getDate(ParseName.COUNTDOWN_TIME);
+//        }
+//
+//
+//    }
 
 }

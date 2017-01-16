@@ -33,8 +33,7 @@ dependencies {
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.6'
     // Optional, remove if needed.
     //compile 'com.parse.bolts:bolts-android:1.+'
-    compile 'com.parse:parse-android:1.+'
-    compile 'com.parse:parseui-widget-android:0.0.1'
+
 
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
 

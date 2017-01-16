@@ -1,29 +1,27 @@
 package com.hackfsu.android.app.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.hackfsu.android.app.ParseName;
+import com.hackfsu.android.api.model.MapModel;
 import com.hackfsu.android.app.R;
-import com.hackfsu.android.app.activity.MapViewActivity;
-import com.parse.FindCallback;
-import com.parse.GetDataCallback;
-import com.parse.ParseClassName;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseImageView;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+//import com.parse.FindCallback;
+//import com.parse.GetDataCallback;
+//import com.parse.ParseClassName;
+//import com.parse.ParseException;
+//import com.parse.ParseFile;
+//import com.parse.ParseImageView;
+//import com.parse.ParseObject;
+//import com.parse.ParseQuery;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -82,45 +80,48 @@ public class MapsFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
 
         // specify an adapter (see also next example)
-        mAdapter = new MapItemRecyclerAdapter(new ArrayList<MapItem>());
+        mAdapter = new MapItemRecyclerAdapter(new ArrayList<MapModel>());
         mRecyclerView.setAdapter(mAdapter);
 
-        ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
-        query.orderByAscending(ParseName.MAP_FLOOR);
-        query.findInBackground(new FindCallback<MapItem>() {
-            @Override
-            public void done(List<MapItem> list, ParseException e) {
-                if(e != null) {
-                    Log.e("HackFSU", "Error: " + e.getMessage());
-                } else {
-                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-                    mAdapter.replaceDataset(list);
-                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-                }
-            }
-        });
+//        ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
+//        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+//        query.orderByAscending(ParseName.MAP_FLOOR);
+//        query.findInBackground(new FindCallback<MapItem>() {
+//            @Override
+//            public void done(List<MapItem> list, ParseException e) {
+//                if(e != null) {
+//                    Log.e("HackFSU", "Error: " + e.getMessage());
+//                } else {
+//                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+//                    mAdapter.replaceDataset(list);
+//                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+//                }
+//            }
+//        });
 
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
-                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-                query.orderByAscending(ParseName.MAP_FLOOR);
-                query.findInBackground(new FindCallback<MapItem>() {
-                    @Override
-                    public void done(List<MapItem> list, ParseException e) {
-                        if(e != null) {
-                            Log.e("HackFSU", "Error: " + e.getMessage());
-                        } else {
-                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-                            mAdapter.replaceDataset(list);
-                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-                        }
-                        mSwipeLayout.setRefreshing(false);
-                    }
-                });
+//                ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
+//                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+//                query.orderByAscending(ParseName.MAP_FLOOR);
+//                query.findInBackground(new FindCallback<MapItem>() {
+//                    @Override
+//                    public void done(List<MapItem> list, ParseException e) {
+//                        if(e != null) {
+//                            Log.e("HackFSU", "Error: " + e.getMessage());
+//                        } else {
+//                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+//                            mAdapter.replaceDataset(list);
+//                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+//                        }
+//                        mSwipeLayout.setRefreshing(false);
+//                    }
+//                });
+
+                mSwipeLayout.setRefreshing(false);
+
             }
         });
         mSwipeLayout.setColorSchemeResources(R.color.accent);
@@ -147,22 +148,22 @@ public class MapsFragment extends BaseFragment {
     private class MapItemRecyclerAdapter extends
             RecyclerView.Adapter<MapItemRecyclerAdapter.ViewHolder> {
 
-        private List<MapItem> mDataset;
+        private List<MapModel> mDataset;
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
         public class ViewHolder extends RecyclerView.ViewHolder {
             public View tile;
-            public ParseImageView mMapItemImage;
+            public ImageView mMapItemImage;
             public ViewHolder(View v) {
                 super(v);
                 tile = v;
-                mMapItemImage = (ParseImageView) v.findViewById(R.id.iv_map_image);
+                mMapItemImage = (ImageView) v.findViewById(R.id.iv_map_image);
             }
         }
 
-        public MapItemRecyclerAdapter(ArrayList<MapItem> myDataset) {
+        public MapItemRecyclerAdapter(ArrayList<MapModel> myDataset) {
             mDataset = myDataset;
         }
 
@@ -181,28 +182,28 @@ public class MapsFragment extends BaseFragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
 
-            holder.mMapItemImage.setParseFile(mDataset.get(position).getImage());
-            holder.mMapItemImage.loadInBackground(new GetDataCallback() {
-                @Override
-                public void done(final byte[] data, ParseException e) {
-                    if(e != null) {
-                        Log.e("HackFSU", e.getMessage());
-                    } else {
-
-                        holder.mMapItemImage.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                Intent intent = new Intent(getContext(), MapViewActivity.class);
-                                intent.putExtra("map", data);
-                                getContext().startActivity(intent);
-
-                            }
-                        });
-                    }
-
-                }
-            });
+//            holder.mMapItemImage.setParseFile(mDataset.get(position).getImage());
+//            holder.mMapItemImage.loadInBackground(new GetDataCallback() {
+//                @Override
+//                public void done(final byte[] data, ParseException e) {
+//                    if(e != null) {
+//                        Log.e("HackFSU", e.getMessage());
+//                    } else {
+//
+//                        holder.mMapItemImage.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                Intent intent = new Intent(getContext(), MapViewActivity.class);
+//                                intent.putExtra("map", data);
+//                                getContext().startActivity(intent);
+//
+//                            }
+//                        });
+//                    }
+//
+//                }
+//            });
 
 
 
@@ -214,26 +215,26 @@ public class MapsFragment extends BaseFragment {
         }
 
         // Custom method for hot-swapping data
-        public void replaceDataset(List<MapItem> data) {
+        public void replaceDataset(List<MapModel> data) {
             mDataset = data;
         }
     }
 
-    @ParseClassName(ParseName.MAPITEM)
-    public static class MapItem extends ParseObject {
-
-        public MapItem(){}
-
-        public ParseFile getImage() {
-            return getParseFile(ParseName.MAP_IMAGE);
-        }
-
-        public int getFloor() {
-            return getInt(ParseName.MAP_FLOOR);
-        }
-
-
-    }
+//    @ParseClassName(ParseName.MAPITEM)
+//    public static class MapItem extends ParseObject {
+//
+//        public MapItem(){}
+//
+//        public ParseFile getImage() {
+//            return getParseFile(ParseName.MAP_IMAGE);
+//        }
+//
+//        public int getFloor() {
+//            return getInt(ParseName.MAP_FLOOR);
+//        }
+//
+//
+//    }
 
 
 

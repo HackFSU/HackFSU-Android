@@ -1,31 +1,25 @@
 package com.hackfsu.android.app.fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hackfsu.android.app.ParseName;
+import com.hackfsu.android.api.model.AnnouncementModel;
 import com.hackfsu.android.app.R;
-import com.parse.FindCallback;
-import com.parse.ParseClassName;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+//import com.parse.FindCallback;
+//import com.parse.ParseClassName;
+//import com.parse.ParseException;
+//import com.parse.ParseObject;
+//import com.parse.ParseQuery;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 
 public class UpdateFragment extends BaseFragment {
@@ -69,60 +63,63 @@ public class UpdateFragment extends BaseFragment {
 
 
         // specify an adapter (see also next example)
-        mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateItem>());
+        mAdapter = new UpdatesRecyclerAdapter(new ArrayList<AnnouncementModel>());
         mRecyclerView.setAdapter(mAdapter);
 
 
         // Initial Load
-        ParseQuery<UpdateItem> query = ParseQuery.getQuery(ParseName.UPDATE);
-        query.orderByDescending("createdAt");
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
-
-        mSwipeLayout.post(new Runnable() {
-            // Show that we're loading if slow
-            @Override
-            public void run() {
-                mSwipeLayout.setRefreshing(true);
-            }
-        });
-
-        query.findInBackground(new FindCallback<UpdateItem>() {
-            @Override
-            public void done(List<UpdateItem> list, ParseException e) {
-                if (e != null) {
-                    Log.e("HackFSU", e.getMessage());
-                } else {
-                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-                    mAdapter.replaceDataset(list);
-                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-                    mSwipeLayout.setRefreshing(false);
-                }
-            }
-        });
+//        ParseQuery<AnnouncementModel> query = ParseQuery.getQuery(ParseName.UPDATE);
+//        query.orderByDescending("createdAt");
+//        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
+//
+//        mSwipeLayout.post(new Runnable() {
+//            // Show that we're loading if slow
+//            @Override
+//            public void run() {
+//                mSwipeLayout.setRefreshing(true);
+//            }
+//        });
+//
+//        query.findInBackground(new FindCallback<AnnouncementModel>() {
+//            @Override
+//            public void done(List<AnnouncementModel> list, ParseException e) {
+//                if (e != null) {
+//                    Log.e("HackFSU", e.getMessage());
+//                } else {
+//                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+//                    mAdapter.replaceDataset(list);
+//                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+//                    mSwipeLayout.setRefreshing(false);
+//                }
+//            }
+//        });
 
 
         // Swipe Reload
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ParseQuery<UpdateItem> query = ParseQuery.getQuery(ParseName.UPDATE);
-                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
-                query.orderByDescending("createdAt");
-                query.findInBackground(new FindCallback<UpdateItem>() {
-                    @Override
-                    public void done(List<UpdateItem> list, ParseException e) {
-                        if (e != null) {
-                            Log.e("HackFSU", e.getMessage());
-                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
-                                    .show();
-                        } else {
-                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-                            mAdapter.replaceDataset(list);
-                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-                        }
-                        mSwipeLayout.setRefreshing(false);
-                    }
-                });
+//                ParseQuery<AnnouncementModel> query = ParseQuery.getQuery(ParseName.UPDATE);
+//                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
+//                query.orderByDescending("createdAt");
+//                query.findInBackground(new FindCallback<AnnouncementModel>() {
+//                    @Override
+//                    public void done(List<AnnouncementModel> list, ParseException e) {
+//                        if (e != null) {
+//                            Log.e("HackFSU", e.getMessage());
+//                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
+//                                    .show();
+//                        } else {
+//                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
+//                            mAdapter.replaceDataset(list);
+//                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
+//                        }
+//                        mSwipeLayout.setRefreshing(false);
+//                    }
+//                });
+
+                mSwipeLayout.setRefreshing(false);
+
             }
         });
         mSwipeLayout.setColorSchemeResources(R.color.accent);
@@ -133,7 +130,7 @@ public class UpdateFragment extends BaseFragment {
     private class UpdatesRecyclerAdapter extends
             RecyclerView.Adapter<UpdatesRecyclerAdapter.ViewHolder> {
 
-        private List<UpdateItem> mDataset;
+        private List<AnnouncementModel> mDataset;
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
@@ -155,7 +152,7 @@ public class UpdateFragment extends BaseFragment {
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public UpdatesRecyclerAdapter(List<UpdateItem> myDataset) {
+        public UpdatesRecyclerAdapter(List<AnnouncementModel> myDataset) {
             mDataset = myDataset;
         }
 
@@ -173,16 +170,16 @@ public class UpdateFragment extends BaseFragment {
         // Replace the contents of a view (invoked by the layout manager)
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            // - get element from your dataset at this position
-            // - replace the contents of the view with that element
-
-            holder.mTitleText.setText(mDataset.get(position).getTitle());
-            holder.mContentText.setText(mDataset.get(position).getContent());
-
-            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
-            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
-            String timeStamp = formatter.format(mDataset.get(position).getTimestamp());
-            holder.mSubtitleText.setText(timeStamp);
+//            // - get element from your dataset at this position
+//            // - replace the contents of the view with that element
+//
+//            holder.mTitleText.setText(mDataset.get(position).getTitle());
+//            holder.mContentText.setText(mDataset.get(position).getContent());
+//
+//            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
+//            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
+//            String timeStamp = formatter.format(mDataset.get(position).getTimestamp());
+//            holder.mSubtitleText.setText(timeStamp);
 
         }
 
@@ -192,7 +189,7 @@ public class UpdateFragment extends BaseFragment {
             return mDataset.size();
         }
 
-        public void replaceDataset(List<UpdateItem> data) {
+        public void replaceDataset(List<AnnouncementModel> data) {
             mDataset = data;
 
             if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
@@ -201,21 +198,21 @@ public class UpdateFragment extends BaseFragment {
         }
     }
 
-    @ParseClassName("Update")
-    public static class UpdateItem extends ParseObject {
-
-        public UpdateItem() {}
-
-        public String getContent() {
-            return getString(ParseName.UPDATE_SUBTITLE);
-        }
-
-        public Date getTimestamp() {
-            return getCreatedAt();
-        }
-
-        public String getTitle() {
-            return getString(ParseName.UPDATE_TITLE);
-        }
-    }
+//    @ParseClassName("Update")
+//    public static class AnnouncementModel extends ParseObject {
+//
+//        public AnnouncementModel() {}
+//
+//        public String getContent() {
+//            return getString(ParseName.UPDATE_SUBTITLE);
+//        }
+//
+//        public Date getTimestamp() {
+//            return getCreatedAt();
+//        }
+//
+//        public String getTitle() {
+//            return getString(ParseName.UPDATE_TITLE);
+//        }
+//    }
 }

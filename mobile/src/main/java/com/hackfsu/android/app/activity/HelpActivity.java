@@ -1,6 +1,5 @@
 package com.hackfsu.android.app.activity;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,13 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.hackfsu.android.app.ParseName;
 import com.hackfsu.android.app.R;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
+//import com.parse.ParseException;
+//import com.parse.ParseObject;
+//import com.parse.SaveCallback;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -78,29 +75,30 @@ public class HelpActivity extends AppCompatActivity {
         String location = where.getText().toString();
         String description = what.getText().toString();
 
-        ParseObject req = new ParseObject(ParseName.HELPREQUEST);
-        req.put(ParseName.HELP_NAME, name);
-        req.put(ParseName.HELP_LOCATION, location);
-        req.put(ParseName.HELP_DESCRIPT, description);
-
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("Submitting your help request...");
-        pd.show();
-
-        req.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null) {
-                    finish();
-                    Toast.makeText(HelpActivity.this, "Your help request has been submitted.", Toast.LENGTH_SHORT).show();
-                } else {
-                    showSnackbar("Error submitting request.");
-                }
-
-                pd.hide();
-
-            }
-        });
+//        // This whole deal needs to be un-parsed
+//        ParseObject req = new ParseObject(ParseName.HELPREQUEST);
+//        req.put(ParseName.HELP_NAME, name);
+//        req.put(ParseName.HELP_LOCATION, location);
+//        req.put(ParseName.HELP_DESCRIPT, description);
+//
+//        final ProgressDialog pd = new ProgressDialog(this);
+//        pd.setMessage("Submitting your help request...");
+//        pd.show();
+//
+//        req.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if(e == null) {
+//                    finish();
+//                    Toast.makeText(HelpActivity.this, "Your help request has been submitted.", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    showSnackbar("Error submitting request.");
+//                }
+//
+//                pd.hide();
+//
+//            }
+//        });
 
         return false;
     }

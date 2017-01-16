@@ -102,7 +102,7 @@ public class API {
             });
     }
 
-    // TODO: Maps, Schedule, Sponsor, Countdown
+    // TODO: Maps, Schedule, SponsorModel, Countdown
     public void getMaps(final APICallback<MapModel> callback) {
         networkClient.get("http://api.hackfsu.com/maps",
             new NetworkClient.NetworkCallback() {
