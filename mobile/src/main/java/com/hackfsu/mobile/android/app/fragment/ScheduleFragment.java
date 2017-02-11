@@ -1,4 +1,4 @@
-package com.hackfsu.android.app.fragment;
+package com.hackfsu.mobile.android.app.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hackfsu.android.api.API;
-import com.hackfsu.android.api.model.ScheduleModel;
-import com.hackfsu.android.app.R;
+import com.hackfsu.mobile.android.api.API;
+import com.hackfsu.mobile.android.api.model.ScheduleModel;
+import com.hackfsu.mobile.android.app.R;
 //import com.parse.FindCallback;
 //import com.parse.ParseClassName;
 //import com.parse.ParseException;
@@ -135,12 +135,20 @@ public class ScheduleFragment extends BaseFragment {
             // Display time
             SimpleDateFormat formatter = new SimpleDateFormat("EEE hh:mm a", Locale.US);
             formatter.setTimeZone(TimeZone.getTimeZone("EST"));
-            String startTime = formatter.format(mDataset.get(position).getStart());
+            String startTime = formatter.format(mDataset.get(position).getStart().getTime());
 
 
             holder.mTitleText.setText(mDataset.get(position).getName());
-            holder.mSubtitleText.setText(mDataset.get(position).getDescription());
             holder.mTimeText.setText(startTime);
+
+            String desc = mDataset.get(position).getDescription();
+
+            if(!desc.isEmpty()) {
+                holder.mSubtitleText.setText(desc);
+                holder.mSubtitleText.setVisibility(View.VISIBLE);
+            } else {
+                holder.mSubtitleText.setVisibility(View.GONE);
+            }
 
         }
 

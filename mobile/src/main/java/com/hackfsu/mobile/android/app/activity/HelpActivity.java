@@ -1,4 +1,4 @@
-package com.hackfsu.android.app.activity;
+package com.hackfsu.mobile.android.app.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.hackfsu.android.app.R;
+import com.hackfsu.mobile.android.app.R;
 //import com.parse.ParseException;
 //import com.parse.ParseObject;
 //import com.parse.SaveCallback;

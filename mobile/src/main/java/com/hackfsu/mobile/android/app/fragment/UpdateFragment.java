@@ -1,4 +1,4 @@
-package com.hackfsu.android.app.fragment;
+package com.hackfsu.mobile.android.app.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hackfsu.android.api.model.UpdateModel;
-import com.hackfsu.android.app.R;
+import com.hackfsu.mobile.android.api.model.UpdateModel;
+import com.hackfsu.mobile.android.app.R;
 //import com.parse.FindCallback;
 //import com.parse.ParseClassName;
 //import com.parse.ParseException;

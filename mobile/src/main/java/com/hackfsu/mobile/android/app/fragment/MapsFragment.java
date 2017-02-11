@@ -1,4 +1,4 @@
-package com.hackfsu.android.app.fragment;
+package com.hackfsu.mobile.android.app.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.hackfsu.android.api.model.MapModel;
-import com.hackfsu.android.app.R;
+import com.hackfsu.mobile.android.api.model.MapModel;
+import com.hackfsu.mobile.android.app.R;
 //import com.parse.FindCallback;
 //import com.parse.GetDataCallback;
 //import com.parse.ParseClassName;

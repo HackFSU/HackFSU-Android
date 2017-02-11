@@ -1,4 +1,4 @@
-package com.hackfsu.android.api.model;
+package com.hackfsu.mobile.android.api.model;
 
 
 /**

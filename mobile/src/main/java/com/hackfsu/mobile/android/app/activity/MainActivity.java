@@ -1,4 +1,4 @@
-package com.hackfsu.android.app.activity;
+package com.hackfsu.mobile.android.app.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,12 +19,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hackfsu.android.app.fragment.BaseFragment;
-import com.hackfsu.android.app.fragment.FeedFragment;
-import com.hackfsu.android.app.HackFSU;
-import com.hackfsu.android.app.fragment.MapsFragment;
-import com.hackfsu.android.app.R;
-import com.hackfsu.android.app.fragment.SponsorsFragment;
+import com.hackfsu.mobile.android.app.fragment.BaseFragment;
+import com.hackfsu.mobile.android.app.fragment.FeedFragment;
+import com.hackfsu.mobile.android.app.HackFSU;
+import com.hackfsu.mobile.android.app.fragment.MapsFragment;
+import com.hackfsu.mobile.android.app.R;
+import com.hackfsu.mobile.android.app.fragment.SponsorsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Toolbar.OnMenuItemClickListener,

@@ -1,4 +1,4 @@
-package com.hackfsu.android.app.fragment;
+package com.hackfsu.mobile.android.app.fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;

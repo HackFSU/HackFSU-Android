@@ -1,4 +1,4 @@
-package com.hackfsu.android.app.activity;
+package com.hackfsu.mobile.android.app.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.hackfsu.android.app.R;
-import com.hackfsu.android.app.ui.TouchImageView;
+import com.hackfsu.mobile.android.app.R;
+import com.hackfsu.mobile.android.app.ui.TouchImageView;
 
 public class MapViewActivity extends AppCompatActivity {
 
