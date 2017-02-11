@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hackfsu.android.api.model.AnnouncementModel;
+import com.hackfsu.android.api.model.UpdateModel;
 import com.hackfsu.android.app.R;
 //import com.parse.FindCallback;
 //import com.parse.ParseClassName;
@@ -63,12 +63,12 @@ public class UpdateFragment extends BaseFragment {
 
 
         // specify an adapter (see also next example)
-        mAdapter = new UpdatesRecyclerAdapter(new ArrayList<AnnouncementModel>());
+        mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateModel>());
         mRecyclerView.setAdapter(mAdapter);
 
 
         // Initial Load
-//        ParseQuery<AnnouncementModel> query = ParseQuery.getQuery(ParseName.UPDATE);
+//        ParseQuery<UpdateModel> query = ParseQuery.getQuery(ParseName.UPDATE);
 //        query.orderByDescending("createdAt");
 //        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
 //
@@ -80,9 +80,9 @@ public class UpdateFragment extends BaseFragment {
 //            }
 //        });
 //
-//        query.findInBackground(new FindCallback<AnnouncementModel>() {
+//        query.findInBackground(new FindCallback<UpdateModel>() {
 //            @Override
-//            public void done(List<AnnouncementModel> list, ParseException e) {
+//            public void done(List<UpdateModel> list, ParseException e) {
 //                if (e != null) {
 //                    Log.e("HackFSU", e.getMessage());
 //                } else {
@@ -99,12 +99,12 @@ public class UpdateFragment extends BaseFragment {
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                ParseQuery<AnnouncementModel> query = ParseQuery.getQuery(ParseName.UPDATE);
+//                ParseQuery<UpdateModel> query = ParseQuery.getQuery(ParseName.UPDATE);
 //                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
 //                query.orderByDescending("createdAt");
-//                query.findInBackground(new FindCallback<AnnouncementModel>() {
+//                query.findInBackground(new FindCallback<UpdateModel>() {
 //                    @Override
-//                    public void done(List<AnnouncementModel> list, ParseException e) {
+//                    public void done(List<UpdateModel> list, ParseException e) {
 //                        if (e != null) {
 //                            Log.e("HackFSU", e.getMessage());
 //                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
@@ -130,7 +130,7 @@ public class UpdateFragment extends BaseFragment {
     private class UpdatesRecyclerAdapter extends
             RecyclerView.Adapter<UpdatesRecyclerAdapter.ViewHolder> {
 
-        private List<AnnouncementModel> mDataset;
+        private List<UpdateModel> mDataset;
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
@@ -152,7 +152,7 @@ public class UpdateFragment extends BaseFragment {
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public UpdatesRecyclerAdapter(List<AnnouncementModel> myDataset) {
+        public UpdatesRecyclerAdapter(List<UpdateModel> myDataset) {
             mDataset = myDataset;
         }
 
@@ -189,7 +189,7 @@ public class UpdateFragment extends BaseFragment {
             return mDataset.size();
         }
 
-        public void replaceDataset(List<AnnouncementModel> data) {
+        public void replaceDataset(List<UpdateModel> data) {
             mDataset = data;
 
             if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
@@ -199,9 +199,9 @@ public class UpdateFragment extends BaseFragment {
     }
 
 //    @ParseClassName("Update")
-//    public static class AnnouncementModel extends ParseObject {
+//    public static class UpdateModel extends ParseObject {
 //
-//        public AnnouncementModel() {}
+//        public UpdateModel() {}
 //
 //        public String getContent() {
 //            return getString(ParseName.UPDATE_SUBTITLE);

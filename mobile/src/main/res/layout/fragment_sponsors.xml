@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
     android:fitsSystemWindows="false"
-    tools:context="com.hackfsu.android.app.activity.MainActivity"
+    tools:context="com.hackfsu.mobile.android.app.activity.MainActivity"
     android:background="@color/background"
     android:id="@+id/main_content"
     android:layout_width="match_parent"

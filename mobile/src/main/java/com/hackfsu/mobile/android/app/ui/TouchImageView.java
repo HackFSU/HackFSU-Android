@@ -10,7 +10,7 @@
  * Extends Android ImageView to include pinch zooming, panning, fling and double tap zoom.
  */
 
-package com.hackfsu.android.app.ui;
+package com.hackfsu.mobile.android.app.ui;
 
 import android.annotation.TargetApi;
 import android.content.Context;

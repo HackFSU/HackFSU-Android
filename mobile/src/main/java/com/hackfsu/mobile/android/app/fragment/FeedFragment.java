@@ -133,10 +133,10 @@ public class FeedFragment extends BaseFragment {
 //                if(e == null && object != null) {
 //                    mCountdownLabel.setText(object.getLabel());
 //                    Log.d("HackFSU", "Object label: " + object.getLabel());
-//                    Log.d("HackFSU", "Object time: " + object.getTime().toString());
+//                    Log.d("HackFSU", "Object time: " + object.getStart().toString());
 //
 //
-//                    long until = (object.getTime().getTime() - System.currentTimeMillis());
+//                    long until = (object.getStart().getStart() - System.currentTimeMillis());
 //                    new CountDownTimer(until, 1000) {
 //                        @Override
 //                        public void onFinish() {
@@ -204,7 +204,7 @@ public class FeedFragment extends BaseFragment {
 //            return getString(ParseName.COUNTDOWN_LABEL);
 //        }
 //
-//        public Date getTime() {
+//        public Date getStart() {
 //            return getDate(ParseName.COUNTDOWN_TIME);
 //        }
 //

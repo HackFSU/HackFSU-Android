@@ -130,9 +130,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (item.getGroupId() == R.id.secondary) {
             switch (id) {
-                case R.id.nav_help:
-                    startActivity(new Intent(this, HelpActivity.class));
-                    break;
+//                case R.id.nav_help:
+//                    startActivity(new Intent(this, HelpActivity.class));
+//                    break;
                 case R.id.nav_website:
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.hackfsu.com"));
                     startActivity(browserIntent);

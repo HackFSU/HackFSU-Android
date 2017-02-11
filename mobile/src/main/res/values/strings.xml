@@ -1,17 +1,12 @@
 <resources>
     <string name="app_name">HackFSU</string>
+    <string name="hackfsu_font">uni_sans_heavy-webfont.ttf</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non ante nibh. Integer mollis felis blandit porta ultrices.</string>
+
+    <string name="tab_updates">Updates</string>
+
 
 
     <string name="appbar_default_behavior">android.support.design.widget.AppBarLayout$Behavior</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_help">HelpActivity</string>
-    <string name="title_activity_test">TestActivity</string>
-
-    <string name="hackfsu_font">uni_sans_heavy-webfont.ttf</string>
 
 </resources>

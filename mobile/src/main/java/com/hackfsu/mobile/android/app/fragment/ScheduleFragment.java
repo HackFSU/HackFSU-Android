@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hackfsu.android.api.API;
 import com.hackfsu.android.api.model.ScheduleModel;
 import com.hackfsu.android.app.R;
 //import com.parse.FindCallback;
@@ -18,8 +19,11 @@ import com.hackfsu.android.app.R;
 //import com.parse.ParseQuery;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class ScheduleFragment extends BaseFragment {
@@ -29,6 +33,7 @@ public class ScheduleFragment extends BaseFragment {
     ScheduleRecyclerAdapter mAdapter;
     SwipeRefreshLayout mSwipeLayout;
     View mEmptyView;
+    API mAPI;
 
     public static ScheduleFragment newInstance() {
         return new ScheduleFragment();
@@ -66,61 +71,20 @@ public class ScheduleFragment extends BaseFragment {
         mAdapter = new ScheduleRecyclerAdapter(new ArrayList<ScheduleModel>());
         mRecyclerView.setAdapter(mAdapter);
 
-//        ParseQuery<ScheduleItem> query = ParseQuery.getQuery(ParseName.SCHEDULEITEM);
-//        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
-//        query.orderByAscending("startTime");
-//        query.findInBackground(new FindCallback<ScheduleItem>() {
-//            @Override
-//            public void done(List<ScheduleItem> list, ParseException e) {
-//                if(e != null) {
-//                    Log.e("HackFSU", "Error: " + e.getMessage());
-//                } else {
-//                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                    mAdapter.replaceDataset(list);
-//                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                }
-//            }
-//        });
-
-//        API api = new API();
-//        api.getSchedule(new API.APICallback<ScheduleModel>() {
-//            @Override
-//            public void onDataReady(List<ScheduleModel> dataSet) {
-//
-//            }
-//        });
-
-
-
+        //
+        mAPI = new API(getActivity());
+        retrieveSchedule();
 
         // Swipe Reload
+        mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                ParseQuery<ScheduleItem> query = ParseQuery.getQuery(ParseName.SCHEDULEITEM);
-//                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-//                query.orderByAscending("startTime");
-//                query.findInBackground(new FindCallback<ScheduleItem>() {
-//                    @Override
-//                    public void done(List<ScheduleItem> list, ParseException e) {
-//                        if (e != null) {
-//                            Log.e("HackFSU", e.getMessage());
-//                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
-//                                    .show();
-//                        } else {
-//                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                            mAdapter.replaceDataset(list);
-//                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                        }
-//                        mSwipeLayout.setRefreshing(false);
-//                    }
-//                });
-
+                retrieveSchedule();
                 mSwipeLayout.setRefreshing(false);
-
             }
         });
-        mSwipeLayout.setColorSchemeResources(R.color.accent);
+
     }
 
     // Adapter used by this fragment
@@ -168,24 +132,15 @@ public class ScheduleFragment extends BaseFragment {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
 
-            // ssshhhh ignore this bit it never got finished
-//            if(mDataset.get(position) instanceof ScheduleDivider) {
-//
-//                //holder.mTimeText.setText("Upcoming");
-//                holder.mTitleText.setText("");
-//                holder.mSubtitleText.setText("");
-//
-//            } else {
-//                SimpleDateFormat formatter = new SimpleDateFormat("EEE hh:mm a", Locale.US);
-//                formatter.setTimeZone(TimeZone.getTimeZone("EST"));
-//                String startTime = formatter.format(mDataset.get(position).getStartTime());
-//
-//                holder.mTimeText.setText(startTime);
-//                holder.mTitleText.setText(mDataset.get(position).getTitle());
-//                holder.mSubtitleText.setText(mDataset.get(position).getSubtitle());
-//            }
+            // Display time
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE hh:mm a", Locale.US);
+            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
+            String startTime = formatter.format(mDataset.get(position).getStart());
 
 
+            holder.mTitleText.setText(mDataset.get(position).getName());
+            holder.mSubtitleText.setText(mDataset.get(position).getDescription());
+            holder.mTimeText.setText(startTime);
 
         }
 
@@ -199,44 +154,20 @@ public class ScheduleFragment extends BaseFragment {
             mDataset = data;
             if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
             else mEmptyView.setVisibility(View.VISIBLE);
-
-            /*GregorianCalendar gc = new GregorianCalendar(Locale.US);
-            for(SponsorModel u : mDataset) {
-                if(u.getStartTime().compareTo(gc.getTime()) < 0) {
-                    mDataset.add(mDataset.indexOf(u), new ScheduleDivider());
-                }
-            }*/
         }
     }
 
-//    @ParseClassName("ScheduleItem")
-//    public static class ScheduleItem extends ParseObject {
-//
-//        public ScheduleItem(){
-//
-//        }
-//
-//        /*public Date getEndTime() {
-//            return getDate("endTime");
-//        }*/
-//
-//        public Date getStartTime() {
-//            return getDate("startTime");
-//        }
-//
-//        public String getSubtitle() {
-//            return getString("subtitle");
-//        }
-//
-//        public String getTitle() {
-//            return getString("title");
-//        }
-//    }
-//
-//    @ParseClassName("ScheduleDivider")
-//    public static class ScheduleDivider extends ScheduleItem {
-//
-//        // This never got used. IGNORE ME.
-//
-//    }
+    public void retrieveSchedule() {
+
+        mAPI.getSchedule(new API.APICallback<ScheduleModel>() {
+            @Override
+            public void onDataReady(List<ScheduleModel> dataSet) {
+                mAdapter.replaceDataset(dataSet);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+
+    }
+
+
 }
