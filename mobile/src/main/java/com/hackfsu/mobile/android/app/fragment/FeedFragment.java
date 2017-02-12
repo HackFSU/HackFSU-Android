@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hackfsu.mobile.android.api.API;
+import com.hackfsu.mobile.android.api.model.CountdownModel;
 import com.hackfsu.mobile.android.app.HackFSU;
 import com.hackfsu.mobile.android.app.adapter.PagerAdapter;
 import com.hackfsu.mobile.android.app.R;
@@ -29,6 +33,9 @@ import com.hackfsu.mobile.android.app.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class FeedFragment extends BaseFragment {
 
@@ -42,6 +49,10 @@ public class FeedFragment extends BaseFragment {
     CollapsingToolbarLayout mCollasping;
     TextView mCountdownLabel;
     TextView mCountdownTime;
+
+    boolean showCountdown;
+
+    API mAPI;
 
     public static FeedFragment newInstance() {
         return new FeedFragment();
@@ -115,13 +126,55 @@ public class FeedFragment extends BaseFragment {
 
         // Countdown
 
+        mAPI = new API(getActivity());
         initNextTimer();
 
     }
 
     public void initNextTimer() {
 
-        Date now = Calendar.getInstance().getTime();
+        mAPI.getCountdowns(new API.APICallback<CountdownModel>() {
+            @Override
+            public void onDataReady(List<CountdownModel> dataSet) {
+
+                Log.d("initNextTimer()", "onDataReady called");
+
+                if(dataSet.size() > 0) {
+                    final CountdownModel first = dataSet.get(0);
+
+                    long until = (System.currentTimeMillis() - first.getStartTime().getTimeInMillis());
+
+                    Log.d("initNextTimer()", "ms until: " + until);
+
+                    new CountDownTimer(until, 1000) {
+                        @Override
+                        public void onTick(long millis) {
+                            String out = String.format(Locale.US, "%02d:%02d:%02d",
+                                    TimeUnit.MILLISECONDS.toHours(millis),
+                                    TimeUnit.MILLISECONDS.toMinutes(millis) -
+                                    TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
+                                    TimeUnit.MILLISECONDS.toSeconds(millis) -
+                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+
+                            mCountdownTime.setText(out);
+                            mCountdownLabel.setText(first.getLabel());
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mCountdownTime.setText("HACKFSU");
+                            mCountdownLabel.setText("");
+                            initNextTimer();
+                        }
+                    }.start();
+
+                } else {
+                    mCountdownTime.setText("HACKFSU");
+                }
+            }
+        });
+
+
 
 //        ParseQuery<CountdownItem> query = new ParseQuery<CountdownItem>(ParseName.COUNTDOWNITEM);
 //        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);

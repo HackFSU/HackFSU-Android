@@ -3,6 +3,7 @@ package com.hackfsu.mobile.android.api;
 import android.app.Activity;
 import android.util.Log;
 
+import com.hackfsu.mobile.android.api.model.CountdownModel;
 import com.hackfsu.mobile.android.api.model.UpdateModel;
 import com.hackfsu.mobile.android.api.model.BaseModel;
 import com.hackfsu.mobile.android.api.model.MapModel;
@@ -68,30 +69,38 @@ public class API {
 
                         for (int i = 0; i < updateJSON.length(); i++) {
 
-                            JSONObject temp = updateJSON.optJSONObject(i);
-                            if (temp != null) {
+                            try {
 
-                                // Use a backup time.
-                                Calendar time = Calendar.getInstance();
-                                try {
-                                    time = ISO8601.toCalendar(
-                                            temp.getString("submit_time")
-                                    );
-                                } catch (Exception e) {
-                                    Log.e("getUpdates()", e.getLocalizedMessage());
+                                JSONObject temp = updateJSON.optJSONObject(i);
+                                if (temp != null) {
+
+                                    // Use a backup time.
+                                    Calendar time = Calendar.getInstance();
+                                    try {
+                                        time = ISO8601.toCalendar(
+                                                temp.getString("submit_time")
+                                        );
+                                    } catch (Exception e) {
+                                        Log.e("getUpdates()", e.getLocalizedMessage());
+                                    }
+
+                                    UpdateModel tempAnnouncement = new UpdateModel(
+                                            temp.getString("title"),
+                                            temp.getString("content"),
+                                            time);
+
+                                    announcements.add(tempAnnouncement);
+
                                 }
 
-                                UpdateModel tempAnnouncement = new UpdateModel(
-                                        temp.getString("title"),
-                                        temp.getString("content"),
-                                        time);
-
-                                announcements.add(tempAnnouncement);
-
+                            } catch (Exception e) {
+                                Log.e("getUpdates(2)", e.getLocalizedMessage());
                             }
                         }
 
-                        callback.onDataReady(announcements);
+                        //callback.onDataReady(announcements);
+                        performCallback(callback, announcements);
+
 
                     } catch (JSONException e) {
                         // handle the exception - send error back to the server?
@@ -184,7 +193,6 @@ public class API {
         */
 
         networkClient.get(URL_BASE + URL_SCHEDULE,
-
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -238,7 +246,7 @@ public class API {
                             }
                         }
 
-                        Log.d("getSchedule()", "Returning schedule set of length " + schedule.size());
+                        Log.d("getSchedule(4)", "Returning schedule set of length " + schedule.size());
                         performCallback(callback, schedule);
 
                     } catch (Exception e) {
@@ -318,6 +326,87 @@ public class API {
                 }
             });
     }
+
+    public void getCountdowns(final APICallback<CountdownModel> callback) {
+
+        /* Sample JSON Format
+           {
+              "countdowns": [
+                {
+                  "title": "Hacking Starts",
+                  "end": "2017-02-09T11:00:00+00:00",
+                  "start": "2017-02-08T05:00:00+00:00"
+                }
+              ]
+            }
+         */
+
+        networkClient.get(URL_BASE + URL_COUNTDOWN, new NetworkClient.NetworkCallback() {
+
+            @Override
+            public void onComplete(String json) {
+                JSONObject response;
+                JSONArray countdownJSON;
+                List<CountdownModel> countdowns = new ArrayList<>();
+
+                try {
+                    response = new JSONObject(json);
+                    countdownJSON = response.getJSONArray("countdowns");
+
+                    for(int i = 0; i < countdownJSON.length(); ++i) {
+                        JSONObject obj = countdownJSON.optJSONObject(i);
+
+                        // Fail separately
+                        try {
+
+                            // Parse the times to calendars
+                            Calendar start = Calendar.getInstance();
+                            Calendar end = Calendar.getInstance();
+
+                            try {
+                                start = ISO8601.toCalendar(obj.getString("start"));
+                            } catch (Exception e) {
+                                Log.e("getCountdowns(3)", e.getLocalizedMessage());
+                            }
+
+                            try {
+                                end = ISO8601.toCalendar(obj.getString("end"));
+                            } catch (Exception e) {
+                                Log.e("getCountdowns(3)", e.getLocalizedMessage());
+                            }
+
+                            // Assemble model
+                            CountdownModel model = new CountdownModel(
+                                    obj.getString("title"),
+                                    start,
+                                    end
+                            );
+
+                            // Fin!
+                            countdowns.add(model);
+
+
+                        } catch (Exception e) {
+                            Log.e("getCountdowns(2)", e.getLocalizedMessage());
+                        }
+                    }
+
+                    performCallback(callback, countdowns);
+
+                } catch (Exception e) {
+                    Log.e("getCountdowns(1)", e.getLocalizedMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("getCountdowns(4)", e.getLocalizedMessage());
+            }
+
+        });
+
+    }
+
 
     public interface APICallback<T extends BaseModel> {
         void onDataReady(List<T> dataSet);

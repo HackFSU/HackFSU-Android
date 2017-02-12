@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hackfsu.mobile.android.api.API;
 import com.hackfsu.mobile.android.api.model.UpdateModel;
 import com.hackfsu.mobile.android.app.R;
 //import com.parse.FindCallback;
@@ -18,8 +19,11 @@ import com.hackfsu.mobile.android.app.R;
 //import com.parse.ParseObject;
 //import com.parse.ParseQuery;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class UpdateFragment extends BaseFragment {
@@ -29,6 +33,7 @@ public class UpdateFragment extends BaseFragment {
     LinearLayoutManager mLayoutManager;
     UpdatesRecyclerAdapter mAdapter;
     View mEmptyView;
+    API mAPI;
 
     public static UpdateFragment newInstance() {
         return new UpdateFragment();
@@ -68,61 +73,28 @@ public class UpdateFragment extends BaseFragment {
 
 
         // Initial Load
-//        ParseQuery<UpdateModel> query = ParseQuery.getQuery(ParseName.UPDATE);
-//        query.orderByDescending("createdAt");
-//        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK); // !!!
-//
-//        mSwipeLayout.post(new Runnable() {
-//            // Show that we're loading if slow
-//            @Override
-//            public void run() {
-//                mSwipeLayout.setRefreshing(true);
-//            }
-//        });
-//
-//        query.findInBackground(new FindCallback<UpdateModel>() {
-//            @Override
-//            public void done(List<UpdateModel> list, ParseException e) {
-//                if (e != null) {
-//                    Log.e("HackFSU", e.getMessage());
-//                } else {
-//                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                    mAdapter.replaceDataset(list);
-//                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                    mSwipeLayout.setRefreshing(false);
-//                }
-//            }
-//        });
-
+        mAPI = new API(getActivity());
+        updateAnnouncements();
 
         // Swipe Reload
+        mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                ParseQuery<UpdateModel> query = ParseQuery.getQuery(ParseName.UPDATE);
-//                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
-//                query.orderByDescending("createdAt");
-//                query.findInBackground(new FindCallback<UpdateModel>() {
-//                    @Override
-//                    public void done(List<UpdateModel> list, ParseException e) {
-//                        if (e != null) {
-//                            Log.e("HackFSU", e.getMessage());
-//                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
-//                                    .show();
-//                        } else {
-//                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                            mAdapter.replaceDataset(list);
-//                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                        }
-//                        mSwipeLayout.setRefreshing(false);
-//                    }
-//                });
-
+                updateAnnouncements();
                 mSwipeLayout.setRefreshing(false);
 
             }
         });
-        mSwipeLayout.setColorSchemeResources(R.color.accent);
+    }
+
+    private void updateAnnouncements() {
+        mAPI.getUpdates(new API.APICallback<UpdateModel>() {
+            @Override
+            public void onDataReady(List<UpdateModel> dataSet) {
+                mAdapter.replaceDataset(dataSet);
+            }
+        });
     }
 
 
@@ -170,16 +142,16 @@ public class UpdateFragment extends BaseFragment {
         // Replace the contents of a view (invoked by the layout manager)
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-//            // - get element from your dataset at this position
-//            // - replace the contents of the view with that element
-//
-//            holder.mTitleText.setText(mDataset.get(position).getTitle());
-//            holder.mContentText.setText(mDataset.get(position).getContent());
-//
-//            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
-//            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
-//            String timeStamp = formatter.format(mDataset.get(position).getTimestamp());
-//            holder.mSubtitleText.setText(timeStamp);
+            // - get element from your dataset at this position
+            // - replace the contents of the view with that element
+
+            holder.mTitleText.setText(mDataset.get(position).getTitle());
+            holder.mContentText.setText(mDataset.get(position).getContent());
+
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
+            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
+            String timeStamp = formatter.format(mDataset.get(position).getTime().getTime());
+            holder.mSubtitleText.setText(timeStamp);
 
         }
 
@@ -191,28 +163,11 @@ public class UpdateFragment extends BaseFragment {
 
         public void replaceDataset(List<UpdateModel> data) {
             mDataset = data;
+            notifyDataSetChanged();
 
             if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
             else mEmptyView.setVisibility(View.VISIBLE);
 
         }
     }
-
-//    @ParseClassName("Update")
-//    public static class UpdateModel extends ParseObject {
-//
-//        public UpdateModel() {}
-//
-//        public String getContent() {
-//            return getString(ParseName.UPDATE_SUBTITLE);
-//        }
-//
-//        public Date getTimestamp() {
-//            return getCreatedAt();
-//        }
-//
-//        public String getTitle() {
-//            return getString(ParseName.UPDATE_TITLE);
-//        }
-//    }
 }
