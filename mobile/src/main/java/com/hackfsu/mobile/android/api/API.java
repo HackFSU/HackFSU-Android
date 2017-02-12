@@ -149,23 +149,37 @@ public class API {
                         mapJSON = response.getJSONArray("maps");
 
                         // Make sure we get the right JSON
-                        // TODO LATER: Check and add only NEW maps - check for 304 Modified in request?
-                        // TODO: CACHE RESULTS
 
                         for (int i = 0; i < mapJSON.length(); i++) {
                             JSONObject temp = mapJSON.optJSONObject(i);
-                            if (temp != null) {
+                            try {
+
                                 // Pull data members from JSON into UpdateModel to add to List
                                 MapModel tempMap = new MapModel(
-                                        temp.getString("title"),
-                                        temp.getString("link"),
-                                        temp.getInt("order")
+                                    temp.getString("title"),
+                                    temp.getString("link"),
+                                    temp.getInt("order")
                                 );
                                 maps.add(tempMap);
+
+
+                            } catch (Exception e) {
+                                Log.e("getMaps()", e.getLocalizedMessage());
                             }
+
+
                         }
 
-                        callback.onDataReady(maps);
+
+                        Collections.sort(maps, new Comparator<MapModel>() {
+                            @Override
+                            public int compare(MapModel o1, MapModel o2) {
+                                return Integer.compare(o1.getOrdering(), o2.getOrdering());
+                            }
+                        });
+
+                        performCallback(callback, maps);
+
                     } catch (JSONException e) {
                         // handle the exception - send error back to the server?
                     }
@@ -300,7 +314,8 @@ public class API {
                         // Ensuring we have the right JSON
                         for (int i = 0; i < sponsorJSON.length(); i++) {
                             JSONObject temp = sponsorJSON.optJSONObject(i);
-                            if (temp != null) {
+
+                            try {
                                 // Pull data from JSON into SponsorModel to add to list
                                 SponsorModel tempSponsor =
                                         new SponsorModel(
@@ -312,6 +327,8 @@ public class API {
                                         );
 
                                 sponsors.add(tempSponsor);
+                            } catch (Exception e) {
+                                Log.e("getSponsors()", e.getLocalizedMessage());
                             }
                         }
 

@@ -1,6 +1,9 @@
 package com.hackfsu.mobile.android.app.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.hackfsu.mobile.android.api.API;
 import com.hackfsu.mobile.android.api.model.MapModel;
 import com.hackfsu.mobile.android.app.R;
 //import com.parse.FindCallback;
@@ -22,8 +26,11 @@ import com.hackfsu.mobile.android.app.R;
 //import com.parse.ParseImageView;
 //import com.parse.ParseObject;
 //import com.parse.ParseQuery;
+import com.hackfsu.mobile.android.app.activity.MapViewActivity;
+import com.squareup.picasso.Picasso;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +45,7 @@ public class MapsFragment extends BaseFragment {
     SwipeRefreshLayout mSwipeLayout;
 
     BaseFragment.OnFragmentInteractionListener mListener;
+    API mAPI;
 
 
     public static MapsFragment newInstance() {
@@ -83,48 +91,29 @@ public class MapsFragment extends BaseFragment {
         mAdapter = new MapItemRecyclerAdapter(new ArrayList<MapModel>());
         mRecyclerView.setAdapter(mAdapter);
 
-//        ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
-//        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
-//        query.orderByAscending(ParseName.MAP_FLOOR);
-//        query.findInBackground(new FindCallback<MapItem>() {
-//            @Override
-//            public void done(List<MapItem> list, ParseException e) {
-//                if(e != null) {
-//                    Log.e("HackFSU", "Error: " + e.getMessage());
-//                } else {
-//                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                    mAdapter.replaceDataset(list);
-//                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                }
-//            }
-//        });
+        mAPI = new API(getActivity());
+        loadMaps();
 
+        mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-//                ParseQuery<MapItem> query = ParseQuery.getQuery(ParseName.MAPITEM);
-//                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-//                query.orderByAscending(ParseName.MAP_FLOOR);
-//                query.findInBackground(new FindCallback<MapItem>() {
-//                    @Override
-//                    public void done(List<MapItem> list, ParseException e) {
-//                        if(e != null) {
-//                            Log.e("HackFSU", "Error: " + e.getMessage());
-//                        } else {
-//                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                            mAdapter.replaceDataset(list);
-//                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                        }
-//                        mSwipeLayout.setRefreshing(false);
-//                    }
-//                });
-
+                loadMaps();
                 mSwipeLayout.setRefreshing(false);
 
             }
         });
-        mSwipeLayout.setColorSchemeResources(R.color.accent);
+    }
+
+    private void loadMaps() {
+        mAPI.getMaps(new API.APICallback<MapModel>() {
+            @Override
+            public void onDataReady(List<MapModel> dataSet) {
+                mAdapter.replaceDataset(dataSet);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -181,6 +170,26 @@ public class MapsFragment extends BaseFragment {
         // Populate the viewholder with data
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
+
+            Picasso.with(getContext())
+                    .load(mDataset.get(position).getURL())
+                    .into(holder.mMapItemImage);
+
+            holder.mMapItemImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Bitmap bitmap = ((BitmapDrawable) holder.mMapItemImage.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageInByte = baos.toByteArray();
+
+                    Intent intent = new Intent(getContext(), MapViewActivity.class);
+                    intent.putExtra("map", imageInByte);
+                    getContext().startActivity(intent);
+
+                }
+            });
 
 //            holder.mMapItemImage.setParseFile(mDataset.get(position).getImage());
 //            holder.mMapItemImage.loadInBackground(new GetDataCallback() {
