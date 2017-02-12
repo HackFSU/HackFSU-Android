@@ -16,6 +16,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -313,7 +315,19 @@ public class API {
                             }
                         }
 
-                        callback.onDataReady(sponsors);
+                        Collections.sort(sponsors, new Comparator<SponsorModel>() {
+                            @Override
+                            public int compare(SponsorModel o1, SponsorModel o2) {
+                                // Initially sort by tier
+                                int c = Integer.compare(o1.getTier(), o2.getTier());
+                                // If equal, then sort by order.
+                                if(c == 0) c = Integer.compare(o1.getOrder(), o2.getOrder());
+                                return c;
+                            }
+                        });
+
+                        performCallback(callback, sponsors);
+
                     } catch (JSONException e) {
                         // handle the exception - send error back to the server?
                         Log.e("getSponsor()", e.getLocalizedMessage());

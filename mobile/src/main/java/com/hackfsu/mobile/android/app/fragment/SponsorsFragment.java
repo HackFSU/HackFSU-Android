@@ -1,6 +1,8 @@
 package com.hackfsu.mobile.android.app.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hackfsu.mobile.android.api.API;
 import com.hackfsu.mobile.android.api.model.SponsorModel;
 import com.hackfsu.mobile.android.app.R;
 //import com.parse.FindCallback;
@@ -24,6 +27,7 @@ import com.hackfsu.mobile.android.app.R;
 //import com.parse.ParseImageView;
 //import com.parse.ParseObject;
 //import com.parse.ParseQuery;
+import com.squareup.picasso.Picasso;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -38,6 +42,7 @@ public class SponsorsFragment extends BaseFragment {
     LinearLayoutManager mLayoutManager;
     SponsorRecyclerAdapter mAdapter;
     SwipeRefreshLayout mSwipeLayout;
+    API mAPI;
 
     BaseFragment.OnFragmentInteractionListener mListener;
 
@@ -87,51 +92,30 @@ public class SponsorsFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemViewCacheSize(13);
 
-        // Initial load
-//        ParseQuery<SponsorModel> query = ParseQuery.getQuery(ParseName.SPONSOR);
-//        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
-//        query.orderByAscending(ParseName.SPONSOR_LEVEL);
-//        query.findInBackground(new FindCallback<SponsorModel>() {
-//            @Override
-//            public void done(List<SponsorModel> list, ParseException e) {
-//                if(e != null) {
-//                    Log.e("HackFSU", "Error: " + e.getMessage());
-//                } else {
-//                    mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                    mAdapter.replaceDataset(list);
-//                    mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                }
-//            }
-//        });
+        mAPI = new API(getActivity());
+        loadSponsors();
+
 
         // Swipe Reload
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                ParseQuery<SponsorModel> query = ParseQuery.getQuery(ParseName.SPONSOR);
-//                query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ONLY);
-//                query.orderByAscending(ParseName.SPONSOR_LEVEL);
-//                query.findInBackground(new FindCallback<SponsorModel>() {
-//                    @Override
-//                    public void done(List<SponsorModel> list, ParseException e) {
-//                        if (e != null) {
-//                            Log.e("HackFSU", e.getMessage());
-//                            Snackbar.make(mRecyclerView, "Could not refresh.", Snackbar.LENGTH_SHORT)
-//                                    .show();
-//                        } else {
-//                            mAdapter.notifyItemRangeRemoved(0, mAdapter.getItemCount());
-//                            mAdapter.replaceDataset(list);
-//                            mAdapter.notifyItemRangeInserted(0, mAdapter.getItemCount());
-//                        }
-//                        mSwipeLayout.setRefreshing(false);
-//                    }
-//                });
-
+                loadSponsors();
                 mSwipeLayout.setRefreshing(false);
 
             }
         });
         mSwipeLayout.setColorSchemeResources(R.color.accent);
+    }
+
+    public void loadSponsors() {
+        mAPI.getSponsors(new API.APICallback<SponsorModel>() {
+            @Override
+            public void onDataReady(List<SponsorModel> dataSet) {
+                mAdapter.replaceDataset(dataSet);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -193,7 +177,25 @@ public class SponsorsFragment extends BaseFragment {
 
         // Populate the viewholder with data
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
+
+            holder.mSponsorName.setText(mDataset.get(position).getName());
+            Picasso.with(getContext())
+                    .load(mDataset.get(position).getImageURL())
+                    .into(holder.mSponsorImage);
+
+            holder.mSponsorImage.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse(
+                            mDataset.get(holder.getAdapterPosition()).getWebURL()
+                    ));
+                    startActivity(intent);
+                }
+            });
+
 
 //            // Retrieve Data
 //            final String name = mDataset.get(position).getName();

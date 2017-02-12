@@ -5,13 +5,6 @@
     android:background="@color/grey_400"
     android:id="@+id/tile">
 
-    <!--
-    <com.parse.ParseImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/iv_sponsor_image"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true" /> -->
 
     <ImageView
         android:layout_width="match_parent"
@@ -19,9 +12,18 @@
         android:id="@+id/iv_sponsor_image"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
+        android:padding="16dp"
         android:layout_weight="1"
         android:background="@color/grey_white_1000" />
 
+
+    <!--
+    <com.parse.ParseImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_sponsor_image"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true" /> -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,4 +69,6 @@
             android:layout_marginLeft="16dp" />
 
     </LinearLayout>
+
+
 </LinearLayout>
