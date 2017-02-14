@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040602838619:android:a5eea346753e4540",
+        "android_client_info": {
+          "package_name": "com.hackfsu.android.hackfsu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040602838619-eun76uvnvqdo6jf920q2qpqqgg8dqd70.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackfsu.android.hackfsu",
+            "certificate_hash": "3E0A305C43DF3BFCB1811725C4625FD9D0F14DF0"
+          }
+        },
+        {
+          "client_id": "1040602838619-ma6lm24oh1685dnnd6uldkbderho6vgq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb0-hMV59Ts6s4azyUVE4Yc0J_wPFLVv4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040602838619-ma6lm24oh1685dnnd6uldkbderho6vgq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

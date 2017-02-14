@@ -26,3 +26,9 @@ abstract class, such as `UpdateModel`, `ScheduleModel`, etc.
 An important note about modifying `API.java` is that it uses a private method,
 `performCallback(APICallback, <? extends BaseModel>)` to execute the APICallback
 as defined in an Activity/Fragment on the UI thread. 
+
+## Key Signing
+
+To release this app on the Play Store, it need digitally signed. For security,
+the keystore is not on this repo. Please contact Andrew at `andrew@andrewsosa.com`
+to obtain a copy of the keystore for future releases.
