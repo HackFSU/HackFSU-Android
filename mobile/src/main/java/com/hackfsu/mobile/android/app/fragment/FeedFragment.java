@@ -142,9 +142,10 @@ public class FeedFragment extends BaseFragment {
                 if(dataSet.size() > 0) {
                     final CountdownModel first = dataSet.get(0);
 
-                    long until = (System.currentTimeMillis() - first.getStartTime().getTimeInMillis());
-
+                    long until = (first.getStartTime().getTimeInMillis() - System.currentTimeMillis());
                     Log.d("initNextTimer()", "ms until: " + until);
+                    until = Math.abs(until);
+
 
                     new CountDownTimer(until, 1000) {
                         @Override
