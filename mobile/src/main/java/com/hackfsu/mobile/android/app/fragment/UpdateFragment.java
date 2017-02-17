@@ -66,37 +66,24 @@ public class UpdateFragment extends BaseFragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
-        // specify an adapter (see also next example)
+        // specify an adapter
         mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateModel>());
         mRecyclerView.setAdapter(mAdapter);
 
-
-        // Initial Load
-        mAPI = new API(getActivity());
-        updateAnnouncements();
+        // TODO load the data
 
         // Swipe Reload
         mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                updateAnnouncements();
                 mSwipeLayout.setRefreshing(false);
-
+                // TODO add a refresh action
             }
         });
     }
 
-    private void updateAnnouncements() {
-        mAPI.getUpdates(new API.APICallback<UpdateModel>() {
-            @Override
-            public void onDataReady(List<UpdateModel> dataSet) {
-                mAdapter.replaceDataset(dataSet);
-            }
-        });
-    }
-
+    // TODO add updateAnnouncements() method
 
     // Adapter used by this fragment
     private class UpdatesRecyclerAdapter extends
@@ -107,13 +94,13 @@ public class UpdateFragment extends BaseFragment {
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            public View card;
-            public TextView mTitleText;
-            public TextView mSubtitleText;
-            public TextView mContentText;
-            public ImageView mIcon;
-            public ViewHolder(View v) {
+        class ViewHolder extends RecyclerView.ViewHolder {
+            View card;
+            TextView mTitleText;
+            TextView mSubtitleText;
+            TextView mContentText;
+            ImageView mIcon;
+            ViewHolder(View v) {
                 super(v);
                 card = v;
                 mTitleText = (TextView) v.findViewById(R.id.tv_title);
@@ -124,7 +111,7 @@ public class UpdateFragment extends BaseFragment {
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public UpdatesRecyclerAdapter(List<UpdateModel> myDataset) {
+        UpdatesRecyclerAdapter(List<UpdateModel> myDataset) {
             mDataset = myDataset;
         }
 
@@ -145,13 +132,7 @@ public class UpdateFragment extends BaseFragment {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
 
-            holder.mTitleText.setText(mDataset.get(position).getTitle());
-            holder.mContentText.setText(mDataset.get(position).getContent());
-
-            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
-            formatter.setTimeZone(TimeZone.getTimeZone("EST"));
-            String timeStamp = formatter.format(mDataset.get(position).getTime().getTime());
-            holder.mSubtitleText.setText(timeStamp);
+            // TODO implement this method
 
         }
 
@@ -161,7 +142,7 @@ public class UpdateFragment extends BaseFragment {
             return mDataset.size();
         }
 
-        public void replaceDataset(List<UpdateModel> data) {
+        void replaceDataset(List<UpdateModel> data) {
             mDataset = data;
             notifyDataSetChanged();
 

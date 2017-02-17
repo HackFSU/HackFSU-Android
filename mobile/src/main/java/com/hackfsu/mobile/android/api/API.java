@@ -53,69 +53,8 @@ public class API {
             }
         */
 
-        networkClient.get(URL_BASE + URL_UPDATES,
-            new NetworkClient.NetworkCallback() {
+        // TODO implement method
 
-                @Override
-                public void onComplete(String json) {
-
-                    JSONObject response;
-                    JSONArray updateJSON;
-                    List<UpdateModel> announcements = new ArrayList<UpdateModel>();
-
-                    // Catch the exception if (for some reason) we don't get JSON
-                    try {
-
-                        response = new JSONObject(json);
-                        updateJSON = response.getJSONArray("updates");
-
-                        for (int i = 0; i < updateJSON.length(); i++) {
-
-                            try {
-
-                                JSONObject temp = updateJSON.optJSONObject(i);
-                                if (temp != null) {
-
-                                    // Use a backup time.
-                                    Calendar time = Calendar.getInstance();
-                                    try {
-                                        time = ISO8601.toCalendar(
-                                                temp.getString("submit_time")
-                                        );
-                                    } catch (Exception e) {
-                                        Log.e("getUpdates()", e.getLocalizedMessage());
-                                    }
-
-                                    UpdateModel tempAnnouncement = new UpdateModel(
-                                            temp.getString("title"),
-                                            temp.getString("content"),
-                                            time);
-
-                                    announcements.add(tempAnnouncement);
-
-                                }
-
-                            } catch (Exception e) {
-                                Log.e("getUpdates(2)", e.getLocalizedMessage());
-                            }
-                        }
-
-                        //callback.onDataReady(announcements);
-                        performCallback(callback, announcements);
-
-
-                    } catch (JSONException e) {
-                        // handle the exception - send error back to the server?
-                        Log.e("getUpdates()", e.getLocalizedMessage());
-                    }
-                }
-
-                @Override
-                public void onFailure(Exception e) {
-                    Log.e("getUpdates()", e.getLocalizedMessage());
-                }
-
-            });
     }
 
     public void getMaps(final APICallback<MapModel> callback) {
