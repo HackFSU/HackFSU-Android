@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="wrap_content"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:minHeight="72dp"
     android:background="@color/grey_50">
 
     <TextView
@@ -23,16 +24,13 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="124dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UPL 101"
-            android:id="@+id/tv_subtitle"
-            android:singleLine="true" />
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,6 +41,14 @@
             android:textColor="@color/primaryTextDark"
             android:fontFamily="sans-serif-medium"
             android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UPL 101"
+            android:id="@+id/tv_subtitle"/>
+
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -139,12 +139,22 @@ public class FeedFragment extends BaseFragment {
 
                 Log.d("initNextTimer()", "onDataReady called");
 
-                if(dataSet.size() > 0) {
-                    final CountdownModel first = dataSet.get(0);
+                CountdownModel model = null;
 
-                    long until = (first.getStartTime().getTimeInMillis() - System.currentTimeMillis());
+                for(CountdownModel countdown : dataSet) {
+                    if(countdown.getStartTime().getTimeInMillis() > System.currentTimeMillis()) {
+                        model = countdown;
+                        break;
+                    }
+                }
+
+
+                if(model != null) {
+
+                    final CountdownModel model2 = model;
+
+                    long until = (model.getStartTime().getTimeInMillis() - System.currentTimeMillis());
                     Log.d("initNextTimer()", "ms until: " + until);
-                    until = Math.abs(until);
 
 
                     new CountDownTimer(until, 1000) {
@@ -158,7 +168,7 @@ public class FeedFragment extends BaseFragment {
                                     TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
 
                             mCountdownTime.setText(out);
-                            mCountdownLabel.setText(first.getLabel());
+                            mCountdownLabel.setText(model2.getLabel());
                         }
 
                         @Override

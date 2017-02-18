@@ -79,7 +79,7 @@ public class API {
                                     // Use a backup time.
                                     Calendar time = Calendar.getInstance();
                                     try {
-                                        time = ISO8601.toCalendar(
+                                        time = ISO8601Updates.toCalendar(
                                                 temp.getString("submit_time")
                                         );
                                     } catch (Exception e) {
