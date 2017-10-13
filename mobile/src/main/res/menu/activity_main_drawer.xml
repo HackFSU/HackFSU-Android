@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    ​
+
     <item
         android:id="@+id/nav_live"
         android:enabled="true"
@@ -19,6 +19,6 @@
         android:enabled="true"
         android:icon="@drawable/ic_group_24dp"
         android:title="Sponsors"
-        app:showAsAction="ifRoom"  />
-    ​
+        app:showAsAction="ifRoom" />
+
 </menu>
