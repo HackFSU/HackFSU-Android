@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:id="@+id/primary" android:checkableBehavior="single">
-        <item android:id="@+id/nav_live" android:icon="@drawable/ic_wifi_tethering_24dp"
-            android:title="Live Feeds" />
-        <item android:id="@+id/nav_map" android:icon="@drawable/ic_map_24dp"
-            android:title="Venue Map" />
-        <item android:id="@+id/nav_sponsors" android:icon="@drawable/ic_group_24dp"
-            android:title="Sponsors" />
-    </group>
+    <item
+        android:id="@+id/nav_live"
+        android:enabled="true"
+        android:icon="@drawable/ic_wifi_tethering_24dp"
+        android:title="Announcements"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_map"
+        android:enabled="true"
+        android:icon="@drawable/ic_map_24dp"
+        android:title="Venue Map"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_sponsors"
+        android:enabled="true"
+        android:icon="@drawable/ic_group_24dp"
+        android:title="Sponsors"
+        app:showAsAction="ifRoom" />
 
-    <group android:id="@+id/secondary">
-        <!--<item android:id="@+id/nav_help"-->
-            <!--android:title="Request Mentor" />-->
-        <item android:id="@+id/nav_website"
-            android:title="HackFSU.com"/>
-    </group>
+    <item
+        android:id="@+id/nav_sponsors"
+        android:enabled="true"
+        android:icon="@drawable/ic_group_24dp"
+        android:title="Sponsors"
+        app:showAsAction="ifRoom" />
 
 
 </menu>
+

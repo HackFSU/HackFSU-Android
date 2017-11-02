@@ -6,6 +6,8 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -27,11 +29,10 @@ import com.hackfsu.mobile.android.app.R;
 import com.hackfsu.mobile.android.app.fragment.SponsorsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Toolbar.OnMenuItemClickListener,
-        BaseFragment.OnFragmentInteractionListener {
+        implements BaseFragment.OnFragmentInteractionListener {
 
-    DrawerLayout drawer;
-    NavigationView navigationView;
+    //DrawerLayout drawer;
+    //NavigationView navigationView;
 
     String activeFragmentTag;
     int activeFragmentId;
@@ -43,21 +44,24 @@ public class MainActivity extends AppCompatActivity
 
         initPrefs();
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
 
         // Restore or Init state
-        navigationView.setNavigationItemSelectedListener(this);
+        //navigationView.setNavigationItemSelectedListener(this);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                newFragmentTransaction(item.getItemId());
+                return true;
+            }
+        });
+
         if(savedInstanceState != null) {
             restoreFragmentTransaction(savedInstanceState);
         } else {
             newFragmentTransaction(R.id.nav_live);
         }
-
-
-        TextView navHeader = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_navtitle);
-        navHeader.setText("HACKFSU");
-        navHeader.setTypeface(Typeface.createFromAsset(getAssets(), getResources().getString(R.string.hackfsu_font)));
 
     }
 
@@ -74,17 +78,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void onBackPressed() {
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
+    //@Override
     public boolean onMenuItemClick(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -105,42 +99,10 @@ public class MainActivity extends AppCompatActivity
                 Log.d("HackFSU", ""+allowNotifications);
                 item.setIcon(allowNotifications ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
                 sp.edit().putBoolean(HackFSU.NOTIFICATIONS, allowNotifications).apply();
-                Snackbar.make(drawer, (allowNotifications ? "Notifications Enabled" : "Notifications Disabled"), Snackbar.LENGTH_SHORT).show();
+               // Snackbar.make(drawer, (allowNotifications ? "Notifications Enabled" : "Notifications Disabled"), Snackbar.LENGTH_SHORT).show();
                 break;
         }
 
-        return true;
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-
-        if(item.getGroupId() == R.id.primary && shouldChangeFragments(id)) {
-
-            newFragmentTransaction(id);
-
-            if(id == R.id.nav_sponsors) {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            } else {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-            }
-
-        } else if (item.getGroupId() == R.id.secondary) {
-            switch (id) {
-//                case R.id.nav_help:
-//                    startActivity(new Intent(this, HelpActivity.class));
-//                    break;
-                case R.id.nav_website:
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.hackfsu.com"));
-                    startActivity(browserIntent);
-
-            }
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -153,32 +115,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void registerToolbar(Toolbar toolbar) {
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.openDrawer(GravityCompat.START);
-                }
-            }
-        });
-        toolbar.setOnMenuItemClickListener(this);
-
 
     }
 
-    public void updateUI(int id) {
-        switch(id) {
-            case R.id.nav_live:
-                drawer.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
-                break;
-            case R.id.nav_map:
-                drawer.setStatusBarBackgroundColor(getResources().getColor(R.color.maps_dark));
-                break;
-            case R.id.nav_sponsors:
-                drawer.setStatusBarBackgroundColor(getResources().getColor(R.color.sponsors_dark));
-                break;
-        }
-    }
 
     public void newFragmentTransaction(int id) {
 
@@ -198,10 +137,9 @@ public class MainActivity extends AppCompatActivity
 
         // Actual cannibal shia transaction
         if(fg != null) {
-            updateUI(id);
             activeFragmentTag = getFragmentTag(id);
             activeFragmentId = id;
-            navigationView.setCheckedItem(R.id.nav_live);
+          //  navigationView.setCheckedItem(R.id.nav_live);
             fm.beginTransaction().replace(R.id.fragment_anchor, fg, activeFragmentTag).commit();
         }
     }
