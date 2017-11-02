@@ -28,7 +28,7 @@ public class API {
 
     private NetworkClient networkClient = new NetworkClient();
 
-    final static String URL_BASE = "http://2017.hackfsu.com/api/hackathon/get";
+    final static String URL_BASE_HACKATHON = "http://2017.hackfsu.com/api/hackathon/get";
 
     final static String URL_UPDATES = "/updates";
     final static String URL_SCHEDULE = "/schedule_items";
@@ -61,7 +61,7 @@ public class API {
             }
         */
 
-        networkClient.get(URL_BASE + URL_UPDATES,
+        networkClient.get(URL_BASE_HACKATHON + URL_UPDATES,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -140,7 +140,7 @@ public class API {
             }
         */
 
-        networkClient.get(URL_BASE + URL_MAPS,
+        networkClient.get(URL_BASE_HACKATHON + URL_MAPS,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -216,7 +216,7 @@ public class API {
             }
         */
 
-        networkClient.get(URL_BASE + URL_SCHEDULE,
+        networkClient.get(URL_BASE_HACKATHON + URL_SCHEDULE,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -303,7 +303,7 @@ public class API {
         }
         */
 
-        networkClient.get(URL_BASE + URL_SPONSORS,
+        networkClient.get(URL_BASE_HACKATHON + URL_SPONSORS,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -380,7 +380,7 @@ public class API {
             }
          */
 
-        networkClient.get(URL_BASE + URL_COUNTDOWN, new NetworkClient.NetworkCallback() {
+        networkClient.get(URL_BASE_HACKATHON + URL_COUNTDOWN, new NetworkClient.NetworkCallback() {
 
             @Override
             public void onComplete(String json) {
