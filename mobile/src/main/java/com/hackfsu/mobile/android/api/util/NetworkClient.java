@@ -7,6 +7,7 @@ import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -38,22 +39,30 @@ public class NetworkClient {
 
     }
 
-//    public void post(String url, String json, NetworkCallback callback) throws IOException {
-//        RequestBody body = RequestBody.create(JSON, json);
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .post(body)
-//                .build();
-//        try (Response response = httpClient.newCall(request).execute()) {
-//            callback.onComplete(response.body().string());
-//        } catch (Exception e) {
-//            callback.onFailure(e);
-//        }
-//    }
+    public void post(String url, String json, final NetworkCallback callback) {
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Call call = httpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure(e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                callback.onComplete(null);
+            }
+        });
+
+    }
 
     public interface NetworkCallback {
         void onComplete(String json);
-
         void onFailure(Exception e);
     }
 
