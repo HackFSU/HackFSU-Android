@@ -1,6 +1,4 @@
-package com.hackfsu.mobile.android.api;
-
-import android.util.Log;
+package com.hackfsu.mobile.android.api.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +12,7 @@ import java.util.GregorianCalendar;
  * parsing the "Z" timezone, but many other less-used features are
  * missing.
  */
-public final class ISO8601Updates {
+public final class ISO8601 {
     /** Transform Calendar to ISO 8601 string. */
     public static String fromCalendar(final Calendar calendar) {
         Date date = calendar.getTime();
@@ -34,9 +32,8 @@ public final class ISO8601Updates {
         Calendar calendar = GregorianCalendar.getInstance();
         String s = iso8601string.replace("Z", "+00:00");
         try {
-            s = s.substring(0, 19) + s.substring(26,29) + s.substring(30);  // to get rid of the ":"
+            s = s.substring(0, 22) + s.substring(23);  // to get rid of the ":"
         } catch (IndexOutOfBoundsException e) {
-            Log.e("ISO8601Updates", "Failed parsing update time");
             throw new ParseException("Invalid length", 0);
         }
         Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(s);

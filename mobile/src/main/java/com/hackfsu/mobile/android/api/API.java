@@ -9,6 +9,9 @@ import com.hackfsu.mobile.android.api.model.BaseModel;
 import com.hackfsu.mobile.android.api.model.MapModel;
 import com.hackfsu.mobile.android.api.model.SponsorModel;
 import com.hackfsu.mobile.android.api.model.ScheduleModel;
+import com.hackfsu.mobile.android.api.util.ISO8601;
+import com.hackfsu.mobile.android.api.util.ISO8601Updates;
+import com.hackfsu.mobile.android.api.util.NetworkClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
