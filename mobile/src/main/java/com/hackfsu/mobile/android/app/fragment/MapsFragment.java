@@ -74,9 +74,9 @@ public class MapsFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
 
         // Register toolbar
-        mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+        //mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
         mToolbar.setTitle("Venue Map");
-        mListener.registerToolbar(mToolbar);
+      //  mListener.registerToolbar(mToolbar);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
