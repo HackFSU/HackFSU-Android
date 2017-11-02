@@ -1,6 +1,8 @@
 package com.hackfsu.mobile.android.api;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.util.SparseArray;
 
 import com.hackfsu.mobile.android.api.util.NetworkClient;
 
@@ -9,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -82,6 +85,68 @@ public class JudgingAPI extends API {
                 callback.onFailure();
             }
         });
+
+    }
+
+    public void postResults(HashMap<Integer, Integer> hacks,
+                            HashMap<Integer, List<String>> superlatives,
+                            final PostResultsCallback callback) {
+
+        /* Sample JSON Format
+            {
+                "order": {
+                    "1": 23,
+                    "2": 24,
+                    "3": 22
+                },
+                "superlatives": {
+                    "22": ["Best Veteran Team"]
+                 }
+            }
+         */
+
+        JSONObject payloadJSON = new JSONObject();
+
+        // Automatically convert hack ordering
+        JSONObject hacksJSON = new JSONObject(hacks);
+
+        // Handle the nested array of superlative nominations
+        @SuppressLint("UseSparseArrays")
+        HashMap<Integer, JSONArray> nominations = new HashMap<>();
+
+        for(Integer hack : superlatives.keySet()) {
+            List<String> noms = superlatives.get(hack);
+            JSONArray nomsJSON = new JSONArray(noms);
+            nominations.put(hack, nomsJSON);
+        }
+
+        JSONObject superlativesJSON = new JSONObject(nominations);
+
+        // Assemble payload
+        try {
+            payloadJSON.put("order", hacksJSON);
+            payloadJSON.put("superlatives", superlativesJSON);
+        } catch (JSONException e) {
+            callback.onFailure();
+        }
+
+        String payload = payloadJSON.toString();
+
+
+        networkClient.post(URL, payload, new NetworkClient.NetworkCallback() {
+            @Override
+            public void onComplete(String json) {
+                callback.onSuccess();
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                callback.onFailure();
+            }
+        });
+
+
+
 
     }
 
