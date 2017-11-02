@@ -26,8 +26,10 @@ import java.util.List;
 
 public class API {
 
-    private NetworkClient networkClient = new NetworkClient();
+    protected NetworkClient networkClient = new NetworkClient();
 
+    final static String URL_BASE = "http://api.hackfsu.com/api";
+    // final static Stringn URL_BASE_HACKATHON = URL_BASE + "/hackathon/get";
     final static String URL_BASE_HACKATHON = "http://2017.hackfsu.com/api/hackathon/get";
 
     final static String URL_UPDATES = "/updates";
