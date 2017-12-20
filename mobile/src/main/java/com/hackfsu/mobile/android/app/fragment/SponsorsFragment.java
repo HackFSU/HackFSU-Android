@@ -73,7 +73,7 @@ public class SponsorsFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
 
         // Register toolbar
-      //  mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+        mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
         mToolbar.setTitle("Sponsors");
         //mCollapsing.setTitle("Sponsors");
         mListener.registerToolbar(mToolbar);

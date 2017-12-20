@@ -86,7 +86,7 @@ public class FeedFragment extends BaseFragment {
         //toolbar.inflateMenu(R.menu.menu_main);
         //setSupportActionBar(mToolbar);
         //mToolbar.setTitle("HackFSU");
-       // mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);  // Removing Toolbar icon for bottom nav
+        mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
         mToolbar.inflateMenu(R.menu.menu_main);
         mListener.registerToolbar(mToolbar);
 

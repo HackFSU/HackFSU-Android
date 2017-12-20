@@ -25,18 +25,13 @@ public class API {
 
     private NetworkClient networkClient = new NetworkClient();
 
-    final static String URL_BASE = "http://2017.hackfsu.com/api/hackathon/get";
+    final static String URL_BASE = "http://hackfsu.com/api/hackathon/get";
 
     final static String URL_UPDATES = "/updates";
     final static String URL_SCHEDULE = "/schedule_items";
     final static String URL_MAPS = "/maps";
     final static String URL_COUNTDOWN = "/countdowns";
     final static String URL_SPONSORS = "/sponsors";
-
-    //Addition 1: string for login api  RANDY BRUNO
-    final static String URL_LOGIN = "http://2017.hackfsu.com/api/user/login";
-
-
 
     private Activity mActivity;
 
@@ -477,4 +472,3 @@ public class API {
 
 
 }
-
