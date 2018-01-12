@@ -1,11 +1,9 @@
 package com.hackfsu.mobile.android.app.fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +18,6 @@ import com.hackfsu.mobile.android.app.R;
 //import com.parse.ParseObject;
 //import com.parse.ParseQuery;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
-import android.support.v7.widget.Toolbar;
-import android.support.design.widget.AppBarLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,9 +28,6 @@ import java.util.TimeZone;
 
 public class ScheduleFragment extends BaseFragment {
 
-    BaseFragment.OnFragmentInteractionListener mListener;
-    Toolbar mToolbar;
-    AppBarLayout mAppBar;
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     ScheduleRecyclerAdapter mAdapter;
@@ -54,9 +47,7 @@ public class ScheduleFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_schedule, container, false);
-       mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-       mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
+        View v =  inflater.inflate(R.layout.fragment_list_refresh, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
         mEmptyView = v.findViewById(R.id.empty_view);
@@ -66,12 +57,6 @@ public class ScheduleFragment extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        // Register toolbar
-        //  mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-         mToolbar.setTitle("Schedule");
-        //mCollapsing.setTitle("Schedule");
-       // mListener.registerToolbar(mToolbar);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

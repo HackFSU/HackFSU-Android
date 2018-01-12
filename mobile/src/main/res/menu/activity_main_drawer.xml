@@ -8,11 +8,14 @@
             android:title="Venue Map" />
         <item android:id="@+id/nav_sponsors" android:icon="@drawable/ic_group_24dp"
             android:title="Sponsors" />
-        <item android:id="@+id/nav_schedule" android:icon="@drawable/ic_timer_24dp"
-            android:title="Schedule" />
-        <item android:id="@+id/nav_profile" android:icon="@drawable/facestache"
-            android:title="Profile" />
-
     </group>
+
+    <group android:id="@+id/secondary">
+        <!--<item android:id="@+id/nav_help"-->
+            <!--android:title="Request Mentor" />-->
+        <item android:id="@+id/nav_website"
+            android:title="HackFSU.com"/>
+    </group>
+
 
 </menu>

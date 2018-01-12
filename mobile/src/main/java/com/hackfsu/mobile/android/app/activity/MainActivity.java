@@ -26,8 +26,6 @@ import com.hackfsu.mobile.android.app.fragment.FeedFragment;
 import com.hackfsu.mobile.android.app.HackFSU;
 import com.hackfsu.mobile.android.app.fragment.MapsFragment;
 import com.hackfsu.mobile.android.app.R;
-import com.hackfsu.mobile.android.app.fragment.ProfileFragment;
-import com.hackfsu.mobile.android.app.fragment.ScheduleFragment;
 import com.hackfsu.mobile.android.app.fragment.SponsorsFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity
         initPrefs();
 
 
+
         // Restore or Init state
         //navigationView.setNavigationItemSelectedListener(this);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -54,12 +53,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 newFragmentTransaction(item.getItemId());
-               // gotoschedule(item.getItemId());
                 return true;
             }
         });
 
-        if (savedInstanceState != null) {
+        if(savedInstanceState != null) {
             restoreFragmentTransaction(savedInstanceState);
         } else {
             newFragmentTransaction(R.id.nav_live);
@@ -89,19 +87,19 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences sp = getSharedPreferences(HackFSU.PREFERENCES, MODE_PRIVATE);
 
-        switch (id) {
+        switch(id) {
             case R.id.action_countdown:
                 boolean showCountdown = !sp.getBoolean(HackFSU.COUNTDOWN, true);
-                Log.d("HackFSU", "" + showCountdown);
+                Log.d("HackFSU", ""+showCountdown);
                 item.setIcon(showCountdown ? R.drawable.ic_timer_24dp : R.drawable.ic_timer_off_white_24dp);
                 sp.edit().putBoolean(HackFSU.COUNTDOWN, showCountdown).apply();
                 break;
             case R.id.action_notifications:
                 boolean allowNotifications = !sp.getBoolean(HackFSU.NOTIFICATIONS, true);
-                Log.d("HackFSU", "" + allowNotifications);
+                Log.d("HackFSU", ""+allowNotifications);
                 item.setIcon(allowNotifications ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
                 sp.edit().putBoolean(HackFSU.NOTIFICATIONS, allowNotifications).apply();
-                // Snackbar.make(drawer, (allowNotifications ? "Notifications Enabled" : "Notifications Disabled"), Snackbar.LENGTH_SHORT).show();
+               // Snackbar.make(drawer, (allowNotifications ? "Notifications Enabled" : "Notifications Disabled"), Snackbar.LENGTH_SHORT).show();
                 break;
         }
 
@@ -110,9 +108,8 @@ public class MainActivity extends AppCompatActivity
 
     public void initPrefs() {
         SharedPreferences sp = getSharedPreferences(HackFSU.PREFERENCES, MODE_PRIVATE);
-        if (!sp.contains(HackFSU.NOTIFICATIONS))
-            sp.edit().putBoolean(HackFSU.NOTIFICATIONS, true).apply();
-        if (!sp.contains(HackFSU.COUNTDOWN)) sp.edit().putBoolean(HackFSU.COUNTDOWN, true).apply();
+        if(!sp.contains(HackFSU.NOTIFICATIONS)) sp.edit().putBoolean(HackFSU.NOTIFICATIONS, true).apply();
+        if(!sp.contains(HackFSU.COUNTDOWN)) sp.edit().putBoolean(HackFSU.COUNTDOWN, true).apply();
     }
 
     @Override
@@ -131,28 +128,18 @@ public class MainActivity extends AppCompatActivity
         // How can IDs be real if our eyes aren't real?
         switch (id) {
             case R.id.nav_live:
-                fg = FeedFragment.newInstance();
-                break;
+                fg = FeedFragment.newInstance(); break;
             case R.id.nav_map:
-                fg = MapsFragment.newInstance();
-                break;
+                fg = MapsFragment.newInstance(); break;
             case R.id.nav_sponsors:
-                fg = SponsorsFragment.newInstance();
-                break;
-            case R.id.nav_schedule:
-                fg = ScheduleFragment.newInstance();
-                break;
-            case R.id.nav_profile:
-                fg = ProfileFragment.newInstance();
-                break;
-
+                fg = SponsorsFragment.newInstance(); break;
         }
 
         // Actual cannibal shia transaction
-        if (fg != null) {
+        if(fg != null) {
             activeFragmentTag = getFragmentTag(id);
             activeFragmentId = id;
-            // navigationView.setCheckedItem(R.id.nav_live);
+          //  navigationView.setCheckedItem(R.id.nav_live);
             fm.beginTransaction().replace(R.id.fragment_anchor, fg, activeFragmentTag).commit();
         }
     }
@@ -181,14 +168,10 @@ public class MainActivity extends AppCompatActivity
     public String getFragmentTag(int id) {
 
         switch (id) {
-            case R.id.nav_live:
-                return "Live";
-            case R.id.nav_map:
-                return "Map";
-            case R.id.nav_sponsors:
-                return "Sponsors";
-            default:
-                return "";
+            case R.id.nav_live: return "Live";
+            case R.id.nav_map: return "Map";
+            case R.id.nav_sponsors: return "Sponsors";
+            default: return "";
         }
     }
 
@@ -198,5 +181,4 @@ public class MainActivity extends AppCompatActivity
         return (fm.findFragmentByTag(getFragmentTag(id)) == null);
 
     }
-
 }
