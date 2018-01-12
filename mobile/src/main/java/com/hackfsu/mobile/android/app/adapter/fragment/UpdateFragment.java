@@ -1,27 +1,23 @@
-package com.hackfsu.mobile.android.app.fragment;
+package com.hackfsu.mobile.android.app.adapter.fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hackfsu.mobile.android.api.API;
-import com.hackfsu.mobile.android.api.model.ScheduleModel;
+import com.hackfsu.mobile.android.api.model.UpdateModel;
 import com.hackfsu.mobile.android.app.R;
 //import com.parse.FindCallback;
 //import com.parse.ParseClassName;
 //import com.parse.ParseException;
 //import com.parse.ParseObject;
 //import com.parse.ParseQuery;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
-import android.support.v7.widget.Toolbar;
-import android.support.design.widget.AppBarLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,33 +26,28 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 
-public class ScheduleFragment extends BaseFragment {
+public class UpdateFragment extends BaseFragment {
 
-    BaseFragment.OnFragmentInteractionListener mListener;
-    Toolbar mToolbar;
-    AppBarLayout mAppBar;
     RecyclerView mRecyclerView;
-    LinearLayoutManager mLayoutManager;
-    ScheduleRecyclerAdapter mAdapter;
     SwipeRefreshLayout mSwipeLayout;
+    LinearLayoutManager mLayoutManager;
+    UpdatesRecyclerAdapter mAdapter;
     View mEmptyView;
     API mAPI;
 
-    public static ScheduleFragment newInstance() {
-        return new ScheduleFragment();
+    public static UpdateFragment newInstance() {
+        return new UpdateFragment();
     }
 
     // Required empty public constructor
-    public ScheduleFragment() {}
+    public UpdateFragment() {}
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_schedule, container, false);
-       mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-       mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
+        View v =  inflater.inflate(R.layout.fragment_list_refresh, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
         mEmptyView = v.findViewById(R.id.empty_view);
@@ -67,46 +58,51 @@ public class ScheduleFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Register toolbar
-        //  mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-         mToolbar.setTitle("Schedule");
-        //mCollapsing.setTitle("Schedule");
-       // mListener.registerToolbar(mToolbar);
-
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
+
 
         // specify an adapter (see also next example)
-        mAdapter = new ScheduleRecyclerAdapter(new ArrayList<ScheduleModel>());
+        mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateModel>());
         mRecyclerView.setAdapter(mAdapter);
 
-        //
+
+        // Initial Load
         mAPI = new API(getActivity());
-        retrieveSchedule();
+        updateAnnouncements();
 
         // Swipe Reload
         mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                retrieveSchedule();
+                updateAnnouncements();
                 mSwipeLayout.setRefreshing(false);
+
             }
         });
-
     }
 
-    // Adapter used by this fragment
-    private class ScheduleRecyclerAdapter extends
-            RecyclerView.Adapter<ScheduleRecyclerAdapter.ViewHolder> {
+    private void updateAnnouncements() {
+        mAPI.getUpdates(new API.APICallback<UpdateModel>() {
+            @Override
+            public void onDataReady(List<UpdateModel> dataSet) {
+                mAdapter.replaceDataset(dataSet);
+            }
+        });
+    }
 
-        private List<ScheduleModel> mDataset;
+
+    // Adapter used by this fragment
+    private class UpdatesRecyclerAdapter extends
+            RecyclerView.Adapter<UpdatesRecyclerAdapter.ViewHolder> {
+
+        private List<UpdateModel> mDataset;
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
@@ -115,28 +111,30 @@ public class ScheduleFragment extends BaseFragment {
             public View card;
             public TextView mTitleText;
             public TextView mSubtitleText;
-            public TextView mTimeText;
+            public TextView mContentText;
+            public ImageView mIcon;
             public ViewHolder(View v) {
                 super(v);
                 card = v;
                 mTitleText = (TextView) v.findViewById(R.id.tv_title);
                 mSubtitleText = (TextView) v.findViewById(R.id.tv_subtitle);
-                mTimeText = (TextView) v.findViewById(R.id.tv_time);
+                mContentText = (TextView) v.findViewById(R.id.tv_content);
+                mIcon = (ImageView) v.findViewById(R.id.iv_icon);
             }
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public ScheduleRecyclerAdapter(ArrayList<ScheduleModel> myDataset) {
+        public UpdatesRecyclerAdapter(List<UpdateModel> myDataset) {
             mDataset = myDataset;
         }
 
         // Create new views (invoked by the layout manager)
         @Override
-        public ScheduleRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                    int viewType) {
+        public UpdatesRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                             int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.tile_schedule, parent, false);
+                    .inflate(R.layout.tile_update, parent, false);
 
             return new ViewHolder(v);
         }
@@ -147,23 +145,13 @@ public class ScheduleFragment extends BaseFragment {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
 
-            // Display time
-            SimpleDateFormat formatter = new SimpleDateFormat("EEE hh:mm a", Locale.US);
+            holder.mTitleText.setText(mDataset.get(position).getTitle());
+            holder.mContentText.setText(mDataset.get(position).getContent());
+
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);
             formatter.setTimeZone(TimeZone.getTimeZone("EST"));
-            String startTime = formatter.format(mDataset.get(position).getStart().getTime());
-
-
-            holder.mTitleText.setText(mDataset.get(position).getName());
-            holder.mTimeText.setText(startTime);
-
-            String desc = mDataset.get(position).getDescription();
-
-            if(!desc.isEmpty()) {
-                holder.mSubtitleText.setText(desc);
-                holder.mSubtitleText.setVisibility(View.VISIBLE);
-            } else {
-                holder.mSubtitleText.setVisibility(View.GONE);
-            }
+            String timeStamp = formatter.format(mDataset.get(position).getTime().getTime());
+            holder.mSubtitleText.setText(timeStamp);
 
         }
 
@@ -173,24 +161,13 @@ public class ScheduleFragment extends BaseFragment {
             return mDataset.size();
         }
 
-        public void replaceDataset(List<ScheduleModel> data) {
+        public void replaceDataset(List<UpdateModel> data) {
             mDataset = data;
+            notifyDataSetChanged();
+
             if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
             else mEmptyView.setVisibility(View.VISIBLE);
+
         }
     }
-
-    public void retrieveSchedule() {
-
-        mAPI.getSchedule(new API.APICallback<ScheduleModel>() {
-            @Override
-            public void onDataReady(List<ScheduleModel> dataSet) {
-                mAdapter.replaceDataset(dataSet);
-                mAdapter.notifyDataSetChanged();
-            }
-        });
-
-    }
-
-
 }
