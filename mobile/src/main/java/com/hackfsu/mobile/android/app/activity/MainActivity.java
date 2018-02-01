@@ -39,6 +39,19 @@ public class MainActivity extends AppCompatActivity
     String activeFragmentTag;
     int activeFragmentId;
 
+    class JudgingData{
+        String first;
+        String second;
+        String third;
+        String fs;
+        String ss;
+        String ts;
+
+        boolean complete;
+
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
