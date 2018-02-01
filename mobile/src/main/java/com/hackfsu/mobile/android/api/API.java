@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -43,6 +44,8 @@ public class API {
     public API(Activity mActivity) {
         this.mActivity = mActivity;
     }
+
+
 
     public void getUpdates(final APICallback<UpdateModel> callback) {
 
@@ -474,6 +477,8 @@ public class API {
         CallbackRunnable runnable = new CallbackRunnable(callback, dataset);
         mActivity.runOnUiThread(runnable);
     }
+
+
 
 
 }
