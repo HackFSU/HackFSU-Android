@@ -101,9 +101,9 @@ public class JudgingFragment extends BaseFragment {
         try
         {
 
-            childorder.put("1", 6);
-            childorder.put("2", 7);
-            childorder.put("3", 8);
+            childorder.put("1", 0);
+            childorder.put("2", 0);
+            childorder.put("3", 0);
             parentorder.put("Order",childorder);
 
             childsuperlative1.put("Best cactus");
@@ -175,11 +175,24 @@ public class JudgingFragment extends BaseFragment {
                     TextView textView = (TextView) getActivity().findViewById((R.id.textView3));
                     Log.d("POPPPPP", "value: " + Q.peek());
                     switch(Q.pollFirst()) {
-                        case 1:{textView = (TextView) getActivity().findViewById((R.id.textView3));}
+                        case 1:{textView = (TextView) getActivity().findViewById((R.id.textView3));
+                             try{childorder.getJSONObject("Order").put("1","1");}
+                             catch(JSONException e){
+                                 e.printStackTrace();
+                             }
+                        }
                         break;
-                        case 2:{textView = (TextView) getActivity().findViewById((R.id.textView4));}
+                        case 2:{textView = (TextView) getActivity().findViewById((R.id.textView4));
+                            try{childorder.getJSONObject("Order").put("2","1");}
+                            catch(JSONException e){
+                                e.printStackTrace();
+                            }}
                         break;
-                        case 3:{textView = (TextView) getActivity().findViewById((R.id.textView5));}
+                        case 3:{textView = (TextView) getActivity().findViewById((R.id.textView5));
+                            try{childorder.getJSONObject("Order").put("3","1");}
+                            catch(JSONException e){
+                                e.printStackTrace();
+                            }}
                         break;
                     }
 
@@ -229,11 +242,23 @@ public class JudgingFragment extends BaseFragment {
                 TextView textView = (TextView) getActivity().findViewById((R.id.textView3));
                 Log.d("POPPPPP222", "value: " + Q.peek());
                 switch(Q.pollFirst()) {
-                    case 1:{textView = (TextView) getActivity().findViewById((R.id.textView3));}
+                    case 1:{textView = (TextView) getActivity().findViewById((R.id.textView3));
+                    try{childorder.getJSONObject("Order").put("1","2");}
+                    catch(JSONException e){
+                        e.printStackTrace();
+                    }}
                     break;
-                    case 2:{textView = (TextView) getActivity().findViewById((R.id.textView4));}
+                    case 2:{textView = (TextView) getActivity().findViewById((R.id.textView4));
+                        try{childorder.getJSONObject("Order").put("2","2");}
+                        catch(JSONException e){
+                            e.printStackTrace();
+                        }}
                     break;
-                    case 3:{textView = (TextView) getActivity().findViewById((R.id.textView5));}
+                    case 3:{textView = (TextView) getActivity().findViewById((R.id.textView5));
+                        try{childorder.getJSONObject("Order").put("3","2");}
+                        catch(JSONException e){
+                            e.printStackTrace();
+                        }}
                     break;
                 }
 
@@ -274,11 +299,23 @@ public class JudgingFragment extends BaseFragment {
                 TextView textView = (TextView) getActivity().findViewById((R.id.textView3));
                 Log.d("POPPPPP333", "value: " + Q.peek());
                 switch(Q.pollFirst()) {
-                    case 1:{textView = (TextView) getActivity().findViewById((R.id.textView3));}
+                    case 1:{textView = (TextView) getActivity().findViewById((R.id.textView3));
+                        try{childorder.getJSONObject("Order").put("1","3");}
+                        catch(JSONException e){
+                            e.printStackTrace();
+                        }}
                         break;
-                    case 2:{textView = (TextView) getActivity().findViewById((R.id.textView4));}
+                    case 2:{textView = (TextView) getActivity().findViewById((R.id.textView4));
+                        try{childorder.getJSONObject("Order").put("2","3");}
+                        catch(JSONException e){
+                            e.printStackTrace();
+                        }}
                         break;
-                    case 3:{textView = (TextView) getActivity().findViewById((R.id.textView5));}
+                    case 3:{textView = (TextView) getActivity().findViewById((R.id.textView5));
+                        try{childorder.getJSONObject("Order").put("3","3");}
+                        catch(JSONException e){
+                            e.printStackTrace();
+                        }}
                         break;
                 }
 
