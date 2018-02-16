@@ -12,9 +12,8 @@
         android:src="@drawable/ic_wifi_tethering_24dp"
         android:tint="@color/grey_300"
         android:padding="72dp"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true" />
-
+        android:scaleType="centerCrop"   />
+        android:adjustViewBounds="true"/>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.hackfsu.mobile.android.app.fragment;
+package com.hackfsu.mobile.android.app.adapter.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -31,8 +31,6 @@ import com.hackfsu.mobile.android.app.R;
 //import com.parse.ParseQuery;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -104,8 +102,8 @@ public class FeedFragment extends BaseFragment {
         // View Pager setup
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(UpdateFragment.newInstance());
-        //Removing Schedule fragment from front page
-        //fragments.add(ScheduleFragment.newInstance());
+        //Removing schedule fragment from front page
+       //fragments.add(ScheduleFragment.newInstance());
         PagerAdapter mPagerAdapter = new PagerAdapter(getChildFragmentManager(), fragments);
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);

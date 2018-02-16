@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -32,8 +33,8 @@ public class API {
     final static String URL_MAPS = "/maps";
     final static String URL_COUNTDOWN = "/countdowns";
     final static String URL_SPONSORS = "/sponsors";
+    final static String URL_PROFILE = "/profile";
 
-    //Addition 1: string for login api  RANDY BRUNO
     final static String URL_LOGIN = "http://2017.hackfsu.com/api/user/login";
 
 
@@ -43,6 +44,8 @@ public class API {
     public API(Activity mActivity) {
         this.mActivity = mActivity;
     }
+
+
 
     public void getUpdates(final APICallback<UpdateModel> callback) {
 
@@ -474,6 +477,8 @@ public class API {
         CallbackRunnable runnable = new CallbackRunnable(callback, dataset);
         mActivity.runOnUiThread(runnable);
     }
+
+
 
 
 }
