@@ -4,17 +4,19 @@
     <group android:id="@+id/primary" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_live"
-            android:icon="@drawable/livefeedtab"
-            android:title="Live Feeds" />
-        <item android:id="@+id/nav_map" android:icon="@drawable/ic_map_24dp"
-            android:title="Venue Map" />
+            android:icon="@drawable/ic_notifications_24dp"
+            android:title="Live Feed" />
         <item
             android:id="@+id/nav_schedule"
-            android:icon="@drawable/scheduletab"
+            android:icon="@drawable/ic_timer_24dp"
             android:title="Schedule" />
         <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_notification_icon"
+            android:title="Info" />
+        <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/profiletab"
+            android:icon="@drawable/facestache"
             android:title="Profile" />
 
     </group>
