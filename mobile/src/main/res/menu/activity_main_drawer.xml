@@ -2,15 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:id="@+id/primary" android:checkableBehavior="single">
-        <item android:id="@+id/nav_live" android:icon="@drawable/ic_wifi_tethering_24dp"
+        <item
+            android:id="@+id/nav_live"
+            android:icon="@drawable/livefeedtab"
             android:title="Live Feeds" />
         <item android:id="@+id/nav_map" android:icon="@drawable/ic_map_24dp"
             android:title="Venue Map" />
-        <item android:id="@+id/nav_sponsors" android:icon="@drawable/ic_group_24dp"
-            android:title="Sponsors" />
-        <item android:id="@+id/nav_schedule" android:icon="@drawable/ic_timer_24dp"
+        <item
+            android:id="@+id/nav_schedule"
+            android:icon="@drawable/scheduletab"
             android:title="Schedule" />
-        <item android:id="@+id/nav_profile" android:icon="@drawable/facestache"
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/profiletab"
             android:title="Profile" />
 
     </group>

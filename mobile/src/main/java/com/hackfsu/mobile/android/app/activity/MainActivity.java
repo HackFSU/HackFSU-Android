@@ -1,25 +1,15 @@
 package com.hackfsu.mobile.android.app.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.hackfsu.mobile.android.app.fragment.BaseFragment;
 import com.hackfsu.mobile.android.app.fragment.FeedFragment;
@@ -28,7 +18,6 @@ import com.hackfsu.mobile.android.app.fragment.MapsFragment;
 import com.hackfsu.mobile.android.app.R;
 import com.hackfsu.mobile.android.app.fragment.ProfileFragment;
 import com.hackfsu.mobile.android.app.fragment.ScheduleFragment;
-import com.hackfsu.mobile.android.app.fragment.SponsorsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements BaseFragment.OnFragmentInteractionListener {
@@ -149,9 +138,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_map:
                 fg = MapsFragment.newInstance();
                 break;
-            case R.id.nav_sponsors:
-                fg = SponsorsFragment.newInstance();
-                break;
             case R.id.nav_schedule:
                 fg = ScheduleFragment.newInstance();
                 break;
@@ -198,8 +184,6 @@ public class MainActivity extends AppCompatActivity
                 return "Live";
             case R.id.nav_map:
                 return "Map";
-            case R.id.nav_sponsors:
-                return "Sponsors";
             default:
                 return "";
         }

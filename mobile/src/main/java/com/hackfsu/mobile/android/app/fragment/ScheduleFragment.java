@@ -69,7 +69,7 @@ public class ScheduleFragment extends BaseFragment {
 
         // Register toolbar
         //  mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-         mToolbar.setTitle("Schedule");
+         mToolbar.setTitle("");
         //mCollapsing.setTitle("Schedule");
        // mListener.registerToolbar(mToolbar);
 
