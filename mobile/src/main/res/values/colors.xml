@@ -4,7 +4,7 @@
     <!-- Material Colors -->
     <color name="primary">@color/hackfsu_17_grey</color>
     <color name="primaryDark">@color/hackfsu_17_greyDark</color>
-    <color name="accent">@color/hackfsu_17_purple</color>
+    <color name="accent">#f7f7f9</color>
     <color name="background">@color/grey_200</color>
 
     <color name="divider_dark">#1F000000</color>
@@ -44,11 +44,11 @@
     <color name="secondaryTextDark">@color/abc_secondary_text_material_light</color>
 
     <!-- HackFSU 2017 Colors -->
-    <color name="hackfsu_17_grey">#2f2933</color>
+    <color name="hackfsu_17_grey">#02e3e9</color>
     <color name="hackfsu_17_greyDark">#262129</color>
 
     <color name="hackfsu_17_green">#939598</color>
-    <color name="hackfsu_17_purple">#5e3050</color>
+    <color name="hackfsu_17_purple">#f7f7f9</color>
 
     <!-- HackFSU 2016 Colors -->
     <color name="hackfsu_red">#ea495a</color>

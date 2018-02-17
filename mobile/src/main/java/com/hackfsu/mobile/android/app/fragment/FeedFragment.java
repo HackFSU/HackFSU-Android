@@ -104,7 +104,7 @@ public class FeedFragment extends BaseFragment {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(UpdateFragment.newInstance());
         //Removing Schedule fragment from front page
-        //fragments.add(ScheduleFragment.newInstance());
+        fragments.add(ScheduleFragment.newInstance());
         PagerAdapter mPagerAdapter = new PagerAdapter(getChildFragmentManager(), fragments);
        // mViewPager.setAdapter(mPagerAdapter);
        // mTabLayout.setupWithViewPager(mViewPager);

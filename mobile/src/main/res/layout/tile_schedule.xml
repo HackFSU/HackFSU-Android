@@ -8,18 +8,18 @@
     android:background="@color/grey_50">
 
     <TextView
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SAT 12:30 AM"
-        android:id="@+id/tv_time"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/accent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="false"
         android:layout_centerVertical="true"
-        android:capitalize="none" />
+        android:capitalize="none"
+        android:fontFamily="sans-serif-medium"
+        android:text="SAT 12:30 AM"
+        android:textAllCaps="true"
+        android:textColor="@color/hackfsu18purple"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -43,10 +43,11 @@
             android:singleLine="true" />
 
         <TextView
+            android:id="@+id/tv_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="UPL 101"
-            android:id="@+id/tv_subtitle"/>
+            android:textColorLink="@color/primaryTextDark" />
 
 
     </LinearLayout>

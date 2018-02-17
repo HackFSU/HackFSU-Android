@@ -1,4 +1,3 @@
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,17 +7,17 @@
 
 
     <android.support.design.widget.AppBarLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:background="@color/sponsors"
         android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/sponsors"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="2dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/app_bar_height"
             android:background="@drawable/scheduletop"
             android:title="Schedule"
             app:contentInsetEnd="16dp"
@@ -29,38 +28,32 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <ImageView
-            android:id="@+id/empty_view"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_weight="1"
-            android:padding="72dp"
-            android:scaleType="centerCrop"
-            android:src="@color/background"
-            android:tint="@color/grey_300" />
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="4dp"
+                android:paddingTop="0dp"
+                android:scrollbars="vertical"
+                android:visibility="visible">
+
+            </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
     </android.support.design.widget.AppBarLayout><![CDATA[
+
 
     android:adjustViewBounds="true"/>
 
-    ]]>
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="4dp"
-            android:paddingTop="72dp"
-            android:scrollbars="vertical"
-            android:visibility="visible" />
-
-    </android.support.v4.widget.SwipeRefreshLayout>
 
 
+
+]]>
 </FrameLayout>

@@ -135,11 +135,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_live:
                 fg = FeedFragment.newInstance();
                 break;
-            case R.id.nav_map:
-                fg = MapsFragment.newInstance();
-                break;
             case R.id.nav_schedule:
                 fg = ScheduleFragment.newInstance();
+                break;
+            case R.id.nav_map:
+                fg = MapsFragment.newInstance();
                 break;
             case R.id.nav_profile:
                 fg = ProfileFragment.newInstance();
