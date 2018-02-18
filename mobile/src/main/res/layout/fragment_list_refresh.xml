@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/empty_view"
-        android:src="@drawable/ic_wifi_tethering_24dp"
         android:tint="@color/grey_300"
         android:padding="72dp"
         android:scaleType="centerCrop"   />

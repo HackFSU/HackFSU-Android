@@ -2,7 +2,6 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:background="@color/background"
     android:layout_width="match_parent"
@@ -15,12 +14,70 @@
     <!-- <include layout="@layout/content_feed"/> -->
 
     <!-- Layout height used to be wrap_content-->
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="match_parent"
+    <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/livefeed" />
+        android:layout_width="match_parent"
+        android:id="@+id/app_bar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:minHeight="?attr/actionBarSize"
+            app:contentScrim="@color/primary"
+            app:contentInsetStart="72dp"
+            app:expandedTitleGravity="center"
+            app:expandedTitleTextAppearance="@style/AppTheme.ExpandedTitle"
+            app:collapsedTitleTextAppearance="@style/AppTheme.CollapsedTitle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="?attr/actionBarSize">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_countdown_time"
+                    android:text="HackFSU"
+                    android:visibility="visible"
+                    android:layout_gravity="center"
+                    style="@style/AppTheme.CountdownTime" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_countdown_label"
+                    style="@style/AppTheme.CountdownLabel" />
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStart="72dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            app:tabIndicatorColor="@color/grey_50"
+            app:tabMode="fixed"/>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
