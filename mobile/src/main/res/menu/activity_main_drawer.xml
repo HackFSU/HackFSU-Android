@@ -11,7 +11,7 @@
             android:icon="@drawable/ic_timer_24dp"
             android:title="Schedule" />
         <item
-            android:id="@+id/nav_map"
+            android:id="@+id/nav_info"
             android:icon="@drawable/ic_notification_icon"
             android:title="Info" />
         <item

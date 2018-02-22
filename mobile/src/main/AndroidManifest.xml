@@ -19,9 +19,18 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+          See README(https://goo.gl/l4GJaQ) for more. -->
         <meta-data
-            android:name="com.parse.push.notification_icon"
-            android:resource="@drawable/ic_notification_icon" />
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_ic_notification" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/accent" />
+
 
         <activity
             android:name=".activity.MainActivity"
@@ -34,29 +43,20 @@
             </intent-filter>
         </activity>
 
-        <!-- <service android:name="com.parse.PushService" /> -->
+        <!--https://firebase.google.com/docs/cloud-messaging/android/client-->
+        <service
+            android:name=".FirebaseNotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".FirebaseIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
 
-
-        <!-- <receiver -->
-        <!-- android:name="com.hackfsu.mobile.android.app.CustomPushReceiver" -->
-        <!-- android:exported="false"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.parse.push.intent.RECEIVE" /> -->
-        <!-- <action android:name="com.parse.push.intent.DELETE" /> -->
-        <!-- <action android:name="com.parse.push.intent.OPEN" /> -->
-        <!-- </intent-filter> -->
-        <!-- </receiver> -->
-        <!-- <receiver -->
-        <!-- android:name="com.parse.GcmBroadcastReceiver" -->
-        <!-- android:permission="com.google.android.c2dm.permission.SEND"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.google.android.c2dm.intent.RECEIVE" /> -->
-        <!-- <action android:name="com.google.android.c2dm.intent.REGISTRATION" /> -->
-
-
-        <!-- <category android:name="com.hackfsu.mobile.android.hackfsu" /> -->
-        <!-- </intent-filter> -->
-        <!-- </receiver> -->
 
         <activity android:name=".activity.MapViewActivity" />
     </application>

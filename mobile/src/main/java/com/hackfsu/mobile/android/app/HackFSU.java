@@ -13,6 +13,8 @@ public class HackFSU extends Application {
     public static final String NOTIFICATIONS = "notifications";
     public static final String COUNTDOWN = "countdown";
 
+    public static final String TAG = "HackFSU";
+
     @Override
     public void onCreate() {
         super.onCreate();

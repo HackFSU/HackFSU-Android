@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.hackfsu.mobile.android.app.fragment.BaseFragment;
 import com.hackfsu.mobile.android.app.fragment.FeedFragment;
 import com.hackfsu.mobile.android.app.HackFSU;
+import com.hackfsu.mobile.android.app.fragment.InfoFragment;
 import com.hackfsu.mobile.android.app.fragment.MapsFragment;
 import com.hackfsu.mobile.android.app.R;
 import com.hackfsu.mobile.android.app.fragment.ProfileFragment;
@@ -138,8 +139,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_schedule:
                 fg = ScheduleFragment.newInstance();
                 break;
-            case R.id.nav_map:
-                fg = MapsFragment.newInstance();
+            case R.id.nav_info:
+                fg = InfoFragment.newInstance();
                 break;
             case R.id.nav_profile:
                 fg = ProfileFragment.newInstance();
@@ -182,8 +183,8 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_live:
                 return "Live";
-            case R.id.nav_map:
-                return "Map";
+            case R.id.nav_info:
+                return "Info";
             default:
                 return "";
         }

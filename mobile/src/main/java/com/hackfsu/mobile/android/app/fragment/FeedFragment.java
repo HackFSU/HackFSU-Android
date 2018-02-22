@@ -138,7 +138,7 @@ public class FeedFragment extends BaseFragment {
 
         mCountdownLabel.setTypeface(face);
         mCountdownTime.setTypeface(face);
-        
+
         // Countdown
 
         mAPI = new API(getActivity());
