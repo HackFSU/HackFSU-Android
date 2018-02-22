@@ -4,11 +4,11 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId 'com.hackfsu.android.hackfsu'
+        applicationId 'com.hackfsu.android'
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 10
-        versionName "4.0"
+        versionCode 11
+        versionName '5.0'
         multiDexEnabled true //enable this
 
     }
@@ -19,14 +19,14 @@ android {
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
-            buildConfigField "String", "API_HOST", "https://testapi.hackfsu.com"
+            buildConfigField "String", "API_HOST", "\"https://testapi.hackfsu.com\""
 
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
-            buildConfigField "String", "API_HOST", "https://api.hackfsu.com"
+            buildConfigField "String", "API_HOST", "\"https://api.hackfsu.com\""
         }
     }
     productFlavors {
@@ -52,11 +52,6 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:11.8.0'
     compile 'com.google.code.gson:gson:2.8.0'
 }
-
-
-
-
-
 
 
 apply plugin: 'com.google.gms.google-services'

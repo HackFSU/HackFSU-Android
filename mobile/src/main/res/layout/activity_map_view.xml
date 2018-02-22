@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.hackfsu.mobile.android.app.activity.MapViewActivity">
 
-    <com.hackfsu.mobile.android.app.ui.TouchImageView
+    <com.hackfsu.android.app.ui.TouchImageView
         android:id="@+id/iv_map_image"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"/>

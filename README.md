@@ -1,17 +1,17 @@
 # HackFSU Android App
-`com.hackfsu.mobile.android`
+`com.hackfsu.android`
 
 The HackFSU Android app is an open-source, easily configurable software package
 to be shared by the hacker community.
 
 ## Package Structure
 
-> `com.hackfsu.mobile.android.app.*`
+> `com.hackfsu.android.app.*`
 
 These sub-packages are front-end, UI related packages including Activities,
 Fragments, Adapters, custom UI, etc.
 
-> `com.hackfsu.mobile.android.api.*`
+> `com.hackfsu.android.api.*`
 
 These classes are the server-facing, networking elements which connect to
 the HackFSU web API.
