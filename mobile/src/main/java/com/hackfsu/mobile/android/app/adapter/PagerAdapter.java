@@ -43,7 +43,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         switch(pos)
         {
             case 0:
-                PageTitle = "Announcements";
+                PageTitle = "";
                 break;
             case 1:
                 PageTitle = "Schedule";

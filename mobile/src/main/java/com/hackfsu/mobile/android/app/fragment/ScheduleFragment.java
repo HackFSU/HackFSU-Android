@@ -39,7 +39,6 @@ public class ScheduleFragment extends BaseFragment {
     LinearLayoutManager mLayoutManager;
     ScheduleRecyclerAdapter mAdapter;
     SwipeRefreshLayout mSwipeLayout;
-    View mEmptyView;
     API mAPI;
 
     public static ScheduleFragment newInstance() {
@@ -59,7 +58,7 @@ public class ScheduleFragment extends BaseFragment {
        mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
-        mEmptyView = v.findViewById(R.id.empty_view);
+
         return v;
     }
 
@@ -69,7 +68,7 @@ public class ScheduleFragment extends BaseFragment {
 
         // Register toolbar
         //  mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-         mToolbar.setTitle("Schedule");
+         mToolbar.setTitle("");
         //mCollapsing.setTitle("Schedule");
        // mListener.registerToolbar(mToolbar);
 
@@ -175,8 +174,7 @@ public class ScheduleFragment extends BaseFragment {
 
         public void replaceDataset(List<ScheduleModel> data) {
             mDataset = data;
-            if(data.size() > 0) mEmptyView.setVisibility(View.INVISIBLE);
-            else mEmptyView.setVisibility(View.VISIBLE);
+
         }
     }
 

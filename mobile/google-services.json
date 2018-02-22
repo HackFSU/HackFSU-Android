@@ -1,79 +1,39 @@
 {
   "project_info": {
-    "project_number": "1040602838619",
-    "firebase_url": "https://hackfsu-android.firebaseio.com",
-    "project_id": "hackfsu-android",
-    "storage_bucket": "hackfsu-android.appspot.com"
+    "project_number": "6909141398",
+    "firebase_url": "https://fir-hackfsu.firebaseio.com",
+    "project_id": "firebase-hackfsu",
+    "storage_bucket": "firebase-hackfsu.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1040602838619:android:423a262c3721c593",
-        "android_client_info": {
-          "package_name": "com.hackfsu.mobile.android"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1040602838619-eudlne32d7jo5mmcvlhus6n8t50kmh4s.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.hackfsu.mobile.android",
-            "certificate_hash": "3E0A305C43DF3BFCB1811725C4625FD9D0F14DF0"
-          }
-        },
-        {
-          "client_id": "1040602838619-ma6lm24oh1685dnnd6uldkbderho6vgq.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAb0-hMV59Ts6s4azyUVE4Yc0J_wPFLVv4"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1040602838619-ma6lm24oh1685dnnd6uldkbderho6vgq.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1040602838619:android:a5eea346753e4540",
+        "mobilesdk_app_id": "1:6909141398:android:a5eea346753e4540",
         "android_client_info": {
           "package_name": "com.hackfsu.android.hackfsu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1040602838619-eun76uvnvqdo6jf920q2qpqqgg8dqd70.apps.googleusercontent.com",
+          "client_id": "6909141398-e898logq7t9bg4937ub35nngimgadej1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.hackfsu.android.hackfsu",
-            "certificate_hash": "3E0A305C43DF3BFCB1811725C4625FD9D0F14DF0"
+            "certificate_hash": "240a1f526c5597e8b58dc432e22a07d9aab6fcc2"
           }
         },
         {
-          "client_id": "1040602838619-ma6lm24oh1685dnnd6uldkbderho6vgq.apps.googleusercontent.com",
+          "client_id": "6909141398-0jn52tr8gkp9mf6rq1ot78c3uejf05e1.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "6909141398-ha58047fcbav91dnegct2272qg528m8c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAb0-hMV59Ts6s4azyUVE4Yc0J_wPFLVv4"
+          "current_key": "AIzaSyCHt7AdonkZyIyK7xQfY9hjIfNmsf2FYoE"
         }
       ],
       "services": {
@@ -81,13 +41,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1040602838619-ma6lm24oh1685dnnd6uldkbderho6vgq.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
