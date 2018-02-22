@@ -19,11 +19,14 @@ android {
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
+            buildConfigField "String", "API_HOST", "https://testapi.hackfsu.com"
+
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
+            buildConfigField "String", "API_HOST", "https://api.hackfsu.com"
         }
     }
     productFlavors {

@@ -9,6 +9,7 @@ import com.hackfsu.mobile.android.api.model.BaseModel;
 import com.hackfsu.mobile.android.api.model.MapModel;
 import com.hackfsu.mobile.android.api.model.SponsorModel;
 import com.hackfsu.mobile.android.api.model.ScheduleModel;
+import com.hackfsu.mobile.android.app.BuildConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,8 @@ import java.util.List;
 public class API {
 
     private NetworkClient networkClient = new NetworkClient();
+
+    final static String API_HOST = BuildConfig.API_HOST;
 
     final static String URL_BASE = "http://2017.hackfsu.com/api/hackathon/get";
 
