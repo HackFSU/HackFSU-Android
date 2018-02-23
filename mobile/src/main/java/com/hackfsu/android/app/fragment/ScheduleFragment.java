@@ -72,7 +72,11 @@ public class ScheduleFragment extends BaseFragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
+        mRecyclerView.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(getContext())
+                        .colorResId(R.color.divider_dark)
+                        .build()
+        );
 
         // specify an adapter (see also next example)
         mAdapter = new ScheduleRecyclerAdapter(new ArrayList<ScheduleModel>());

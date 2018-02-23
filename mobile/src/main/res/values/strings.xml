@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">HackFSU</string>
-    <string name="hackfsu_font">uni_sans_heavy-webfont.ttf</string>
+    <string name="app_name_uppercase">HACKFSU</string>
+    <string name="hackfsu_font">Graphik-Semibold.otf</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_live_feed">Live Feed</string>
+    <string name="nav_schedule">Schedule</string>
+    <string name="nav_info">Info</string>
+    <string name="nav_profile">Profile</string>
 
 
     <string name="tab_updates">Updates</string>

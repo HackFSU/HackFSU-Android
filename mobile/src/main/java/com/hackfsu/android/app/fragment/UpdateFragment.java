@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.hackfsu.android.api.API;
 import com.hackfsu.android.api.model.UpdateModel;
 import com.hackfsu.android.app.R;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 //import com.parse.FindCallback;
 //import com.parse.ParseClassName;
 //import com.parse.ParseException;
@@ -70,6 +71,12 @@ public class UpdateFragment extends BaseFragment {
         // specify an adapter (see also next example)
         mAdapter = new UpdatesRecyclerAdapter(new ArrayList<UpdateModel>());
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(getContext())
+                        .colorResId(R.color.divider_dark)
+                        .build()
+        );
 
 
         // Initial Load
