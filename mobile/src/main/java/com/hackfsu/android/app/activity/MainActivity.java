@@ -1,15 +1,18 @@
 package com.hackfsu.android.app.activity;
 
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.hackfsu.android.app.fragment.BaseFragment;
 import com.hackfsu.android.app.fragment.FeedFragment;
@@ -18,6 +21,8 @@ import com.hackfsu.android.app.fragment.InfoFragment;
 import com.hackfsu.android.app.R;
 import com.hackfsu.android.app.fragment.ProfileFragment;
 import com.hackfsu.android.app.fragment.ScheduleFragment;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity
         implements BaseFragment.OnFragmentInteractionListener {
@@ -66,6 +71,15 @@ public class MainActivity extends AppCompatActivity
         } else {
             newFragmentTransaction(R.id.nav_live);
         }
+
+        // Custom toolbar font
+        Typeface face =  Typeface.createFromAsset(this.getAssets(), getResources().getString(R.string.hackfsu_font));
+//        TextView toolbarTitleText = (TextView) findViewById(R.id.tv_toolbar_title);
+//        toolbarTitleText.setTypeface(face);
+        CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
+        collapsingToolbarLayout.setCollapsedTitleTypeface(face);
+        collapsingToolbarLayout.setExpandedTitleTypeface(face);
 
     }
 

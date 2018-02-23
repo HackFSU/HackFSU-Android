@@ -23,8 +23,6 @@ import com.hackfsu.android.app.R;
  */
 public class ProfileFragment extends BaseFragment {
 
-    Toolbar mToolbar;
-    AppBarLayout mAppBar;
     API mAPI;
 
     BaseFragment.OnFragmentInteractionListener mListener;
@@ -48,8 +46,6 @@ public class ProfileFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
         Button button1 = (Button) v.findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -67,8 +63,6 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mToolbar.setTitle("Profile");
-
     }
 
 

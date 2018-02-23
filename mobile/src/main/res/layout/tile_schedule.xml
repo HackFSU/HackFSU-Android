@@ -18,7 +18,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="SAT 12:30 AM"
         android:textAllCaps="true"
-        android:textColor="@color/hackfsu18purple"
+        android:textColor="@color/accent"
         android:textSize="16sp" />
 
     <LinearLayout

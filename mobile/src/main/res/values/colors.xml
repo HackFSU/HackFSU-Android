@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Material Colors -->
-    <color name="primary">@color/hackfsu_17_grey</color>
-    <color name="primaryDark">@color/hackfsu_17_greyDark</color>
+    <color name="primary">@color/hackfsu_purple</color>
+    <color name="primaryDark">@color/hackfsu_purple_dark</color>
     <color name="accent">@color/hackfsu_pink</color>
     <color name="background">@color/grey_200</color>
 
@@ -41,6 +41,7 @@
     <color name="hackfsu_cyan">#65dde4</color>
     <color name="hackfsu_purple">#8A35FB</color>
 
+    <color name="hackfsu_purple_dark">#7432D1</color>
 
     <!-- HackFSU 2017 Colors -->
     <color name="hackfsu_17_grey">#02e3e9</color>
@@ -87,7 +88,7 @@
     <color name="blue_grey_700">#455a64</color>
     <color name="blue_grey_800">#37474f</color>
     <color name="blue_grey_900">#263238</color>
-    <color name="hackfsu18purple">#8c34fb</color>
+
 
 
 </resources>
