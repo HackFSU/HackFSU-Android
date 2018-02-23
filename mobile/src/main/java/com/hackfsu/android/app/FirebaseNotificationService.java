@@ -17,7 +17,7 @@ public class FirebaseNotificationService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(this.getClass().getName(), "From: " + remoteMessage.getFrom());
-        String content;
+        String title, content;
 
 
         // Check if message contains a data payload.
@@ -29,20 +29,27 @@ public class FirebaseNotificationService extends FirebaseMessagingService {
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
 
-            Log.d(this.getClass().getName(), "Message Notification Body: " + remoteMessage.getNotification().getBody());
-           content = remoteMessage.getNotification().getBody();
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
-                    .setContentTitle("Attention Hackers")
-                    .setContentText(content)
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-                    mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(1, mBuilder.build());
+            try {
+                title = remoteMessage.getNotification().getTitle();
+                content = remoteMessage.getNotification().getBody();
+
+                Log.d(this.getClass().getName(), "Message Notification Title: " + title);
+                Log.d(this.getClass().getName(), "Message Notification Body: " + content);
+
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
+                        .setContentTitle(title)
+                        .setContentText(content)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(1, mBuilder.build());
+
+
+            } catch (Exception e) {
+                Log.e(this.getClass().getName(), e.getLocalizedMessage());
+            }
 
         }
-
-
-
     }
 }
