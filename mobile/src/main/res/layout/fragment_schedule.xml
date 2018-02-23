@@ -14,16 +14,21 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="2dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@android:drawable/btn_star" />
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
-            android:background="@drawable/scheduletop"
+            android:background="@color/hackfsu18purple"
             android:title="Schedule"
             app:contentInsetEnd="16dp"
             app:contentInsetStart="72dp"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@drawable/scheduletop"
             app:titleTextAppearance="@style/Toolbar.TitleText">
 
         </android.support.v7.widget.Toolbar>
