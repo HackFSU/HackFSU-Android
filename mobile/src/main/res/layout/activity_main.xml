@@ -50,43 +50,7 @@
                     android:src="@drawable/livebar" />
             </RelativeLayout>
 
-
         </android.support.v7.widget.Toolbar>
-
-        <!--<android.support.design.widget.CollapsingToolbarLayout-->
-            <!--android:id="@+id/collapsing_toolbar_layout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--app:expandedTitleGravity="center"-->
-            <!--app:collapsedTitleGravity="center"-->
-            <!--app:title="Live Feed">-->
-
-            <!--&lt;!&ndash;<android.support.v7.widget.Toolbar&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/toolbar"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:popupTheme="@style/ThemeOverlay.AppCompat.Light"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:contentInsetStart="0dp">&ndash;&gt;-->
-            <!--&lt;!&ndash;</android.support.v7.widget.Toolbar>&ndash;&gt;-->
-
-        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_toolbar_title"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:text="@string/app_name"-->
-                <!--android:textSize="24dp"-->
-                <!--style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"-->
-                <!--/>-->
-        <!--</android.support.v7.widget.Toolbar>-->
 
     </android.support.design.widget.AppBarLayout>
 
@@ -98,17 +62,7 @@
         android:layout_marginBottom="56dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <!--<android.support.design.widget.BottomNavigationView-->
-        <!--android:id="@+id/bottom_navigation"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="56dp"-->
-        <!--android:layout_gravity="bottom"-->
-        <!--android:background="@color/grey_50"-->
-        <!--app:elevation="8dp"-->
-        <!--app:itemBackground="@color/grey_50"-->
-        <!--app:itemIconTint="@color/accent"-->
-        <!--app:itemTextColor="@color/accent"-->
-        <!--app:menu="@menu/activity_main_drawer" />-->
+
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
         android:id="@+id/bottom_navigation"

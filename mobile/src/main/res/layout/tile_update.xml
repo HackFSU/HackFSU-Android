@@ -17,15 +17,15 @@
         android:background="@color/grey_50">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
-            android:id="@+id/tv_title"
+            android:layout_marginBottom="2dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="2dp"
-            android:textAppearance="@style/AppTheme.Update.Title"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:text="Title"
+            android:textAppearance="@style/AppTheme.Update.Title" />
 
         <TextView
             android:layout_width="wrap_content"

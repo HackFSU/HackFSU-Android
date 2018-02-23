@@ -15,32 +15,33 @@
         android:layout_alignParentTop="false"
         android:layout_centerVertical="true"
         android:capitalize="none"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/graphik"
         android:text="SAT 12:30 AM"
         android:textAllCaps="true"
         android:textColor="@color/accent"
         android:textSize="16sp" />
 
     <LinearLayout
-        android:orientation="vertical"
+        style="@style/AppTheme.Schedule.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="124dp"
-        android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="136dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_vertical"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/graphik"
             android:text="Opening Ceremony"
-            android:id="@+id/tv_title"
-            android:textSize="16dp"
             android:textColor="@color/primaryTextDark"
-            android:fontFamily="sans-serif-medium"
-            android:singleLine="true" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_subtitle"
