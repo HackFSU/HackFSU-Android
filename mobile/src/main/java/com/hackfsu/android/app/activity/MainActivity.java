@@ -54,11 +54,12 @@ public class MainActivity extends AppCompatActivity
         implements BaseFragment.OnFragmentInteractionListener {
 
 
-    final static String Test_Base = "https://testapi.hackfsu.com/api/";
-    final static String Test_Login = "user/login/";
-    final static String Test_Profile = "user/get/profile";
-    final static String Test_getHacks = "judge/hacks";
-    final static String Test_sendHAcks = "judge/hacks/upload";
+
+    final static String Test_Base = "https://testapi.hackfsu.com/";
+    final static String Test_Login = "api/user/login";
+    final static String Test_Profile = "api/user/get/profile";
+    final static String Test_getHacks = "api/judge/hacks";
+    final static String Test_sendHacks = "api/judge/hacks/upload";
 
     //DrawerLayout drawer;
     //NavigationView navigationView;
@@ -225,8 +226,6 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-    
-
 
 
     public void newFragmentTransaction(int id) {

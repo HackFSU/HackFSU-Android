@@ -29,11 +29,11 @@ import retrofit2.http.Query;
 public interface RetroAPI {
 
 
-    final static String Test_Base = "https://testapi.hackfsu.com/api/";
-    final static String Test_Login = "user/login";
-    final static String Test_Profile = "user/get/profile";
-    final static String Test_getHacks = "judge/hacks";
-    final static String Test_sendHacks = "judge/hacks/upload";
+    final static String Test_Base = "https://testapi.hackfsu.com/";
+    final static String Test_Login = "api/user/login";
+    final static String Test_Profile = "api/user/get/profile";
+    final static String Test_getHacks = "api/judge/hacks";
+    final static String Test_sendHacks = "api/judge/hacks/upload";
 
 
 
@@ -44,7 +44,7 @@ public interface RetroAPI {
     Call<ResponseBody> postHacks(@Body RequestBody requestbody);
 
 //    @GET(Test_Profile)
-//    Call<MainActivity.Profile> GetProfile(@Body ProfileRequest profileRequest);
+//    Call<API.ProfileRequest> GetProfile(@Body ProfileRequest profileRequest);
 
 
     public class RetrofitClient {
