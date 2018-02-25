@@ -4,6 +4,8 @@ import android.content.ClipData;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.hackfsu.android.api.templates.ProfileRequest;
+import com.hackfsu.android.api.templates.ProfileResponse;
 import com.hackfsu.android.app.activity.MainActivity;
 
 import java.util.ArrayList;
@@ -43,8 +45,8 @@ public interface RetroAPI {
     @POST(Test_sendHacks)
     Call<ResponseBody> postHacks(@Body RequestBody requestbody);
 
-//    @GET(Test_Profile)
-//    Call<API.ProfileRequest> GetProfile(@Body ProfileRequest profileRequest);
+    @GET(Test_Profile)
+    Call<ProfileResponse> GetProfile(@Body ProfileRequest profileRequest);
 
 
     public class RetrofitClient {

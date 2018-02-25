@@ -17,7 +17,7 @@ import android.util.Log;
 
 /**
  * Created by Randy Bruno-Piverger on 2/24/2018.
- *
+ * *
  * This interceptor put all the Cookies in Preferences in the Request.
  */
 

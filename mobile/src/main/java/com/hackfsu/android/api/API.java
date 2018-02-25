@@ -49,11 +49,11 @@ public class API {
 //    final static String Test_sendHacks = "https://testapi.hackfsu.com/api/judge/hacks/upload";
 
 
-    final static String Test_Base = "https://testapi.hackfsu.com/api/";
-    final static String Test_Login = "user/login";
-    final static String Test_Profile = "user/get/profile";
-    final static String Test_getHacks = "judge/hacks";
-    final static String Test_sendHacks = "judge/hacks/upload";
+    final static String Test_Base = "https://testapi.hackfsu.com/";
+    final static String Test_Login = "api/user/login";
+    final static String Test_Profile = "api/user/get/profile";
+    final static String Test_getHacks = "api/judge/hacks";
+    final static String Test_sendHacks = "api/judge/hacks/upload";
 
 
 

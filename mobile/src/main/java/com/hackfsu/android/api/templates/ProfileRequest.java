@@ -40,7 +40,6 @@ public class ProfileRequest {
     }
 
     public String getShirt_size(){
-
         return shirt_size;
     }
     
