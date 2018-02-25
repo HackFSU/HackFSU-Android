@@ -31,8 +31,6 @@ import java.util.TimeZone;
 public class ScheduleFragment extends BaseFragment {
 
     BaseFragment.OnFragmentInteractionListener mListener;
-    Toolbar mToolbar;
-    AppBarLayout mAppBar;
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     ScheduleRecyclerAdapter mAdapter;
@@ -52,8 +50,6 @@ public class ScheduleFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_schedule, container, false);
-       mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-       mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
 
@@ -66,7 +62,6 @@ public class ScheduleFragment extends BaseFragment {
 
         // Register toolbar
         //  mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-         mToolbar.setTitle("");
         //mCollapsing.setTitle("Schedule");
        // mListener.registerToolbar(mToolbar);
 
@@ -77,7 +72,11 @@ public class ScheduleFragment extends BaseFragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
+        mRecyclerView.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(getContext())
+                        .colorResId(R.color.divider_dark)
+                        .build()
+        );
 
         // specify an adapter (see also next example)
         mAdapter = new ScheduleRecyclerAdapter(new ArrayList<ScheduleModel>());

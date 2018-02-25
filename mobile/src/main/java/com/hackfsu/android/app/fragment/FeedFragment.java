@@ -56,13 +56,13 @@ public class FeedFragment extends BaseFragment {
     private OnFragmentInteractionListener mListener;
 
     // View Items
-    Toolbar mToolbar;
+//    Toolbar mToolbar;
     TabLayout mTabLayout;
     ViewPager mViewPager;
-    AppBarLayout mAppBar;
+//    AppBarLayout mAppBar;
     CollapsingToolbarLayout mCollasping;
-    TextView mCountdownLabel;
-    TextView mCountdownTime;
+//    TextView mCountdownLabel;
+//    TextView mCountdownTime;
 
     //boolean showCountdown;
 
@@ -81,13 +81,12 @@ public class FeedFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        mTabLayout = (TabLayout) v.findViewById(R.id.tabs);
+//        mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mViewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
-        mCollasping = (CollapsingToolbarLayout) v.findViewById(R.id.collapsing_toolbar);
-        mCountdownLabel = (TextView) v.findViewById(R.id.tv_countdown_label);
-        mCountdownTime = (TextView) v.findViewById(R.id.tv_countdown_time);
+//        mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
+//        mCollasping = (CollapsingToolbarLayout) v.findViewById(R.id.collapsing_toolbar);
+//        mCountdownLabel = (TextView) v.findViewById(R.id.tv_countdown_label);
+//        mCountdownTime = (TextView) v.findViewById(R.id.tv_countdown_time);
 
         return v;
     }
@@ -101,18 +100,18 @@ public class FeedFragment extends BaseFragment {
         //setSupportActionBar(mToolbar);
         //mToolbar.setTitle("HackFSU");
        // mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);  // Removing Toolbar icon for bottom nav
-        mToolbar.inflateMenu(R.menu.menu_main);
-        mListener.registerToolbar(mToolbar);
+//        mToolbar.inflateMenu(R.menu.menu_main);
+//        mListener.registerToolbar(mToolbar);
 
         // Init toolbar icons
-        final SharedPreferences sp = getContext().getSharedPreferences(HackFSU.PREFERENCES, Context.MODE_PRIVATE);
-        Menu menu = mToolbar.getMenu();
-        MenuItem notifs = menu.findItem(R.id.action_notifications);
-        notifs.setIcon(sp.getBoolean(HackFSU.NOTIFICATIONS, true) ?
-                R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
-        MenuItem countdown = menu.findItem(R.id.action_countdown);
-            countdown.setIcon(sp.getBoolean(HackFSU.COUNTDOWN, true) ?
-                R.drawable.ic_timer_24dp : R.drawable.ic_timer_off_white_24dp);
+//        final SharedPreferences sp = getContext().getSharedPreferences(HackFSU.PREFERENCES, Context.MODE_PRIVATE);
+//        Menu menu = mToolbar.getMenu();
+//        MenuItem notifs = menu.findItem(R.id.action_notifications);
+//        notifs.setIcon(sp.getBoolean(HackFSU.NOTIFICATIONS, true) ?
+//                R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
+//        MenuItem countdown = menu.findItem(R.id.action_countdown);
+//            countdown.setIcon(sp.getBoolean(HackFSU.COUNTDOWN, true) ?
+//                R.drawable.ic_timer_24dp : R.drawable.ic_timer_off_white_24dp);
 
 
         // View Pager setup
@@ -130,103 +129,53 @@ public class FeedFragment extends BaseFragment {
 
 
         // Custom toolbar font
-        Typeface face;
-        face = Typeface.createFromAsset(getContext().getAssets(), getResources().getString(R.string.hackfsu_font));
-        mCollasping.setCollapsedTitleTypeface(face);
-        mCollasping.setExpandedTitleTypeface(face);
-        mCollasping.setTitle("HackFSU");
-
-        mCountdownLabel.setTypeface(face);
-        mCountdownTime.setTypeface(face);
+//        Typeface face;
+//        face = Typeface.createFromAsset(getContext().getAssets(), getResources().getString(R.string.hackfsu_font));
+//        mCollasping.setCollapsedTitleTypeface(face);
+//        mCollasping.setExpandedTitleTypeface(face);
+//        mCollasping.setTitle("HackFSU");
+//
+//        mCountdownLabel.setTypeface(face);
+//        mCountdownTime.setTypeface(face);
 
         // Countdown
 
         mAPI = new API(getActivity());
-        initNextTimer();
+//        initNextTimer();
     }
 
 
 
-    public void initNextTimer() {
-
-        mAPI.getCountdowns(new API.APICallback<CountdownModel>() {
-            @Override
-            public void onDataReady(List<CountdownModel> dataSet) {
-
-                Log.d("initNextTimer()", "onDataReady called");
-
-                CountdownModel model = null;
-
-                for (CountdownModel countdown : dataSet) {
-                    if (countdown.getStartTime().getTimeInMillis() > System.currentTimeMillis()) {
-                        model = countdown;
-                        break;
-                    }
-                }
-
-
-                if (model != null) {
-
-                    final CountdownModel model2 = model;
-
-                    long until = (model.getStartTime().getTimeInMillis() - System.currentTimeMillis());
-                    Log.d("initNextTimer()", "ms until: " + until);
-
-
-                    new CountDownTimer(until, 1000) {
-                        @Override
-                        public void onTick(long millis) {
-                            String out = String.format(Locale.US, "%02d:%02d:%02d",
-                                    TimeUnit.MILLISECONDS.toHours(millis),
-                                    TimeUnit.MILLISECONDS.toMinutes(millis) -
-                                            TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
-                                    TimeUnit.MILLISECONDS.toSeconds(millis) -
-                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-
-                            mCountdownTime.setText(out);
-                            mCountdownLabel.setText(model2.getLabel());
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            mCountdownTime.setText("HACKFSU");
-                            mCountdownLabel.setText("");
-                            initNextTimer();
-                        }
-                    }.start();
-
-                } else {
-                    mCountdownTime.setText("HACKFSU");
-                }
-            }
-        });
-
-
-//        ParseQuery<CountdownItem> query = new ParseQuery<CountdownItem>(ParseName.COUNTDOWNITEM);
-//        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-//        query.whereGreaterThan(ParseName.COUNTDOWN_TIME, now);
-//        query.getFirstInBackground(new GetCallback<CountdownItem>() {
+//    public void initNextTimer() {
+//
+//        mAPI.getCountdowns(new API.APICallback<CountdownModel>() {
 //            @Override
-//            public void done(final CountdownItem object, ParseException e) {
+//            public void onDataReady(List<CountdownModel> dataSet) {
 //
-//                if(e == null && object != null) {
-//                    mCountdownLabel.setText(object.getLabel());
-//                    Log.d("HackFSU", "Object label: " + object.getLabel());
-//                    Log.d("HackFSU", "Object time: " + object.getStart().toString());
+//                Log.d("initNextTimer()", "onDataReady called");
+//
+//                CountdownModel model = null;
+//
+//                for (CountdownModel countdown : dataSet) {
+//                    if (countdown.getStartTime().getTimeInMillis() > System.currentTimeMillis()) {
+//                        model = countdown;
+//                        break;
+//                    }
+//                }
 //
 //
-//                    long until = (object.getStart().getStart() - System.currentTimeMillis());
+//                if (model != null) {
+//
+//                    final CountdownModel model2 = model;
+//
+//                    long until = (model.getStartTime().getTimeInMillis() - System.currentTimeMillis());
+//                    Log.d("initNextTimer()", "ms until: " + until);
+//
+//
 //                    new CountDownTimer(until, 1000) {
 //                        @Override
-//                        public void onFinish() {
-//                            mCountdownTime.setText("HackFSU");
-//                            mCountdownLabel.setText("");
-//                            initNextTimer();
-//                        }
-//
-//                        @Override
 //                        public void onTick(long millis) {
-//                            String out = String.format("%02d:%02d:%02d",
+//                            String out = String.format(Locale.US, "%02d:%02d:%02d",
 //                                    TimeUnit.MILLISECONDS.toHours(millis),
 //                                    TimeUnit.MILLISECONDS.toMinutes(millis) -
 //                                            TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
@@ -234,18 +183,24 @@ public class FeedFragment extends BaseFragment {
 //                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
 //
 //                            mCountdownTime.setText(out);
+//                            mCountdownLabel.setText(model2.getLabel());
+//                        }
 //
+//                        @Override
+//                        public void onFinish() {
+//                            mCountdownTime.setText("HACKFSU");
+//                            mCountdownLabel.setText("");
+//                            initNextTimer();
 //                        }
 //                    }.start();
-//                } else if(object == null) {
-//                    mCountdownTime.setText("HackFSU");
-//                    mCountdownLabel.setText("");
-//                } else if(e != null) {
-//                    Log.e("HackFSU", e.getMessage());
+//
+//                } else {
+//                    mCountdownTime.setText("HACKFSU");
 //                }
 //            }
 //        });
-    }
+//
+//    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
