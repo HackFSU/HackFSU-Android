@@ -24,6 +24,8 @@ import android.widget.TextView;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.hackfsu.android.api.AddCookiesInterceptor;
 import com.hackfsu.android.api.ReceivedCookiesInterceptor;
 import com.hackfsu.android.api.RetroAPI;
@@ -33,6 +35,10 @@ import com.hackfsu.android.app.fragment.InfoFragment;
 import com.hackfsu.android.app.R;
 import com.hackfsu.android.app.fragment.ProfileFragment;
 import com.hackfsu.android.app.fragment.ScheduleFragment;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -96,32 +102,32 @@ public class MainActivity extends AppCompatActivity
         else
        {    //Currently working on sending cookies with Get Profile request
 
-//           //trying to store cookies
-//           final Context context = this;
-//           //Cookie Catcher
-//           OkHttpClient client = new OkHttpClient();
-//           OkHttpClient.Builder builder = new OkHttpClient.Builder();
-//
-//           builder.addInterceptor(new AddCookiesInterceptor(this)); // VERY VERY IMPORTANT
-//           builder.addInterceptor(new ReceivedCookiesInterceptor(this)); // VERY VERY IMPORTANT
-//           client = builder.build();
-//
-//           Retrofit retrofit = new Retrofit.Builder()
-//                   .baseUrl(Test_Base)
-//                   .client(client) // VERY VERY IMPORTANT
-//                   .addConverterFactory(GsonConverterFactory.create())
-//                   .build(); // REQUIRED
-//
-//           RetroAPI mapi = retrofit.create(RetroAPI.class);
-//
-//           RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
-//
-//           mapi.getProfile(requestBody).enqueue(new Callback<ResponseBody>() {
+           //trying to store cookies
+           final Context context = this;
+           //Cookie Catcher
+           OkHttpClient client = new OkHttpClient();
+           OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+           builder.addInterceptor(new AddCookiesInterceptor(this)); // VERY VERY IMPORTANT
+           builder.addInterceptor(new ReceivedCookiesInterceptor(this)); // VERY VERY IMPORTANT
+           client = builder.build();
+
+           Retrofit retrofit = new Retrofit.Builder()
+                   .baseUrl(Test_Base)
+                   .client(client) // VERY VERY IMPORTANT
+                   .addConverterFactory(GsonConverterFactory.create())
+                   .build(); // REQUIRED
+
+           RetroAPI mapi = retrofit.create(RetroAPI.class);
+
+          // RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
+
+//           mapi.getProfile(new Callback<ResponseBody>() {
 //               @Override
 //               public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 //                   if (response.isSuccessful()) {
 //
-//                       Log.d(this.getClass().getName(), "Successful login!!");
+//                       Log.d(this.getClass().getName(), "Successful get call");
 //                       // Do awesome stuff
 //
 //                       SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -219,17 +225,8 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+    
 
-//    public class Profile {
-//        public final int phone_number;
-//        public final String name;
-//
-//
-//        public Profile(int phone_number, String first_name, String last_name, String email, String groups) {
-//        this.phone_number = phone_number;
-//            this.name = name;
-//        }
-//    }
 
 
     public void newFragmentTransaction(int id) {

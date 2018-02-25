@@ -6,6 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.hackfsu.android.app.activity.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.RequestBody;
@@ -42,8 +43,8 @@ public interface RetroAPI {
     @POST(Test_sendHacks)
     Call<ResponseBody> postHacks(@Body RequestBody requestbody);
 
-   // @GET(Test_Profile)
-   // void getProfile(@Query("mid") String param1, Callback<List<MainActivity.Profile>> callback);
+//    @GET(Test_Profile)
+//    Call<MainActivity.Profile> GetProfile(@Body ProfileRequest profileRequest);
 
 
     public class RetrofitClient {
