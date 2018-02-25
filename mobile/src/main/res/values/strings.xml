@@ -6,6 +6,7 @@
     <!-- Bottom Navigation -->
     <string name="nav_live_feed">Live Feed</string>
     <string name="nav_schedule">Schedule</string>
+    <string name="nav_map">Map</string>
     <string name="nav_info">Info</string>
     <string name="nav_profile">Profile</string>
 

@@ -37,8 +37,6 @@ import java.util.List;
 
 public class MapsFragment extends BaseFragment {
 
-    Toolbar mToolbar;
-    AppBarLayout mAppBar;
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     MapItemRecyclerAdapter mAdapter;
@@ -60,9 +58,7 @@ public class MapsFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_sponsors, container, false);
-        mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
+        View v =  inflater.inflate(R.layout.fragment_map, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mSwipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refresh_layout);
 
@@ -73,10 +69,6 @@ public class MapsFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Register toolbar
-        //mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        mToolbar.setTitle("Venue Map");
-      //  mListener.registerToolbar(mToolbar);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

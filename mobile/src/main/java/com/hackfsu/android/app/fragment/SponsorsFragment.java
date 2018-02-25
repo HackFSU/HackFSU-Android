@@ -60,7 +60,7 @@ public class SponsorsFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_sponsors, container, false);
+        View v =  inflater.inflate(R.layout.fragment_map, container, false);
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mAppBar = (AppBarLayout) v.findViewById(R.id.app_bar);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
