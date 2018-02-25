@@ -1,6 +1,5 @@
 package com.hackfsu.android.app.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,8 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.hackfsu.android.api.API;
-import com.hackfsu.android.api.AddCookiesInterceptor;
-import com.hackfsu.android.api.ReceivedCookiesInterceptor;
+import com.hackfsu.android.api.util.AddCookiesInterceptor;
+import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 import com.hackfsu.android.api.RetroAPI;
 
 import okhttp3.OkHttpClient;

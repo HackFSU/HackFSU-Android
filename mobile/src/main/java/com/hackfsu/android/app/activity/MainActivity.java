@@ -1,54 +1,25 @@
 package com.hackfsu.android.app.activity;
 
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import com.hackfsu.android.api.AddCookiesInterceptor;
-import com.hackfsu.android.api.ReceivedCookiesInterceptor;
-import com.hackfsu.android.api.RetroAPI;
 import com.hackfsu.android.app.fragment.BaseFragment;
 import com.hackfsu.android.app.fragment.FeedFragment;
 import com.hackfsu.android.app.fragment.InfoFragment;
 import com.hackfsu.android.app.R;
 import com.hackfsu.android.app.fragment.ProfileFragment;
 import com.hackfsu.android.app.fragment.ScheduleFragment;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AuthActivity
         implements BaseFragment.OnFragmentInteractionListener {

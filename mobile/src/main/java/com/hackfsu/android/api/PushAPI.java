@@ -1,9 +1,8 @@
 package com.hackfsu.android.api;
 
-import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 
+import com.hackfsu.android.api.util.NetworkClient;
 import com.hackfsu.android.app.BuildConfig;
 
 import java.io.IOException;

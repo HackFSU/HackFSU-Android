@@ -2,51 +2,22 @@ package com.hackfsu.android.app.activity;
 
 
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.github.jinatonic.confetti.CommonConfetti;
-import com.github.jinatonic.confetti.ConfettiManager;
-import com.github.jinatonic.confetti.ConfettiSource;
-import com.github.jinatonic.confetti.ConfettoGenerator;
-import com.github.jinatonic.confetti.Utils;
-import com.github.jinatonic.confetti.confetto.BitmapConfetto;
-import com.github.jinatonic.confetti.confetto.Confetto;
-
-import com.hackfsu.android.api.API;
-import com.hackfsu.android.api.AddCookiesInterceptor;
-import com.hackfsu.android.api.ReceivedCookiesInterceptor;
-import com.hackfsu.android.api.RetroAPI;
-import com.hackfsu.android.api.API;
+import com.hackfsu.android.api.util.AddCookiesInterceptor;
+import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 import com.hackfsu.android.api.RetroAPI;
 import com.hackfsu.android.app.R;
-import com.hackfsu.android.app.fragment.BaseFragment;
-import com.hackfsu.android.app.fragment.FeedFragment;
 
-
-import java.util.List;
-import java.util.Random;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;

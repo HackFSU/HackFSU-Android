@@ -1,4 +1,4 @@
-package com.hackfsu.android.api;
+package com.hackfsu.android.api.templates;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
