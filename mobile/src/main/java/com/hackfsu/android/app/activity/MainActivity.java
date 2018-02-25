@@ -16,6 +16,7 @@ import com.hackfsu.android.app.fragment.BaseFragment;
 import com.hackfsu.android.app.fragment.FeedFragment;
 import com.hackfsu.android.app.fragment.InfoFragment;
 import com.hackfsu.android.app.R;
+import com.hackfsu.android.app.fragment.MapsFragment;
 import com.hackfsu.android.app.fragment.ProfileFragment;
 import com.hackfsu.android.app.fragment.ScheduleFragment;
 
@@ -66,8 +67,8 @@ public class MainActivity extends AppCompatActivity
                         src = R.drawable.schedulebar;
                         break;
                     case 2:
-                        id = R.id.nav_info;
-                        src = R.drawable.infobar;
+                        id= R.id.nav_map;
+                        src=R.drawable.infobar;
                         break;
                     case 3:
                         id = R.id.nav_profile;
@@ -118,8 +119,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_schedule:
                 fg = ScheduleFragment.newInstance();
                 break;
-            case R.id.nav_info:
-                fg = InfoFragment.newInstance();
+            case R.id.nav_map:
+                fg= MapsFragment.newInstance();
                 break;
             case R.id.nav_profile:
                 fg = ProfileFragment.newInstance();
@@ -146,8 +147,6 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_live:
                 return "Live";
-            case R.id.nav_info:
-                return "Info";
             default:
                 return "";
         }
