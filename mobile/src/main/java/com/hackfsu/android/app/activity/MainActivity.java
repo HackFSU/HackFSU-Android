@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity
                         break;
                 }
                 newFragmentTransaction(id);
+                swapHeaderDrawable(src);
             return true;
             }
 
