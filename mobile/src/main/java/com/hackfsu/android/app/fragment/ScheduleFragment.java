@@ -84,14 +84,15 @@ public class ScheduleFragment extends BaseFragment {
 
         //
         mAPI = new API(getActivity());
-        retrieveSchedule();
+        mSwipeLayout.setRefreshing(true);
+        retrieveSchedule(new RefreshCompleteListener(mSwipeLayout));
 
         // Swipe Reload
         mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                retrieveSchedule();
+                retrieveSchedule(new RefreshCompleteListener(mSwipeLayout));
                 mSwipeLayout.setRefreshing(false);
             }
         });
@@ -175,13 +176,14 @@ public class ScheduleFragment extends BaseFragment {
         }
     }
 
-    public void retrieveSchedule() {
+    public void retrieveSchedule(final RefreshCompleteListener listener) {
 
         mAPI.getSchedule(new API.APICallback<ScheduleModel>() {
             @Override
             public void onDataReady(List<ScheduleModel> dataSet) {
                 mAdapter.replaceDataset(dataSet);
                 mAdapter.notifyDataSetChanged();
+                listener.onComplete();
             }
         });
 

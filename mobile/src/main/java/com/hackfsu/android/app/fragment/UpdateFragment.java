@@ -81,29 +81,32 @@ public class UpdateFragment extends BaseFragment {
 
         // Initial Load
         mAPI = new API(getActivity());
-        updateAnnouncements();
+
+
+
+        mSwipeLayout.setRefreshing(true);
+        updateAnnouncements(new RefreshCompleteListener(mSwipeLayout));
 
         // Swipe Reload
         mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                updateAnnouncements();
-                mSwipeLayout.setRefreshing(false);
+                updateAnnouncements(new RefreshCompleteListener(mSwipeLayout));
 
             }
         });
     }
 
-    private void updateAnnouncements() {
+    private void updateAnnouncements(final RefreshActionListener listener) {
         mAPI.getUpdates(new API.APICallback<UpdateModel>() {
             @Override
             public void onDataReady(List<UpdateModel> dataSet) {
                 mAdapter.replaceDataset(dataSet);
+                listener.onComplete();
             }
         });
     }
-
 
     // Adapter used by this fragment
     private class UpdatesRecyclerAdapter extends
