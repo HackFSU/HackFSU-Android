@@ -50,10 +50,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AuthActivity
         implements BaseFragment.OnFragmentInteractionListener {
 
 
+    final static String Test_Base = "https://testapi.hackfsu.com/";
+    final static String Test_Login = "api/user/login/";
+    final static String Test_Profile = "user/get/profile";
+    final static String Test_getHacks = "judge/hacks";
+    final static String Test_sendHAcks = "judge/hacks/upload";
 
     final static String Test_Base = "https://testapi.hackfsu.com/";
     final static String Test_Login = "api/user/login";
@@ -88,38 +93,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        //initPrefs();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String userDetatails = sharedPreferences.getString("Logged_user",null);
-        //        current = sharedPreferences.getAll().size();
-//        Log.d(this.getClass().getName(), "Current size of shared preferences: " + current);
-
-       if((userDetatails == null) || (userDetatails.isEmpty()))
-       {
-           Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-       }
         else
        {    //Currently working on sending cookies with Get Profile request
 
-           //trying to store cookies
-           final Context context = this;
-           //Cookie Catcher
-           OkHttpClient client = new OkHttpClient();
-           OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-           builder.addInterceptor(new AddCookiesInterceptor(this)); // VERY VERY IMPORTANT
-           builder.addInterceptor(new ReceivedCookiesInterceptor(this)); // VERY VERY IMPORTANT
-           client = builder.build();
-
-           Retrofit retrofit = new Retrofit.Builder()
-                   .baseUrl(Test_Base)
-                   .client(client) // VERY VERY IMPORTANT
-                   .addConverterFactory(GsonConverterFactory.create())
-                   .build(); // REQUIRED
-
-           RetroAPI mapi = retrofit.create(RetroAPI.class);
 
           // RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
 
