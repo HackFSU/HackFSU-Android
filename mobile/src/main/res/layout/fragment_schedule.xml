@@ -3,57 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hackfsu.mobile.android.app.fragment.UpdateFragment">
+    tools:context="com.hackfsu.android.app.activity.MainActivity">
 
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/sponsors"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:elevation="2dp">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height"
-            android:background="@drawable/scheduletop"
-            android:title="Schedule"
-            app:contentInsetEnd="16dp"
-            app:contentInsetStart="72dp"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@drawable/scheduletop"
-            app:titleTextAppearance="@style/Toolbar.TitleText">
-
-        </android.support.v7.widget.Toolbar>
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:clipToPadding="false"
+            android:paddingBottom="4dp"
+            android:paddingTop="0dp"
+            android:scrollbars="vertical"
+            android:visibility="visible">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingBottom="4dp"
-                android:paddingTop="0dp"
-                android:scrollbars="vertical"
-                android:visibility="visible">
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-            </android.support.v7.widget.RecyclerView>
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-    </android.support.design.widget.AppBarLayout><![CDATA[
-
-
-    android:adjustViewBounds="true"/>
-
-
-
-
-]]>
 </FrameLayout>

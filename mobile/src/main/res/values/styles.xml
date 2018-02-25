@@ -9,6 +9,7 @@
         <item name="colorAccent">@color/accent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/background</item>
 
         <!-- Enable dialog stuff -->
         <item name="android:dialogTheme">@style/AppTheme.DialogTheme</item>
@@ -67,34 +68,17 @@
 
     <style name="AppTheme.Update.Title">
         <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/primaryTextDark</item>
+        <item name="android:fontFamily">@font/graphik</item>
+        <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="AppTheme.Countdown">
+
+    <style name="AppTheme.Schedule"/>
+
+    <style name="AppTheme.Schedule.Title">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/secondaryTextDark</item>
-    </style>
-
-    <style name="AppTheme.ExpandedTitle" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
-        <item name="android:textSize">45sp</item>
-        <item name="android:textColor">@android:color/transparent</item>
-    </style>
-
-    <style name="AppTheme.CollapsedTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">#fff</item>
-    </style>
-
-
-    <style name="AppTheme.CountdownTime" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
-        <item name="android:textSize">45sp</item>
-        <item name="android:textColor">#fff</item>
-    </style>
-
-    <style name="AppTheme.CountdownLabel" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">#fff</item>
+        <item name="android:fontFamily">@font/graphik</item>
+        <item name="android:textColor">@color/primaryTextDark</item>
     </style>
 
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>

@@ -5,19 +5,19 @@
         <item
             android:id="@+id/nav_live"
             android:icon="@drawable/ic_notifications_24dp"
-            android:title="Live Feed" />
+            android:title="@string/nav_live_feed" />
         <item
             android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_timer_24dp"
-            android:title="Schedule" />
+            android:title="@string/nav_schedule" />
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_notification_icon"
-            android:title="Info" />
+            android:title="@string/nav_info" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/facestache"
-            android:title="Profile" />
+            android:title="@string/nav_profile" />
 
     </group>
 
