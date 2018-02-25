@@ -3,6 +3,7 @@ package com.hackfsu.android.api;
 import android.app.Activity;
 import android.util.Log;
 
+
 import com.hackfsu.android.api.model.CountdownModel;
 import com.hackfsu.android.api.model.UpdateModel;
 import com.hackfsu.android.api.model.BaseModel;
@@ -14,6 +15,19 @@ import com.hackfsu.android.app.BuildConfig;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,6 +52,19 @@ public class API {
     final static String URL_PROFILE = "/profile";
 
     final static String URL_LOGIN = "http://2017.hackfsu.com/api/user/login";
+
+//    final static String Test_Login = "https://testapi.hackfsu.com/api/user/login";
+//    final static String Test_Profile = "https://testapi.hackfsu.com/api/user/get/profile";
+//    final static String Test_getHacks = "https://testapi.hackfsu.com/api/judge/hacks";
+//    final static String Test_sendHacks = "https://testapi.hackfsu.com/api/judge/hacks/upload";
+
+
+    final static String Test_Base = "https://testapi.hackfsu.com/api/";
+    final static String Test_Login = "user/login";
+    final static String Test_Profile = "user/get/profile";
+    final static String Test_getHacks = "judge/hacks";
+    final static String Test_sendHacks = "judge/hacks/upload";
+
 
 
 
@@ -479,6 +506,9 @@ public class API {
         CallbackRunnable runnable = new CallbackRunnable(callback, dataset);
         mActivity.runOnUiThread(runnable);
     }
+
+
+
 
 
 
