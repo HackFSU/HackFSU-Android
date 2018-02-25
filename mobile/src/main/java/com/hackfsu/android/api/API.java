@@ -58,7 +58,7 @@ public class API {
 
 
 
-    private Activity mActivity;
+    protected Activity mActivity;
 
     public API(Activity mActivity) {
         this.mActivity = mActivity;

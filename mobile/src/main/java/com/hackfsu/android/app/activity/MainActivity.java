@@ -24,13 +24,6 @@ import com.hackfsu.android.app.fragment.ScheduleFragment;
 public class MainActivity extends AuthActivity
         implements BaseFragment.OnFragmentInteractionListener {
 
-
-    final static String Test_Base = "https://testapi.hackfsu.com/";
-    final static String Test_Login = "api/user/login/";
-    final static String Test_Profile = "user/get/profile";
-    final static String Test_getHacks = "judge/hacks";
-    final static String Test_sendHAcks = "judge/hacks/upload";
-
     final static String Test_Base = "https://testapi.hackfsu.com/";
     final static String Test_Login = "api/user/login";
     final static String Test_Profile = "api/user/get/profile";
@@ -63,10 +56,6 @@ public class MainActivity extends AuthActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        else
-       {    //Currently working on sending cookies with Get Profile request
-
 
 
           // RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
@@ -105,7 +94,6 @@ public class MainActivity extends AuthActivity
 //               }
 //
 //           });
-       }
 
 
 
