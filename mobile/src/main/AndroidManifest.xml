@@ -27,8 +27,10 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notifications_active_black_24dp" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/accent" />
@@ -39,6 +41,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -56,12 +59,9 @@
         </service>
 
         <activity android:name=".activity.MapViewActivity" />
-        <activity android:name=".activity.LoginActivity"/>
-
-        <activity android:name=".activity.AuthActivity">
-
-        </activity>
-
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.AuthActivity"></activity>
+        <activity android:name=".activity.JudgingActivity"></activity>
     </application>
 
 </manifest>

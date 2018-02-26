@@ -1,5 +1,6 @@
 package com.hackfsu.android.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.Button;
 
 import com.hackfsu.android.api.API;
 import com.hackfsu.android.app.R;
+import com.hackfsu.android.app.activity.JudgingActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,10 +52,8 @@ public class ProfileFragment extends BaseFragment {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-            JudgingFragment judgingFragment = new JudgingFragment();
-            FragmentManager manager = getFragmentManager();
-            manager.beginTransaction().replace(R.id.fragment_anchor, judgingFragment, judgingFragment.getTag() ).commit();
-}
+                startActivity(new Intent(getContext(), JudgingActivity.class));
+            }
         });
         return v;
 

@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+
+    android:orientation="vertical"
+    style="@style/AppTheme.Judging.Container"
+    tools:context="com.hackfsu.android.app.fragment.judging.JudgingIntroFragment">
+
+    <TextView
+        style="@style/AppTheme.Judging.Label"
+        android:id="@+id/tv_judging_intro_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/judging_intro_label" />
+
+    <LinearLayout
+        android:id="@+id/layout_judge_intro_tables"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tv_judge_intro_hack_1"
+            style="@style/AppTheme.Judging.HackBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="16dp"
+            android:text="@string/judging_hack_placeholder" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3" />
+
+        <TextView
+            android:id="@+id/tv_judge_intro_hack_2"
+            style="@style/AppTheme.Judging.HackBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="16dp"
+            android:text="@string/judging_hack_placeholder" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3" />
+
+        <TextView
+            android:id="@+id/tv_judge_intro_hack_3"
+            style="@style/AppTheme.Judging.HackBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="16dp"
+            android:text="@string/judging_hack_placeholder" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3" />
+
+        <Button
+            style="@style/AppTheme.Judging.Button.Accent"
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:text="@string/judging_hack_start" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
