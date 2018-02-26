@@ -1,4 +1,4 @@
-package com.hackfsu.android.api;
+package com.hackfsu.android.api.util;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -12,12 +12,12 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
-
+import android.widget.Toast;
 
 
 /**
  * Created by Randy Bruno-Piverger on 2/24/2018.
- *
+ * *
  * This interceptor put all the Cookies in Preferences in the Request.
  */
 

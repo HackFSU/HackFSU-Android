@@ -10,24 +10,14 @@ import com.hackfsu.android.api.model.BaseModel;
 import com.hackfsu.android.api.model.MapModel;
 import com.hackfsu.android.api.model.SponsorModel;
 import com.hackfsu.android.api.model.ScheduleModel;
+import com.hackfsu.android.api.util.ISO8601;
+import com.hackfsu.android.api.util.ISO8601Updates;
+import com.hackfsu.android.api.util.NetworkClient;
 import com.hackfsu.android.app.BuildConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,16 +49,16 @@ public class API {
 //    final static String Test_sendHacks = "https://testapi.hackfsu.com/api/judge/hacks/upload";
 
 
-    final static String Test_Base = "https://testapi.hackfsu.com/api/";
-    final static String Test_Login = "user/login";
-    final static String Test_Profile = "user/get/profile";
-    final static String Test_getHacks = "judge/hacks";
-    final static String Test_sendHacks = "judge/hacks/upload";
+    final static String Test_Base = "https://testapi.hackfsu.com/";
+    final static String Test_Login = "api/user/login";
+    final static String Test_Profile = "api/user/get/profile";
+    final static String Test_getHacks = "api/judge/hacks";
+    final static String Test_sendHacks = "api/judge/hacks/upload";
 
 
 
 
-    private Activity mActivity;
+    protected Activity mActivity;
 
     public API(Activity mActivity) {
         this.mActivity = mActivity;

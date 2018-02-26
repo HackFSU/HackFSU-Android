@@ -1,4 +1,4 @@
-package com.hackfsu.android.api;
+package com.hackfsu.android.api.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
