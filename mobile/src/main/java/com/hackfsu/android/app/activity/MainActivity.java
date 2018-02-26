@@ -32,38 +32,15 @@ public class MainActivity extends AuthActivity
     final static String Test_getHacks = "api/judge/hacks";
     final static String Test_sendHacks = "api/judge/hacks/upload";
 
-    //DrawerLayout drawer;
-    //NavigationView navigationView;
-
     String activeFragmentTag;
     int activeFragmentId;
-    int prefs = 1;
-    int current;
-
-    class JudgingData{
-        String first;
-        String second;
-        String third;
-        String fs;
-        String ss;
-        String ts;
-
-        boolean complete;
-
-    }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         // Restore or Init state
-        //navigationView.setNavigationItemSelectedListener(this);
         final AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
         bottomNavigation.setBehaviorTranslationEnabled(false);
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
