@@ -12,12 +12,7 @@
 
 
     <string name="tab_updates">Updates</string>
-
-
     <string name="appbar_default_behavior">android.support.design.widget.AppBarLayout$Behavior</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello, Information Page</string>
 
 
     <string-array name="Ranks">
@@ -25,4 +20,17 @@
         <item>#2</item>
         <item>#3</item>
     </string-array>
+
+    <!-- Judging Strings-->
+
+
+    <string name="judging_toolbar_placeholder">Judging Expo</string>
+    <string name="judging_intro_label">Your Hacks for Voting</string>
+    <string name="judging_hack_placeholder">Table 1</string>
+    <string name="judging_hack_start">Start</string>
+    <string name="judging_hack_goto">Go To Table:</string>
+    <string name="judging_add_superlative">Add a superlative (optional)</string>
+    <string name="judging_next_hack">Next</string>
+    <string name="judging_hack_retr_error">No hacks available right now.</string>
+
 </resources>
