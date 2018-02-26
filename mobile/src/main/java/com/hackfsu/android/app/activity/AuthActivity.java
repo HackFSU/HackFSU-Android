@@ -65,7 +65,7 @@ public class AuthActivity extends AppCompatActivity {
                     .build(); // REQUIRED
 
             RetroAPI mapi = retrofit.create(RetroAPI.class);
-            Call<ProfileResponse> call = mapi.GetProfile(information_2);
+            Call<ProfileResponse> call = mapi.GetProfile(new AddCookiesInterceptor(this));
 
 
             call.enqueue(new Callback<ProfileResponse>() {
@@ -75,7 +75,8 @@ public class AuthActivity extends AppCompatActivity {
                 public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
 
                     if (response.isSuccessful()) {
-                      String x = information_2.first_name;
+
+                      String x = response.body().first_name;
                         Log.e("RequestCall", "Request Successful");
                         Toast.makeText(context, "Welcome to HackFSU, " + x,
                                 Toast.LENGTH_LONG).show();

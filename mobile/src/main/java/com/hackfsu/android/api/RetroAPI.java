@@ -57,7 +57,7 @@ public interface RetroAPI {
     Call<ResponseBody> postHacks(@Body RequestBody requestbody);
 
     @GET(Test_Profile)
-    Call<ProfileResponse> GetProfile(@Header("Cookie") ProfileResponse profileResponse);
+    Call<ProfileResponse> GetProfile(@Header("Cookie") AddCookiesInterceptor addCookiesInterceptor);
 
 
 
