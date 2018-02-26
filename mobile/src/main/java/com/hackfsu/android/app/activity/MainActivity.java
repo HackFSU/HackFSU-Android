@@ -1,6 +1,7 @@
 package com.hackfsu.android.app.activity;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -56,45 +57,6 @@ public class MainActivity extends AuthActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-          // RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
-
-//           mapi.getProfile(new Callback<ResponseBody>() {
-//               @Override
-//               public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                   if (response.isSuccessful()) {
-//
-//                       Log.d(this.getClass().getName(), "Successful get call");
-//                       // Do awesome stuff
-//
-//                       SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-//                       final SharedPreferences.Editor edit = preferences.edit();
-//                      // edit.putString("Logged_user", usr_entry);
-//                       edit.commit();
-//
-//                       Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                       context.startActivity(i);
-//
-//
-//                   } else if (response.code() == 401) {
-//                       Log.d(this.getClass().getName(), "Unauthorized");
-//                       // Handle unauthorized
-//                   } else {
-//                       int x;
-//                       x = response.code();
-//                       Log.d(this.getClass().getName(), "Response code: " + x);
-//                       // Handle other responses
-//                   }
-//
-//               }
-//               @Override
-//               public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//               }
-//
-//           });
-
 
 
 

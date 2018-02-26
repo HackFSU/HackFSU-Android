@@ -12,7 +12,7 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 
 import android.util.Log;
-
+import android.widget.Toast;
 
 
 /**

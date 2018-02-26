@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
 
-        mapi.postUser(requestBody).enqueue(new Callback<ResponseBody>() {
+        mapi.postLogin(requestBody).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {

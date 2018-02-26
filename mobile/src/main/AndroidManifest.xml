@@ -56,9 +56,12 @@
         </service>
 
         <activity android:name=".activity.MapViewActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.LoginActivity"/>
+
+        <activity android:name=".activity.AuthActivity">
 
         </activity>
+
     </application>
 
 </manifest>
