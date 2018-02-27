@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.hackfsu.android.api.AuthAPI;
 import com.hackfsu.android.api.RetroAPI;
 import com.hackfsu.android.api.templates.ProfileRequest;
 import com.hackfsu.android.api.templates.ProfileResponse;
@@ -43,63 +44,16 @@ public class AuthActivity extends AppCompatActivity {
         if (!isAuthenticated()) {
             startActivity(new Intent(this, LoginActivity.class));
 
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            getApplicationContext().startActivity(intent);
+
+
         }
-        else {
-            // TODO Grab the profile and store somewhere smart
-
-            //Cookie Catcher
-            OkHttpClient client = new OkHttpClient();
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            final ProfileRequest information = new ProfileRequest();
-            final ProfileResponse information_2 = new ProfileResponse();
-            builder.addInterceptor(new AddCookiesInterceptor(this)); // VERY VERY IMPORTANT
-            builder.addInterceptor(new ReceivedCookiesInterceptor(this)); // VERY VERY IMPORTANT
-            client = builder.build();
-            final Context context = this;
-
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Test_Base)
-                    .client(client) // VERY VERY IMPORTANT
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build(); // REQUIRED
-
-            RetroAPI mapi = retrofit.create(RetroAPI.class);
-            Call<ProfileResponse> call = mapi.GetProfile(new AddCookiesInterceptor(this));
-
-
-            call.enqueue(new Callback<ProfileResponse>() {
-
-                @Override
-                //Once the call has finished
-                public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
-
-                    if (response.isSuccessful()) {
-
-                      String x = response.body().first_name;
-                        Log.e("RequestCall", "Request Successful");
-                        Toast.makeText(context, "Welcome to HackFSU, " + x,
-                                Toast.LENGTH_LONG).show();
-                       // startActivity(new Intent(context, MainActivity.class));
-                        int f;
-                        f = response.code();
-                        Log.d(this.getClass().getName(), "Response code: " + f);
-                    } else {
-                        // show error message
-                        Log.e("RequestCall", "Request failed");
-                    }
-                }
-
-                @Override
-                //If the call failed
-                public void onFailure(Call<ProfileResponse> call, Throwable t) {
-
-                    Log.e("RequestCall", "Request failed");
-                }
-            });
-
-
-
+        else
+        {
+            Log.d(this.getClass().getName(), "Loading Profile");
+            AuthAPI Authenticate =  new AuthAPI(this);
+            Authenticate.getProfile(this);
         }
     }
 

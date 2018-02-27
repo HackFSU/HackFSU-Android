@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.hackfsu.android.api.AuthAPI;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
 import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 import com.hackfsu.android.api.RetroAPI;
@@ -75,7 +76,6 @@ public class LoginActivity extends AppCompatActivity {
 //Cookie Catcher
         OkHttpClient client = new OkHttpClient();
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
         builder.addInterceptor(new AddCookiesInterceptor(context)); // VERY VERY IMPORTANT
         builder.addInterceptor(new ReceivedCookiesInterceptor(context)); // VERY VERY IMPORTANT
         client = builder.build();
@@ -105,7 +105,9 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     context.startActivity(i);
-
+                    finish();
+                    Toast.makeText(context, "Found your profile, response code: " + response.code(),
+                            Toast.LENGTH_LONG).show();
 
                 } else if (response.code() == 401) {
                     Log.d(this.getClass().getName(), "Unauthorized");
@@ -122,6 +124,10 @@ public class LoginActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                Toast.makeText(context, "Can't find your profile",
+                        Toast.LENGTH_LONG).show();
 
             }
 

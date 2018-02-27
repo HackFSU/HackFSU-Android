@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.hackfsu.android.api.templates.HacksResponse;
 import com.hackfsu.android.api.templates.ProfileRequest;
 import com.hackfsu.android.api.templates.ProfileResponse;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
@@ -60,8 +61,8 @@ public interface RetroAPI {
     Call<ProfileResponse> GetProfile(@Header("Cookie") AddCookiesInterceptor addCookiesInterceptor);
 
 
-
-
+    @GET(Test_getHacks)
+    Call<HacksResponse> GetHacks(@Header("Cookie") AddCookiesInterceptor addCookiesInterceptor);
 
 
 }

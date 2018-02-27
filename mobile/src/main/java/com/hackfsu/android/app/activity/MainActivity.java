@@ -2,9 +2,11 @@ package com.hackfsu.android.app.activity;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
@@ -32,6 +35,8 @@ public class MainActivity extends AuthActivity
     final static String Test_getHacks = "api/judge/hacks";
     final static String Test_sendHacks = "api/judge/hacks/upload";
 
+
+
     String activeFragmentTag;
     int activeFragmentId;
 
@@ -39,6 +44,12 @@ public class MainActivity extends AuthActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+//TODO: put in auth activity with if logined and add finish() to main when switching contexts
+
 
         // Restore or Init state
         final AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);

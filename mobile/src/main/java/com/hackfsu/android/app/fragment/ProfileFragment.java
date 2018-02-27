@@ -1,7 +1,9 @@
 package com.hackfsu.android.app.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.hackfsu.android.api.API;
 import com.hackfsu.android.app.R;
@@ -48,6 +51,12 @@ public class ProfileFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        TextView text = (TextView) v.findViewById(R.id.textView2);
+        text.setText(preferences.getString("first_name", null));
+
+
+
         Button button1 = (Button) v.findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
