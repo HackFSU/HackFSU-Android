@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:clipToPadding="false">
 
         <TextView
             android:id="@+id/tv_judge_intro_hack_1"
@@ -65,6 +66,7 @@
 
         <Button
             style="@style/AppTheme.Judging.Button.Accent"
+            android:id="@+id/btn_judge_next"
             android:layout_width="match_parent"
             android:text="@string/judging_hack_start" />
 

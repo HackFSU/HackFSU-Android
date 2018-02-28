@@ -60,8 +60,9 @@
 
         <activity android:name=".activity.MapViewActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.AuthActivity"></activity>
-        <activity android:name=".activity.JudgingActivity"></activity>
+        <activity android:name=".activity.AuthActivity"/>
+        <activity android:name=".activity.JudgingActivity"
+            android:theme="@style/AppTheme.Judging.Activity"/>
     </application>
 
 </manifest>

@@ -83,6 +83,9 @@
 
 
     <style name="AppTheme.Judging"/>
+    <style name="AppTheme.Judging.Activity" parent="AppTheme">
+        <item name="android:windowBackground">@color/primary</item>
+    </style>
     <style name="AppTheme.Judging.Container">
         <item name="android:background">@color/primary</item>
         <item name="android:padding">24dp</item>

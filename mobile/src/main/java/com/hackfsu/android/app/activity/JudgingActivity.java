@@ -1,25 +1,15 @@
 package com.hackfsu.android.app.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.FrameLayout;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import com.hackfsu.android.api.JudgeAPI;
-import com.hackfsu.android.api.RetroAPI;
-import com.hackfsu.android.api.templates.HacksRequest;
-import com.hackfsu.android.api.templates.HacksResponse;
-import com.hackfsu.android.api.templates.ProfileResponse;
-import com.hackfsu.android.api.util.AddCookiesInterceptor;
-import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 import com.hackfsu.android.app.R;
 import com.hackfsu.android.app.fragment.judging.JudgingBaseFragment;
 import com.hackfsu.android.app.fragment.judging.JudgingHackFragment;
@@ -27,42 +17,35 @@ import com.hackfsu.android.app.fragment.judging.JudgingIntroFragment;
 
 import java.util.ArrayList;
 
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class JudgingActivity extends AppCompatActivity
         implements JudgingBaseFragment.OnJudgeFragmentInteractionListener {
 
-    FrameLayout mFragmentAnchor;
-    int fragmentIndex;
-
-
     JudgingIntroFragment mIntroFragment;
     ArrayList<JudgingHackFragment> mHackFragments = new ArrayList<>();
+    JudgeActivityFragmentAssistant assistant = new JudgeActivityFragmentAssistant(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_judging);
 
-        JudgeAPI GetHacks= new JudgeAPI(this);
-        GetHacks.getHacks(this);   //Placing GetHacks response in defaultsharedpreferences
-                                                    //Note: number_of_hacks has also been stored
-
-
-
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_judging);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         JudgeAPI api = new JudgeAPI(this);
+        api.getHackAssignment(new JudgeAPI.OnAssignmentRetrievedListener() {
 
-        api.getHackAssignment(new JudgeAPI.onAssignmentRetrievedListener() {
             @Override
-            public void onAssignment(ArrayList<Integer> tableNumbers) {
+            public void onAssignment(ArrayList<Integer> tableNumbers, String expoString,
+                                     ArrayList<String> superlatives) {
+                toolbar.setTitle(expoString);
                 initNewAssignment(tableNumbers);
-                showFragment(0);
+                assistant.init(tableNumbers.size());
             }
 
             @Override
@@ -89,42 +72,24 @@ public class JudgingActivity extends AppCompatActivity
         // TODO add submission fragment
     }
 
-    private void showFragment(int index) {
-
-        if (index < 0 || index > 4) {
-            finish();
-            return;
-        }
-
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment frag = null;
-
-        switch(index) {
-            case 0:
-                frag = mIntroFragment;
-                break;
-            case 4:
-                // TODO
-                frag = mIntroFragment;
-            default:
-                frag = mHackFragments.get(index - 1);
-        }
-
-        if (frag != null) {
-            fm.beginTransaction().replace(R.id.fragment_anchor_judging, frag).commit();
-        }
-
+    @Override
+    public void onBackPressed() {
+        if (assistant.atFirstFragment()) { finish(); }
+        else { assistant.showPrevFragment(); }
     }
 
 
-    @Override
-    public void showNextTable() {
 
+
+
+    @Override
+    public void showNextPage() {
+        assistant.showNextFragment();
     }
 
     @Override
-    public void showPreviousTable() {
-
+    public void showPreviousPage() {
+        assistant.showPrevFragment();
     }
 
     @Override
@@ -135,8 +100,83 @@ public class JudgingActivity extends AppCompatActivity
     @Override
     public void submitHackScores(ArrayList<Integer> scoreOrder) {
 
+    }
+
+}
 
 
+
+class JudgeActivityFragmentAssistant {
+
+    /**
+     * The point here is to abstract the details of fragment transactions away from the logic
+     * of the activity itself. This is done to prevent developers from introducing bugs by
+     * interacting with the logic of fragment transactions directly.
+     */
+
+    private JudgingActivity judgingActivity;
+
+    private int fragmentIndex = 0;
+    private int totalFragments = 0;
+
+    JudgeActivityFragmentAssistant(JudgingActivity judgingActivity) {
+        this.judgingActivity = judgingActivity;
+    }
+
+    JudgeActivityFragmentAssistant init(int totalFragments) {
+        this.totalFragments = totalFragments;
+        showFragment(0, false);
+        return this;
+    }
+
+    boolean atFirstFragment() {
+        return fragmentIndex == 0;
+    }
+
+//    boolean atLastFragment() {
+//        return fragmentIndex == (totalFragments - 1);
+//    }
+
+    void showPrevFragment() {
+        showFragment(--fragmentIndex, false);
+    }
+
+    void showNextFragment() {
+        showFragment(++fragmentIndex, true);
+    }
+
+    private void showFragment(int index, boolean showAnimation) {
+
+        if (index < 0 || index > 4) {
+            Toast.makeText(judgingActivity, "Index error", Toast.LENGTH_SHORT).show();
+            judgingActivity.finish();
+            return;
+        }
+
+        Fragment frag;
+        FragmentManager fm = judgingActivity.getSupportFragmentManager();
+
+        switch (index) {
+            case 0:
+                frag = judgingActivity.mIntroFragment;
+                break;
+            case 4:
+                // TODO
+                frag = judgingActivity.mIntroFragment;
+            default:
+                frag = judgingActivity.mHackFragments.get(index - 1);
+        }
+
+        if (frag != null) {
+            FragmentTransaction ft = fm.beginTransaction();
+
+            if (showAnimation) {
+                ft.setCustomAnimations(R.animator.slide_in_from_left,
+                        R.animator.slide_out_to_right, 0, 0);
+            }
+
+            ft.replace(R.id.fragment_anchor_judging, frag).commit();
+        }
 
     }
 }
