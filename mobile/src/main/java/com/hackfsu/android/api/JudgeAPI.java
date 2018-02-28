@@ -1,17 +1,12 @@
 package com.hackfsu.android.api;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.hackfsu.android.api.templates.HacksResponse;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
 import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
-import com.hackfsu.android.app.activity.MainActivity;
 
 import java.util.ArrayList;
 
@@ -25,9 +20,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by andrew on 2/26/18.
- */
 
 public class JudgeAPI extends API {
 
@@ -36,37 +28,23 @@ public class JudgeAPI extends API {
     }
 
 
-    public interface onAssignmentRetrievedListener {
-        void onAssignment(ArrayList<Integer> tableNumbers);
+    public interface OnAssignmentRetrievedListener {
+        void onAssignment(ArrayList<Integer> tableNumbers, String expoString,
+                          ArrayList<String> superlatives);
         void onFailure();
     }
 
 
-    public void getHackAssignment(onAssignmentRetrievedListener listener) {
+    public void getHackAssignment(final OnAssignmentRetrievedListener listener) {
 
-        // TODO get hacks
-        listener.onAssignment(new ArrayList<Integer>());
-
-    }
-
-
-
-    public void getHacks(Activity mActivity) {
-        // Getting hacks
-
-        final String Test_Base = "https://testapi.hackfsu.com/";
-
-
-        //Cookies
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new AddCookiesInterceptor(mActivity)); // VERY VERY IMPORTANT
         builder.addInterceptor(new ReceivedCookiesInterceptor(mActivity)); // VERY VERY IMPORTANT
         client = builder.build();
-        final Context c = mActivity;
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Test_Base)
+                .baseUrl(API_HOST)
                 .client(client) // VERY VERY IMPORTANT
                 .addConverterFactory(GsonConverterFactory.create())
                 .build(); // REQUIRED
@@ -77,58 +55,55 @@ public class JudgeAPI extends API {
 
         call.enqueue(new Callback<HacksResponse>() {
 
+            @SuppressWarnings("ConstantConditions")
             @Override
-            //Once the call has finished
             public void onResponse(Call<HacksResponse> call, Response<HacksResponse> response) {
 
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && response.body() != null) {
 
-                    String x = response.body().expo;
-                    Log.e("RequestCall", "Request Successful");
-                    Toast.makeText(c, "Expo is: " + x,
-                            Toast.LENGTH_LONG).show();
-                    // startActivity(new Intent(context, MainActivity.class));
-                    int f;
-                    f = response.code();
-                    Log.d(this.getClass().getName(), "Response code: " + f);
+                    Log.d("RequestCall", "Request Successful");
+                    Log.d(this.getClass().getName(), "Response code: " + response.code());
 
+                    try {
+                        // Convert hacks to ints
+                        ArrayList<Integer> hackNumbers = new ArrayList<>();
+                        for (String s : response.body().getHacks()) {
+                            hackNumbers.add(Integer.parseInt(s));
+                        }
 
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
-                    final SharedPreferences.Editor edit = preferences.edit();
-                    edit.putString("expo", response.body().expo);
-
-
-                    for(int i = 0; i < response.body().superlatives.size(); i++)
-                    {
-                        edit.putString("superlatives"+i , response.body().superlatives.get(i));
+                        listener.onAssignment(hackNumbers, response.body().getExpo(),
+                                response.body().getSuperlatives());
+                        return;
                     }
-                    for(int i = 0; i < response.body().hacks.size(); i++)
-                    {
-                        edit.putString("hacks"+i , response.body().hacks.get(i));
+                    catch (NullPointerException e) {
+                        Log.e(JudgeAPI.class.getName(), e.getLocalizedMessage());
                     }
-                    edit.putInt("number_of_hacks", response.body().hacks.size());
-                    edit.commit();
 
                 } else {
-                    // show error message
                     Log.e("RequestCall", "Request failed");
+
                 }
+
+                listener.onFailure();
+
             }
 
             @Override
-            //If the call failed
             public void onFailure(Call<HacksResponse> call, Throwable t) {
-
                 Log.e("RequestCall", "Request failed");
+                listener.onFailure();
             }
         });
 
     }
 
+    public interface OnSubmitAssignmentListener {
+        void onSuccess();
+        void onFailure();
+    }
 
 
-
-    public void SendHacks(final Activity mActivity){
+    public void submitJudgingAssignent(final OnSubmitAssignmentListener listener){
 
 
         //TODO: THROW BUNDLE HERE, SET HACKS EQUAL TO THESE VARIABLES (IN ORDER OR THEIR RANK) AND GO (IT SHOULD WORK)
@@ -146,15 +121,14 @@ public class JudgeAPI extends API {
 
 
 
-//Cookie Catcher
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new AddCookiesInterceptor(mActivity)); // VERY VERY IMPORTANT
         builder.addInterceptor(new ReceivedCookiesInterceptor(mActivity)); // VERY VERY IMPORTANT
         client = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Test_Base)
+                .baseUrl(API_HOST)
                 .client(client) // VERY VERY IMPORTANT
                 .addConverterFactory(GsonConverterFactory.create())
                 .build(); // REQUIRED
@@ -172,6 +146,10 @@ public class JudgeAPI extends API {
                     Toast.makeText(mActivity, "Hacks Sent Successfully, Response code: " + response.code(),
                             Toast.LENGTH_LONG).show();
 
+                    listener.onSuccess();
+                    return;
+
+
                 } else if (response.code() == 401) {
                     Log.d(this.getClass().getName(), "Unauthorized");
                     // Handle unauthorized
@@ -184,6 +162,8 @@ public class JudgeAPI extends API {
                             Toast.LENGTH_LONG).show();
                 }
 
+                listener.onFailure();
+
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
@@ -191,6 +171,8 @@ public class JudgeAPI extends API {
 
                 Toast.makeText(mActivity, "Submission Failed",
                         Toast.LENGTH_LONG).show();
+
+                listener.onFailure();
 
             }
 

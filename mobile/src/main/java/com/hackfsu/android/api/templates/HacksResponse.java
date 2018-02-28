@@ -18,4 +18,16 @@ public class HacksResponse {
     @SerializedName("expo")
     @Expose
     public String expo;
+
+    public ArrayList<String> getHacks() {
+        return hacks;
+    }
+
+    public ArrayList<String> getSuperlatives() {
+        return superlatives;
+    }
+
+    public String getExpo() {
+        return expo;
+    }
 }
