@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.hackfsu.android.api.API;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
 import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
@@ -33,40 +34,51 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity {
 
 
+    private EditText mUserText;
+    private EditText mPassText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mUserText = (EditText)findViewById(R.id.editText);
+        mPassText = (EditText)findViewById(R.id.editText2);
 
     }
 
 
     public void onClick(View view) {
-        login();
+        if (view.getId() == R.id.btn_login) {
+
+            String username = mUserText.getText().toString();
+            String password = mPassText.getText().toString();
+
+            if (!username.isEmpty() && !password.isEmpty()) {
+                login(username, password);
+            } else {
+                Toast.makeText(this,
+                        "Please enter your username and password", Toast.LENGTH_SHORT).show();
+            }
+
+        }
     }
 
 
-    public void login(){
-
-        EditText user  = (EditText)findViewById(R.id.editText);
-        EditText pass  = (EditText)findViewById(R.id.editText2);
-        final String usr_entry = user.getText().toString();
-        String pass_entry = pass.getText().toString();
-        final Context  context = this;
+    public void login(final String email, final String password){
 
         String json = "{\n" +
-                "\t\"email\":\" "+usr_entry+"\",\n" +
-                "\t\"password\":\""+pass_entry+"\"\n" +
+                "\t\"email\":\" "+email+"\",\n" +
+                "\t\"password\":\""+password+"\"\n" +
                 "}";
 
-
+        final Context context = this;
 
         //Cookie Catcher
         OkHttpClient client;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.addInterceptor(new AddCookiesInterceptor(context)); // VERY VERY IMPORTANT
-        builder.addInterceptor(new ReceivedCookiesInterceptor(context)); // VERY VERY IMPORTANT
+        builder.addInterceptor(new AddCookiesInterceptor(this)); // VERY VERY IMPORTANT
+        builder.addInterceptor(new ReceivedCookiesInterceptor(this)); // VERY VERY IMPORTANT
         client = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -89,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
                     final SharedPreferences.Editor edit = preferences.edit();
-                    edit.putString("Logged_user", usr_entry);
+                    edit.putString("Logged_user", email);
                     edit.commit();
 
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
@@ -107,9 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                     int x;
                     x = response.code();
                     Log.d(this.getClass().getName(), "Response code: " + x);
-                    // Handle other responses
-                    Toast.makeText(context, "Can't find your profile, response code: " + x,
-                            Toast.LENGTH_LONG).show();
+                    badLogin();
                 }
 
 
@@ -117,15 +127,27 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-
-                Toast.makeText(context, "Can't find your profile",
-                        Toast.LENGTH_LONG).show();
-
+                error();
+                
             }
 
         });
 
 
+    }
+
+    void badLogin() {
+        new MaterialDialog.Builder(LoginActivity.this)
+                .content("Invalid username or password.")
+                .positiveText("Whoops")
+                .show();
+    }
+
+    void error() {
+        new MaterialDialog.Builder(LoginActivity.this)
+                .content("Ahhh!! There's been an error!")
+                .positiveText("Whoops")
+                .show();
     }
 
 }
