@@ -60,9 +60,9 @@ public class JudgingIntroFragment extends JudgingBaseFragment {
         mNextViewButton = (Button) v.findViewById(R.id.btn_judge_next);
 
         mAssignmentDisplays = new TextView[] {
-                v.findViewById(R.id.tv_judge_intro_hack_1),
-                v.findViewById(R.id.tv_judge_intro_hack_2),
-                v.findViewById(R.id.tv_judge_intro_hack_3),
+                v.findViewById(R.id.tv_judge_hack_1),
+                v.findViewById(R.id.tv_judge_hack_2),
+                v.findViewById(R.id.tv_judge_hack_3),
         };
 
         return v;

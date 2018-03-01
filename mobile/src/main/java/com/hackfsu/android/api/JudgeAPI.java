@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hackfsu.android.api.templates.HacksResponse;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
 import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -102,23 +104,24 @@ public class JudgeAPI extends API {
         void onFailure();
     }
 
+    private class JudgingResults {
+        HashMap<String, Integer> order;
+        HashMap<Integer, ArrayList<String>> superlatives;
 
-    public void submitJudgingAssignent(final OnSubmitAssignmentListener listener){
-
-
-        //TODO: THROW BUNDLE HERE, SET HACKS EQUAL TO THESE VARIABLES (IN ORDER OR THEIR RANK) AND GO (IT SHOULD WORK)
-
-        String hack_1 = null;
-        String hack_2 = null;
-        String hack_3 = null;
+        public JudgingResults() {
+        }
+    }
 
 
-        String json = "{\n" +
-                "\t\"order\": {\" "+hack_1+"\",\n" +
-                "\t\""+hack_2+"\"\n" +
-                "\t\""+hack_3+"\"\n"
-                +"}";
+    public void submitJudgingAssignent(HashMap<String, Integer> order,
+                                       HashMap<Integer, ArrayList<String>> superlatives,
+                                       final OnSubmitAssignmentListener listener) {
 
+
+        JudgingResults results = new JudgingResults();
+        results.order = order;
+        results.superlatives = superlatives;
+        String json = new Gson().toJson(results);
 
 
         OkHttpClient client;

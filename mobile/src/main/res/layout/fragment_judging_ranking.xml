@@ -8,14 +8,14 @@
     tools:context="com.hackfsu.android.app.fragment.judging.JudgingIntroFragment">
 
     <TextView
-        style="@style/AppTheme.Judging.Label"
         android:id="@+id/tv_judging_intro_label"
+        style="@style/AppTheme.Judging.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/judging_intro_label" />
+        android:gravity="center_horizontal"
+        android:text="@string/judging_rank_label" />
 
     <LinearLayout
-        android:id="@+id/layout_judge_intro_tables"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -65,10 +65,22 @@
             android:layout_weight="3" />
 
         <Button
-            style="@style/AppTheme.Judging.Button.Accent"
-            android:id="@+id/btn_judge_next"
+            style="@style/AppTheme.Judging.Button.Basic"
+            android:id="@+id/btn_judge_reset"
             android:layout_width="match_parent"
-            android:text="@string/judging_hack_start" />
+            android:text="@string/judging_hack_reset"
+            android:visibility="gone"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2" />
+
+        <Button
+            style="@style/AppTheme.Judging.Button.Accent"
+            android:id="@+id/btn_judge_submit"
+            android:layout_width="match_parent"
+            android:text="@string/judging_hack_submit" />
 
 
     </LinearLayout>
