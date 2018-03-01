@@ -1,7 +1,6 @@
 package com.hackfsu.android.app.fragment.judging;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
@@ -42,6 +41,7 @@ abstract public class JudgingBaseFragment extends Fragment {
     public interface OnJudgeFragmentInteractionListener {
         void showNextPage();
         void showPreviousPage();
+        void showHackSuperlativeDialog(int tableNumber);
         void addHackSuperlative(int tableNumber, String superlative);
         void submitHackScores(ArrayList<Integer> scoreOrder);
     }
@@ -54,4 +54,6 @@ abstract public class JudgingBaseFragment extends Fragment {
             mListener.showNextPage();
         }
     }
+
+
 }

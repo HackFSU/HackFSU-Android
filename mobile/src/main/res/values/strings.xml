@@ -34,5 +34,7 @@
     <string name="judging_add_superlative">Add a superlative (optional)</string>
     <string name="judging_next_hack">Next</string>
     <string name="judging_hack_retr_error">No hacks available right now.</string>
+    <string name="judging_superlative_dialog_title">Select superlative nominations</string>
+    <string name="judging_superlative_dialog_choose">Done</string>
 
 </resources>
