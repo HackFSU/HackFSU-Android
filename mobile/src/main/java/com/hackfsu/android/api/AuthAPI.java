@@ -37,10 +37,8 @@ public class AuthAPI extends API {
     public void getProfile(Context context) {
 
 
-            // TODO Grab the profile and store somewhere smart
-
         //Cookie Catcher
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new AddCookiesInterceptor(context)); // VERY VERY IMPORTANT
         builder.addInterceptor(new ReceivedCookiesInterceptor(context)); // VERY VERY IMPORTANT
@@ -49,7 +47,7 @@ public class AuthAPI extends API {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Test_Base)
+                    .baseUrl(API_HOST)
                     .client(client) // VERY VERY IMPORTANT
                     .addConverterFactory(GsonConverterFactory.create())
                     .build(); // REQUIRED

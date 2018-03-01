@@ -30,35 +30,17 @@ public class API {
 
     private NetworkClient networkClient = new NetworkClient();
 
-    final static String API_HOST = BuildConfig.API_HOST;
+    public final static String API_HOST = BuildConfig.API_HOST;
 
-    final static String URL_BASE = "http://2017.hackfsu.com/api/hackathon/get";
-
-    final static String URL_UPDATES = "/updates";
-    final static String URL_SCHEDULE = "/schedule_items";
-    final static String URL_MAPS = "/maps";
-    final static String URL_COUNTDOWN = "/countdowns";
-    final static String URL_SPONSORS = "/sponsors";
-    final static String URL_PROFILE = "/profile";
-
-    final static String URL_LOGIN = "http://2017.hackfsu.com/api/user/login";
-
-//    final static String Test_Login = "https://testapi.hackfsu.com/api/user/login";
-//    final static String Test_Profile = "https://testapi.hackfsu.com/api/user/get/profile";
-//    final static String Test_getHacks = "https://testapi.hackfsu.com/api/judge/hacks";
-//    final static String Test_sendHacks = "https://testapi.hackfsu.com/api/judge/hacks/upload";
+    private final static String ROUTE_HACKATHON = API_HOST + "/api/hackathon/get";
+    private final static String ROUTE_UPDATES = "/updates";
+    private final static String ROUTE_SCHEDULE = "/schedule_items";
+    private final static String ROUTE_MAPS = "/maps";
+    private final static String ROUTE_COUNTDOWN = "/countdowns";
+    private final static String ROUTE_SPONSORS = "/sponsors";
 
 
-    final static String Test_Base = "https://testapi.hackfsu.com/";
-    final static String Test_Login = "api/user/login";
-    final static String Test_Profile = "api/user/get/profile";
-    final static String Test_getHacks = "api/judge/hacks";
-    final static String Test_sendHacks = "api/judge/hacks/upload";
-
-
-
-
-    protected Activity mActivity;
+    Activity mActivity;
 
     public API(Activity mActivity) {
         this.mActivity = mActivity;
@@ -80,7 +62,7 @@ public class API {
             }
         */
 
-        networkClient.get(URL_BASE + URL_UPDATES,
+        networkClient.get(ROUTE_HACKATHON + ROUTE_UPDATES,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -159,7 +141,7 @@ public class API {
             }
         */
 
-        networkClient.get(URL_BASE + URL_MAPS,
+        networkClient.get(ROUTE_HACKATHON + ROUTE_MAPS,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -235,7 +217,7 @@ public class API {
             }
         */
 
-        networkClient.get(URL_BASE + URL_SCHEDULE,
+        networkClient.get(ROUTE_HACKATHON + ROUTE_SCHEDULE,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -322,7 +304,7 @@ public class API {
         }
         */
 
-        networkClient.get(URL_BASE + URL_SPONSORS,
+        networkClient.get(ROUTE_HACKATHON + ROUTE_SPONSORS,
             new NetworkClient.NetworkCallback() {
 
                 @Override
@@ -399,7 +381,7 @@ public class API {
             }
          */
 
-        networkClient.get(URL_BASE + URL_COUNTDOWN, new NetworkClient.NetworkCallback() {
+        networkClient.get(ROUTE_HACKATHON + ROUTE_COUNTDOWN, new NetworkClient.NetworkCallback() {
 
             @Override
             public void onComplete(String json) {

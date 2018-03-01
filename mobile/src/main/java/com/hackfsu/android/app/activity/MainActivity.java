@@ -33,14 +33,8 @@ import static com.hackfsu.android.api.util.AddCookiesInterceptor.PREF_COOKIES;
 public class MainActivity extends AuthActivity
         implements BaseFragment.OnFragmentInteractionListener {
 
-    final static String Test_Base = "https://testapi.hackfsu.com/";
-    final static String Test_Login = "api/user/login";
-    final static String Test_Profile = "api/user/get/profile";
-    final static String Test_getHacks = "api/judge/hacks";
-    final static String Test_sendHacks = "api/judge/hacks/upload";
 
     Button mLogoutButton;
-
     String activeFragmentTag;
     int activeFragmentId;
 

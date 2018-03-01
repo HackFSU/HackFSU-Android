@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.hackfsu.android.api.API;
 import com.hackfsu.android.api.AuthAPI;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
 import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
@@ -33,15 +34,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static java.security.AccessController.getContext;
 
 public class LoginActivity extends AppCompatActivity {
-
-
-
-
-    final static String Test_Base = "https://testapi.hackfsu.com/";
-    final static String Test_Login = "api/user/login";
-    final static String Test_Profile = "api/user/get/profile";
-    final static String Test_getHacks = "api/judge/hacks";
-    final static String Test_sendHacks = "api/judge/hacks/upload";
 
 
     @Override
@@ -83,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         client = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Test_Base)
+                .baseUrl(API.API_HOST)
                 .client(client) // VERY VERY IMPORTANT
                 .addConverterFactory(GsonConverterFactory.create())
                 .build(); // REQUIRED

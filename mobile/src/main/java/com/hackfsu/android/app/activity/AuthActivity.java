@@ -33,10 +33,6 @@ import static com.hackfsu.android.api.util.AddCookiesInterceptor.PREF_COOKIES;
 
 public class AuthActivity extends AppCompatActivity {
 
-    final static String Test_Base = "https://testapi.hackfsu.com/";
-    final static String Test_Profile = "api/user/get/profile";
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
