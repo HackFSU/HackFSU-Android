@@ -53,7 +53,7 @@
         android:layout_marginBottom="61dp">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btn_profile_judging"
             android:layout_width="170dip"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

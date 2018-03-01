@@ -1,6 +1,7 @@
 package com.hackfsu.android.api.templates;
 
 import com.google.gson.annotations.SerializedName;
+import com.hackfsu.android.api.model.EventModel;
 
 import java.util.ArrayList;
 
@@ -11,5 +12,5 @@ import java.util.ArrayList;
 public class EventsResponse {
 
     @SerializedName("events")
-    public ArrayList<String> events;
+    public ArrayList<EventModel> events;
 }

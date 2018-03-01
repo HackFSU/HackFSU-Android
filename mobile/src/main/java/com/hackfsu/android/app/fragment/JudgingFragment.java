@@ -107,7 +107,7 @@ public class JudgingFragment extends BaseFragment {
         ImageButton imagebutton1 = (ImageButton) v.findViewById(R.id.imageButton1);
         ImageButton imagebutton2 = (ImageButton) v.findViewById(R.id.imageButton2);
         ImageButton imagebutton3 = (ImageButton) v.findViewById(R.id.imageButton3);
-        Button button1 = (Button) v.findViewById(R.id.button1);
+        Button button1 = (Button) v.findViewById(R.id.btn_profile_judging);
 
 
 

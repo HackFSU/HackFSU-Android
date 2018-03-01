@@ -1,39 +1,98 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="visible"
-    tools:context="com.hackfsu.android.app.activity.MainActivity">
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.hackfsu.android.app.activity.MainActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            app:elevation="0dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/layout_profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp"
+                app:layout_scrollFlags="scroll">
+
+                <ImageView
+                    android:id="@+id/iv_profile_qr"
+                    android:layout_width="124dp"
+                    android:layout_height="124dp"
+                    android:layout_below="@+id/app_bar"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/fff" />
+
+                <TextView
+                    android:id="@+id/tv_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/graphik"
+                    android:text="HackFSU Attendee"
+                    android:textColor="@color/accent"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_groups"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/graphik"
+                    android:text="Status"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_profile_events"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
 
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="124dip"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="79dp"
-        android:text="Start Judging?"
-        />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:src="@drawable/fff" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp"
-        android:text="Tupac" />
-    
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btn_profile_judging"
+            style="@style/AppTheme.Judging.Button.Accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="12dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="Let's vote!"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:layout_gravity="right|bottom"/>
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+

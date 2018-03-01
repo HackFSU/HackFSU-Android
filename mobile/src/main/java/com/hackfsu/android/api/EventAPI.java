@@ -1,13 +1,12 @@
-package com.hackfsu.android.api.util;
+package com.hackfsu.android.api;
 
 import android.app.Activity;
 import android.util.Log;
 
-import com.hackfsu.android.api.API;
-import com.hackfsu.android.api.JudgeAPI;
-import com.hackfsu.android.api.RetroAPI;
+import com.hackfsu.android.api.model.EventModel;
 import com.hackfsu.android.api.templates.EventsResponse;
-import com.hackfsu.android.api.templates.HacksResponse;
+import com.hackfsu.android.api.util.AddCookiesInterceptor;
+import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 import com.hackfsu.android.app.BuildConfig;
 
 import java.util.ArrayList;
@@ -23,23 +22,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Randy Bruno-Piverger on 2/28/2018.
  */
 
-public class EventManager extends API {
+public class EventAPI extends API {
 
     final static String API_HOST = BuildConfig.API_HOST;
 
-    public EventManager(Activity mActivity) {
+    public EventAPI(Activity mActivity) {
         super(mActivity);
     }
 
 
-    public interface OnAssignmentRetrievedListener {
-        void onAssignment(ArrayList<String> eventList);
+    public interface OnEventsReceivedListener {
+        void onEvents(ArrayList<EventModel> eventList);
         void onFailure();
     }
 
 
 
-    public void getHackerEvents(final EventManager.OnAssignmentRetrievedListener listener) {
+    public void getHackerEvents(final OnEventsReceivedListener listener) {
 
         OkHttpClient client;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -65,14 +64,14 @@ public class EventManager extends API {
 
                 if (response.isSuccessful() && response.body() != null) {
 
-                    Log.d("RequestCall", "Request Successful");
+                    Log.d(EventAPI.class.getName(), "Request Successful: getHackerEvents");
                     Log.d(this.getClass().getName(), "Response code: " + response.code());
 
                     try {
 
                         //".events" should be the ArrayList of events returned from the call
                         // I couldn't reference getEvents here for what ever reason.
-                        listener.onAssignment(response.body().events);
+                        listener.onEvents(response.body().events);
                         return;
                     }
                     catch (NullPointerException e) {

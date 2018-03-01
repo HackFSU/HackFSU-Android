@@ -183,31 +183,6 @@ public class MapsFragment extends BaseFragment {
                 }
             });
 
-//            holder.mMapItemImage.setParseFile(mDataset.get(position).getImage());
-//            holder.mMapItemImage.loadInBackground(new GetDataCallback() {
-//                @Override
-//                public void done(final byte[] data, ParseException e) {
-//                    if(e != null) {
-//                        Log.e("HackFSU", e.getMessage());
-//                    } else {
-//
-//                        holder.mMapItemImage.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//
-//                                Intent intent = new Intent(getContext(), MapViewActivity.class);
-//                                intent.putExtra("map", data);
-//                                getContext().startActivity(intent);
-//
-//                            }
-//                        });
-//                    }
-//
-//                }
-//            });
-
-
-
         }
 
         @Override
@@ -220,23 +195,5 @@ public class MapsFragment extends BaseFragment {
             mDataset = data;
         }
     }
-
-//    @ParseClassName(ParseName.MAPITEM)
-//    public static class MapItem extends ParseObject {
-//
-//        public MapItem(){}
-//
-//        public ParseFile getImage() {
-//            return getParseFile(ParseName.MAP_IMAGE);
-//        }
-//
-//        public int getFloor() {
-//            return getInt(ParseName.MAP_FLOOR);
-//        }
-//
-//
-//    }
-
-
 
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hackfsu.android.app.R;
@@ -110,7 +111,14 @@ public class JudgingRankingFragment extends JudgingBaseFragment {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.submitHackScores(mHackSelector.selections);
+
+                if (mHackSelector.selections.size() == mTableNumbers.size())
+                    mListener.submitHackScores(mHackSelector.selections);
+                else {
+                    Toast.makeText(getContext(),
+                            "Please rank all of your assigned hacks", Toast.LENGTH_LONG)
+                            .show();
+                }
             }
         });
 

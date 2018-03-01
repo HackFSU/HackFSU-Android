@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.util.ArraySet;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,6 +14,8 @@ import com.hackfsu.android.api.templates.ProfileResponse;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
 import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 import com.hackfsu.android.app.activity.LoginActivity;
+
+import java.util.Set;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -65,8 +68,8 @@ public class AuthAPI extends API {
 
                         String x = response.body().first_name;
                         Log.e("RequestCall", "Request Successful");
-                        Toast.makeText(c, "Welcome to HackFSU, " + x,
-                                Toast.LENGTH_LONG).show();
+//                        Toast.makeText(c, "Welcome to HackFSU, " + x,
+//                                Toast.LENGTH_LONG).show();
                         // startActivity(new Intent(context, MainActivity.class));
                         int f;
                         f = response.code();
@@ -76,7 +79,6 @@ public class AuthAPI extends API {
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
                         final SharedPreferences.Editor edit = preferences.edit();
                         edit.putString("first_name", response.body().first_name);
-                        edit.commit();
                         edit.putString("last_name", response.body().last_name);
                         edit.putString("email", response.body().email);
                         edit.putString("shirt_size", response.body().shirt_size);
@@ -91,10 +93,14 @@ public class AuthAPI extends API {
                         edit.putString("Logged_user", response.body().email);
                         edit.commit();
 
-                        for(int i = 0; i < response.body().groups.size(); i++)
-                        {
-                            edit.putString("groups"+i , response.body().groups.get(i));
+
+                        Set<String> groupSet = new ArraySet<>();
+                        for(String group : response.body().groups) {
+                            groupSet.add(group);
                         }
+                        edit.putStringSet("groups", groupSet);
+
+
                         edit.commit();
 
                     } else {
