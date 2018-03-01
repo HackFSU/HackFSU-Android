@@ -84,26 +84,30 @@ public class MapsFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
 
         mAPI = new API(getActivity());
-        loadMaps();
 
         mSwipeLayout.setColorSchemeResources(R.color.accent);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                loadMaps();
+                loadMaps(new RefreshCompleteListener(mSwipeLayout));
                 mSwipeLayout.setRefreshing(false);
 
             }
         });
+
+        mSwipeLayout.setRefreshing(true);
+        loadMaps(new RefreshCompleteListener(mSwipeLayout));
+
     }
 
-    private void loadMaps() {
+    private void loadMaps(final RefreshCompleteListener refreshCompleteListener) {
         mAPI.getMaps(new API.APICallback<MapModel>() {
             @Override
             public void onDataReady(List<MapModel> dataSet) {
                 mAdapter.replaceDataset(dataSet);
                 mAdapter.notifyDataSetChanged();
+                refreshCompleteListener.onComplete();
             }
         });
     }
