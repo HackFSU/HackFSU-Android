@@ -11,6 +11,7 @@
     <string name="nav_profile">Profile</string>
     <string name="title">FAMU &#38; FSU PRESENTS</string>
     <string name="subtitle">HackFSU 5</string>
+    <string name="logout">Logout</string>
 
 
     <string name="tab_updates">Updates</string>
@@ -27,12 +28,25 @@
 
 
     <string name="judging_toolbar_placeholder">Judging Expo</string>
-    <string name="judging_intro_label">Your Hacks for Voting</string>
-    <string name="judging_hack_placeholder">Table 1</string>
+    <string name="judging_intro_label">Your Assigned Tables</string>
+    <string name="judging_rank_label">Rank your hacks from most to least favorite.</string>
+    <string name="judging_hack_placeholder">Table ??</string>
     <string name="judging_hack_start">Start</string>
+    <string name="judging_hack_reset">Reset</string>
+    <string name="judging_hack_submit">Submit</string>
+    <string name="judging_hack_select">Select</string>
     <string name="judging_hack_goto">Go To Table:</string>
     <string name="judging_add_superlative">Add a superlative (optional)</string>
     <string name="judging_next_hack">Next</string>
+    <string name="judge_hack_empty">Touch to select hack</string>
     <string name="judging_hack_retr_error">No hacks available right now.</string>
+    <string name="judging_superlative_dialog_title">Select superlative nominations</string>
+    <string name="judging_superlative_dialog_choose">Done</string>
+
+    <string-array name="judging_rank_choice">
+        <item>Select your most favorite</item>
+        <item>Select your second favorite</item>
+        <item>Select your least favorite</item>
+    </string-array>
 
 </resources>

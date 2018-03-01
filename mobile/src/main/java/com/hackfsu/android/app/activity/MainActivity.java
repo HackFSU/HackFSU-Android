@@ -13,6 +13,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,8 @@ import com.hackfsu.android.app.fragment.MapsFragment;
 import com.hackfsu.android.app.fragment.ProfileFragment;
 import com.hackfsu.android.app.fragment.ScheduleFragment;
 
+import static com.hackfsu.android.api.util.AddCookiesInterceptor.PREF_COOKIES;
+
 public class MainActivity extends AuthActivity
         implements BaseFragment.OnFragmentInteractionListener {
 
@@ -35,7 +39,7 @@ public class MainActivity extends AuthActivity
     final static String Test_getHacks = "api/judge/hacks";
     final static String Test_sendHacks = "api/judge/hacks/upload";
 
-
+    Button mLogoutButton;
 
     String activeFragmentTag;
     int activeFragmentId;
@@ -45,10 +49,24 @@ public class MainActivity extends AuthActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mLogoutButton = findViewById(R.id.btn_logout);
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences preferences =
+                        PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                final SharedPreferences.Editor edit = preferences.edit();
+                edit.clear();
+                edit.putStringSet(PREF_COOKIES, null);
+                edit.commit();
+
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
 
 
-
-//TODO: put in auth activity with if logined and add finish() to main when switching contexts
+        //TODO: put in auth activity with if logined and add finish() to main when switching contexts
 
 
         // Restore or Init state
@@ -81,6 +99,9 @@ public class MainActivity extends AuthActivity
                 }
                 newFragmentTransaction(id);
                 swapHeaderDrawable(src);
+
+                mLogoutButton.setVisibility(position == 3 ? View.VISIBLE : View.GONE);
+
             return true;
             }
 

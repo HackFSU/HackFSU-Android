@@ -48,6 +48,28 @@
                     android:layout_centerVertical="true"
                     android:scaleType="fitStart"
                     android:src="@drawable/livebar" />
+
+                <View
+                    android:id="@+id/scrim_btn_logout"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignBottom="@+id/btn_logout"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/btn_logout"
+                    android:background="@color/primary" />
+
+                <Button
+                    android:id="@+id/btn_logout"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="false"
+                    android:text="@string/logout"
+                    android:visibility="gone"/>
+
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>

@@ -49,9 +49,10 @@ public class JudgingHackFragment extends JudgingBaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_judging_individual, container, false);
+        View v = inflater.inflate(R.layout.fragment_judging_individual, container, false);
         mTableNumberView = (TextView) v.findViewById(R.id.tv_judge_individual_table_no);
         mNextPageButton = (Button) v.findViewById(R.id.btn_judge_next);
+        mAddSuperlativeButton = (Button) v.findViewById(R.id.btn_judge_add_superlative);
         return v;
 
     }
@@ -61,5 +62,12 @@ public class JudgingHackFragment extends JudgingBaseFragment {
         super.onActivityCreated(savedInstanceState);
         mTableNumberView.setText(String.format(Locale.US, "%d", mTableNumber));
         mNextPageButton.setOnClickListener(new NextPageButtonListener());
+        mAddSuperlativeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.showHackSuperlativeDialog(mTableNumber);
+            }
+        });
     }
+
 }
