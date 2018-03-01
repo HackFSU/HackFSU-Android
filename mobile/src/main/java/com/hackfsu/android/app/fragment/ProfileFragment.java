@@ -58,39 +58,18 @@ public class ProfileFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        TextView text = (TextView) v.findViewById(R.id.textView2);
-        text.setText(preferences.getString("first_name", null));
+
+        TextView userNameText = (TextView) v.findViewById(R.id.textView2);
+        userNameText.setText(preferences.getString("first_name", null));
 
 
-
-        Button button1 = (Button) v.findViewById(R.id.button1);
-        Button button2 = (Button) v.findViewById(R.id.button2);
-
-        button1.setOnClickListener(new View.OnClickListener(){
+        Button judgingButton = (Button) v.findViewById(R.id.button1);
+        judgingButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getContext(), JudgingActivity.class));
             }
         });
-
-        button2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-
-
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-                final SharedPreferences.Editor edit = preferences.edit();
-               edit.clear();
-               // edit.putString("Logged_user", null);
-                edit.putStringSet(PREF_COOKIES, null);
-                edit.commit();
-
-
-                startActivity(new Intent(getContext(), LoginActivity.class));
-                getActivity().finish();
-            }
-        });
-
 
         return v;
 
@@ -101,8 +80,6 @@ public class ProfileFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
-
 
 
 }

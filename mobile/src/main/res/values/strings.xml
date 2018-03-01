@@ -11,6 +11,7 @@
     <string name="nav_profile">Profile</string>
     <string name="title">FAMU &#38; FSU PRESENTS</string>
     <string name="subtitle">HackFSU 5</string>
+    <string name="logout">Logout</string>
 
 
     <string name="tab_updates">Updates</string>
