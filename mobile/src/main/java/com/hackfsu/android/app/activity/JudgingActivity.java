@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hackfsu.android.api.JudgeAPI;
 import com.hackfsu.android.app.R;
+import com.hackfsu.android.app.fragment.judging.JudgingRankingFragment;
 import com.hackfsu.android.app.fragment.judging.JudgingBaseFragment;
 import com.hackfsu.android.app.fragment.judging.JudgingHackFragment;
 import com.hackfsu.android.app.fragment.judging.JudgingIntroFragment;
@@ -22,20 +23,24 @@ import com.hackfsu.android.app.fragment.judging.JudgingIntroFragment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class JudgingActivity extends AppCompatActivity
         implements JudgingBaseFragment.OnJudgeFragmentInteractionListener {
 
+    Toolbar mToolbar;
+
     JudgingIntroFragment mIntroFragment;
     ArrayList<JudgingHackFragment> mHackFragments = new ArrayList<>();
+    JudgingRankingFragment mRankFragment;
     JudgeActivityFragmentAssistant assistant = new JudgeActivityFragmentAssistant(this);
 
     ArrayList<Integer> mTableNumbers;
     ArrayList<String> mAvailableSuperlatives;
 
+    JudgeAPI mJudgeAPI;
+
     @SuppressLint("UseSparseArrays")
-    Map<Integer, ArrayList<String>> mNominations = new HashMap<>();
+    HashMap<Integer, ArrayList<String>> mNominations = new HashMap<>();
     SparseArray<Integer[]> mCheckboxSelections = new SparseArray<>();
 
     @Override
@@ -43,27 +48,31 @@ public class JudgingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_judging);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_judging);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_judging);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
 
-        JudgeAPI api = new JudgeAPI(this);
-        api.getHackAssignment(new JudgeAPI.OnAssignmentRetrievedListener() {
+        mJudgeAPI = new JudgeAPI(this);
+        initAssignment();
+
+    }
+
+    private void initAssignment() {
+        mJudgeAPI.getHackAssignment(new JudgeAPI.OnAssignmentRetrievedListener() {
 
             @Override
             public void onAssignment(ArrayList<Integer> tableNumbers, String expoString,
                                      ArrayList<String> superlatives) {
-                toolbar.setTitle(expoString);
+                mToolbar.setTitle(expoString);
 
                 mTableNumbers = tableNumbers;
                 mAvailableSuperlatives = superlatives;
 
-                initNewAssignment(tableNumbers);
-                assistant.init(2 + tableNumbers.size());
+                assistant.init(tableNumbers, 2 + tableNumbers.size());
             }
 
             @Override
@@ -75,30 +84,14 @@ public class JudgingActivity extends AppCompatActivity
                         .show();
             }
         });
-
     }
 
-    private void initNewAssignment(ArrayList<Integer> tableNumbers) {
-
-        mIntroFragment = JudgingIntroFragment.newInstance(tableNumbers);
-
-        mHackFragments.clear();
-        for (Integer i : tableNumbers) {
-            mHackFragments.add(JudgingHackFragment.newInstance(i));
-        }
-
-        // TODO add submission fragment
-    }
 
     @Override
     public void onBackPressed() {
         if (assistant.atFirstFragment()) { finish(); }
         else { assistant.showPrevFragment(); }
     }
-
-
-
-
 
     @Override
     public void showNextPage() {
@@ -120,21 +113,71 @@ public class JudgingActivity extends AppCompatActivity
                 .title(R.string.judging_superlative_dialog_title)
                 .items(mAvailableSuperlatives)
                 .itemsCallbackMultiChoice(prevSelection,
-                        new SuperlativeDialogSelectionListener(this, tableNumber))
+                        new SuperlativeDialogSelectionListener(tableNumber))
                 .positiveText(R.string.judging_superlative_dialog_choose)
                 .show();
 
     }
 
     @Override
-    public void addHackSuperlative(int tableNumber, String superlative) {
-
-    }
-
-    @Override
     public void submitHackScores(ArrayList<Integer> scoreOrder) {
 
+        HashMap<String, Integer> order = new HashMap<>();
+        for (int i = 0; i < scoreOrder.size(); ++i) {
+            order.put(Integer.toString(i + 1), scoreOrder.get(i));
+        }
+
+        mJudgeAPI.submitJudgingAssignent(order, mNominations,
+                new JudgeAPI.OnSubmitAssignmentListener() {
+            @Override
+            public void onSuccess() {
+                new MaterialDialog.Builder(JudgingActivity.this)
+                        .title("Hacks successfully submitted")
+                        .content("You can now begin a new assignment")
+                        .positiveText("Let's go")
+                        .show();
+                initAssignment();
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(JudgingActivity.this,
+                        "Whoops, issue submitting scores", Toast.LENGTH_LONG).show();
+            }
+        });
     }
+
+    class SuperlativeDialogSelectionListener implements MaterialDialog.ListCallbackMultiChoice {
+
+        private int mTableNumber;
+
+        SuperlativeDialogSelectionListener(int tableNumber) {
+            this.mTableNumber = tableNumber;
+        }
+
+        @Override
+        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+
+            if (!mNominations.containsKey(mTableNumber)) {
+                mNominations.put(mTableNumber, new ArrayList<String>());
+            }
+
+            // Store explicit checkbox selection for redos
+            mCheckboxSelections.put(mTableNumber, which);
+
+            // Save nominations
+            ArrayList<String> nominations = new ArrayList<>();
+            for (int index : which) {
+                String superlativeName = mAvailableSuperlatives.get(index);
+                nominations.add(superlativeName);
+                Log.d(JudgingActivity.class.getName(),
+                        String.format(Locale.US, "Nominated table %d for superlative %s",
+                                mTableNumber, superlativeName));
+            }
+            mNominations.put(mTableNumber, nominations);
+
+            return true;
+        }
 
 }
 
@@ -157,13 +200,23 @@ class JudgeActivityFragmentAssistant {
         this.judgingActivity = judgingActivity;
     }
 
-    JudgeActivityFragmentAssistant init(int totalFragments) {
+    void init(ArrayList<Integer> tableNumbers, int totalFragments) {
+
+        Log.d(JudgeActivityFragmentAssistant.class.getName(),
+                String.format(Locale.US, "Initializing with %d fragments", totalFragments));
+
+        mIntroFragment = JudgingIntroFragment.newInstance(tableNumbers);
+        mRankFragment = JudgingRankingFragment.newInstance(tableNumbers);
+
+        mHackFragments.clear();
+        for (Integer i : tableNumbers) {
+            mHackFragments.add(JudgingHackFragment.newInstance(i));
+        }
+
         this.totalFragments = totalFragments;
         this.fragmentIndex = 0;
-        Log.d(JudgeActivityFragmentAssistant.class.getName(),
-                String.format(Locale.US, "Initialized with %d fragments", totalFragments));
+
         showFragment(0, false);
-        return this;
     }
 
     boolean atFirstFragment() {
@@ -194,7 +247,7 @@ class JudgeActivityFragmentAssistant {
 
         if (index < 0 || index >= totalFragments) {
             Toast.makeText(judgingActivity, "Index error", Toast.LENGTH_SHORT).show();
-//            judgingActivity.finish();
+            judgingActivity.finish();
             return;
         }
 
@@ -207,7 +260,7 @@ class JudgeActivityFragmentAssistant {
                 break;
             case 4:
                 // TODO
-                frag = judgingActivity.mIntroFragment;
+                frag = judgingActivity.mRankFragment;
                 break;
             default:
                 frag = judgingActivity.mHackFragments.get(index - 1);
@@ -227,43 +280,5 @@ class JudgeActivityFragmentAssistant {
     }
 }
 
-class SuperlativeDialogSelectionListener implements MaterialDialog.ListCallbackMultiChoice {
 
-    JudgingActivity mJudgingActivity;
-    int mTableNumber;
-
-    public SuperlativeDialogSelectionListener(JudgingActivity mJudgingActivity, int tableNumber) {
-        this.mJudgingActivity = mJudgingActivity;
-        this.mTableNumber = tableNumber;
-    }
-
-    @Override
-    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-        /**
-         * If you use alwaysCallMultiChoiceCallback(), which is discussed below,
-         * returning false here won't allow the newly selected check box to actually be selected
-         * (or the newly unselected check box to be unchecked).
-         * See the limited multi choice dialog example in the sample project for details.
-         **/
-
-        if (!mJudgingActivity.mNominations.containsKey(mTableNumber)) {
-            mJudgingActivity.mNominations.put(mTableNumber, new ArrayList<String>());
-        }
-
-        // Store explicit checkbox selection for redos
-        mJudgingActivity.mCheckboxSelections.put(mTableNumber, which);
-
-        // Save nominations
-        ArrayList<String> nominations = new ArrayList<>();
-        for (int index : which) {
-            String superlativeName = mJudgingActivity.mAvailableSuperlatives.get(index);
-            nominations.add(superlativeName);
-            Log.d(JudgingActivity.class.getName(),
-                    String.format(Locale.US, "Nominated table %d for superlative %s",
-                            mTableNumber, superlativeName));
-        }
-        mJudgingActivity.mNominations.put(mTableNumber, nominations);
-        
-        return true;
-    }
 }

@@ -42,7 +42,6 @@ abstract public class JudgingBaseFragment extends Fragment {
         void showNextPage();
         void showPreviousPage();
         void showHackSuperlativeDialog(int tableNumber);
-        void addHackSuperlative(int tableNumber, String superlative);
         void submitHackScores(ArrayList<Integer> scoreOrder);
     }
 
