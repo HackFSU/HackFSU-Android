@@ -8,6 +8,57 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:6909141398:android:a5eea346753e4540",
+        "android_client_info": {
+          "package_name": "com.hackfsu.android.hackfsu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6909141398-epharv94sjch4bmvc5pkmhaj1k3pl6ov.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackfsu.android.hackfsu",
+            "certificate_hash": "047574bd342a5a1f88123087618d9f227cbc52a0"
+          }
+        },
+        {
+          "client_id": "6909141398-e898logq7t9bg4937ub35nngimgadej1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackfsu.android.hackfsu",
+            "certificate_hash": "240a1f526c5597e8b58dc432e22a07d9aab6fcc2"
+          }
+        },
+        {
+          "client_id": "6909141398-0jn52tr8gkp9mf6rq1ot78c3uejf05e1.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "6909141398-ha58047fcbav91dnegct2272qg528m8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHt7AdonkZyIyK7xQfY9hjIfNmsf2FYoE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:6909141398:android:dc9dd32497026b6e",
         "android_client_info": {
           "package_name": "com.hackfsu.android"

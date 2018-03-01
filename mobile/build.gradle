@@ -1,18 +1,33 @@
 apply plugin: 'com.android.application'
 
+//
+//  CONTACT PREVIOUS DEVELOPERS TO GET KEYSTORE FILE
+//      andrewsoas001@gmail.com
+//
+
+// Load keystore props
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
     compileSdkVersion 27
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId 'com.hackfsu.android'
+        applicationId 'com.hackfsu.android.hackfsu'
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 11
+        versionCode 12
         versionName '5.0'
-//        multiDexEnabled true //enable this
-
     }
-
     buildTypes {
         debug {
             minifyEnabled false
@@ -20,13 +35,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
             buildConfigField "String", "API_HOST", "\"https://testapi.hackfsu.com\""
-
+            resValue "string", "APP_NAME_BUILD", "HackFSU Debug"
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             buildConfigField "String", "API_HOST", "\"https://api.hackfsu.com\""
+            resValue "string", "APP_NAME_BUILD", "HackFSU"
+            signingConfig signingConfigs.release
+            proguardFile '/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/proguard-rules.pro'
         }
     }
     productFlavors {
@@ -49,21 +67,16 @@ dependencies {
     compile 'com.android.support:design:27.0.2'
     compile 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.android.support:cardview-v7:27.0.2'
-//    compile 'com.android.support:multidex:1.0.2'
-
+    //    compile 'com.android.support:multidex:1.0.2'
     // Adds dividers to our recyclerviews
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.6'
-
     // Bottom nav
     compile 'com.aurelhubert:ahbottomnavigation:2.1.0'
-
     // For networking
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-
     // Dialogs for Judging
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-
     // Firebase crashing & notifications
     compile 'com.google.firebase:firebase-crash:11.8.0'
     compile 'com.google.firebase:firebase-messaging:11.8.0'

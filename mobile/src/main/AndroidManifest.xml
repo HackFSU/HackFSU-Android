@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hackfsu.android.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,8 +18,9 @@
         android:name=".HackFSU"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:label="@string/APP_NAME_BUILD"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
 
         <!--
           Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -37,7 +39,7 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name"
+            android:label="@string/APP_NAME_BUILD"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
