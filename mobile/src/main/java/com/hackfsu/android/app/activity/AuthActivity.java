@@ -42,11 +42,9 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (!isAuthenticated()) {
-            startActivity(new Intent(this, LoginActivity.class));
-
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             getApplicationContext().startActivity(intent);
-
+             finish();
 
         }
         else

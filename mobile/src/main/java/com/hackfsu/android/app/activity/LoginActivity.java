@@ -30,6 +30,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static java.security.AccessController.getContext;
+
 public class LoginActivity extends AppCompatActivity {
 
 
@@ -105,9 +107,11 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     context.startActivity(i);
-                    finish();
+
                     Toast.makeText(context, "Found your profile, response code: " + response.code(),
                             Toast.LENGTH_LONG).show();
+                   finish();
+
 
                 } else if (response.code() == 401) {
                     Log.d(this.getClass().getName(), "Unauthorized");
@@ -121,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
 
+
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
@@ -132,6 +137,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+
+
     }
 
 }
