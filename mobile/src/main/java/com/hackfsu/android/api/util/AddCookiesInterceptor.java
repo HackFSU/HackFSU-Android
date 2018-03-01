@@ -7,6 +7,7 @@ import java.util.prefs.Preferences;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.http.DELETE;
 
 import android.content.Context;
 import android.preference.PreferenceManager;

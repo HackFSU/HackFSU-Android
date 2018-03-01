@@ -17,6 +17,12 @@ import android.widget.TextView;
 import com.hackfsu.android.api.API;
 import com.hackfsu.android.app.R;
 import com.hackfsu.android.app.activity.JudgingActivity;
+import com.hackfsu.android.app.activity.LoginActivity;
+
+import java.io.File;
+import java.util.HashSet;
+
+import static com.hackfsu.android.api.util.AddCookiesInterceptor.PREF_COOKIES;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,12 +64,34 @@ public class ProfileFragment extends BaseFragment {
 
 
         Button button1 = (Button) v.findViewById(R.id.button1);
+        Button button2 = (Button) v.findViewById(R.id.button2);
+
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getContext(), JudgingActivity.class));
             }
         });
+
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                final SharedPreferences.Editor edit = preferences.edit();
+               edit.clear();
+               // edit.putString("Logged_user", null);
+                edit.putStringSet(PREF_COOKIES, null);
+                edit.commit();
+
+
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish();
+            }
+        });
+
+
         return v;
 
 

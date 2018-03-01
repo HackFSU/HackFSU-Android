@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.hackfsu.android.api.templates.EventsResponse;
 import com.hackfsu.android.api.templates.HacksResponse;
 import com.hackfsu.android.api.templates.ProfileRequest;
 import com.hackfsu.android.api.templates.ProfileResponse;
@@ -48,7 +49,7 @@ public interface RetroAPI {
     final static String Test_Profile = "api/user/get/profile";
     final static String Test_getHacks = "api/judge/hacks";
     final static String Test_sendHacks = "api/judge/hacks/upload";
-
+    final static String Test_getEvents = "api/user/get/events";
 
 
     @POST(Test_Login)
@@ -60,9 +61,11 @@ public interface RetroAPI {
     @GET(Test_Profile)
     Call<ProfileResponse> GetProfile(@Header("Cookie") AddCookiesInterceptor addCookiesInterceptor);
 
-
     @GET(Test_getHacks)
     Call<HacksResponse> GetHacks(@Header("Cookie") AddCookiesInterceptor addCookiesInterceptor);
+
+    @GET(Test_getEvents)
+    Call<EventsResponse> GetEvents(@Header("Cookie") AddCookiesInterceptor addCookiesInterceptor);
 
 
 }
