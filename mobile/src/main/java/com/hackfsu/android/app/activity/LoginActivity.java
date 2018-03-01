@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hackfsu.android.api.API;
-import com.hackfsu.android.api.AuthAPI;
 import com.hackfsu.android.api.util.AddCookiesInterceptor;
 import com.hackfsu.android.api.util.ReceivedCookiesInterceptor;
 import com.hackfsu.android.api.RetroAPI;
@@ -31,8 +30,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static java.security.AccessController.getContext;
-
 public class LoginActivity extends AppCompatActivity {
 
 
@@ -46,13 +43,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void onClick(View view) {
-//
-    Login();
-
+        login();
     }
 
 
-    public void Login(){
+    public void login(){
 
         EditText user  = (EditText)findViewById(R.id.editText);
         EditText pass  = (EditText)findViewById(R.id.editText2);
@@ -67,8 +62,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-//Cookie Catcher
-        OkHttpClient client = new OkHttpClient();
+        //Cookie Catcher
+        OkHttpClient client;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new AddCookiesInterceptor(context)); // VERY VERY IMPORTANT
         builder.addInterceptor(new ReceivedCookiesInterceptor(context)); // VERY VERY IMPORTANT
@@ -100,9 +95,9 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     context.startActivity(i);
 
-                    Toast.makeText(context, "Found your profile, response code: " + response.code(),
-                            Toast.LENGTH_LONG).show();
-                   finish();
+//                    Toast.makeText(context, "Found your profile, response code: " + response.code(),
+//                            Toast.LENGTH_LONG).show();
+                    finish();
 
 
                 } else if (response.code() == 401) {

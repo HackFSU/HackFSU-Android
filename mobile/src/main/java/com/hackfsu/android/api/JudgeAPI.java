@@ -146,8 +146,8 @@ public class JudgeAPI extends API {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
 
-                    Toast.makeText(mActivity, "Hacks Sent Successfully, Response code: " + response.code(),
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(mActivity, "Hacks Sent Successfully, Response code: " + response.code(),
+//                            Toast.LENGTH_LONG).show();
 
                     listener.onSuccess();
                     return;
@@ -161,8 +161,8 @@ public class JudgeAPI extends API {
                     x = response.code();
                     Log.d(this.getClass().getName(), "Response code: " + x);
                     // Handle other responses
-                    Toast.makeText(mActivity, "Can't send Hacks, response code: " + x,
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(mActivity, "Can't send Hacks, response code: " + x,
+//                            Toast.LENGTH_LONG).show();
                 }
 
                 listener.onFailure();

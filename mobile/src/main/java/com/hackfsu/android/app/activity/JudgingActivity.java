@@ -254,17 +254,12 @@ class JudgeActivityFragmentAssistant {
         Fragment frag;
         FragmentManager fm = judgingActivity.getSupportFragmentManager();
 
-        switch (index) {
-            case 0:
-                frag = judgingActivity.mIntroFragment;
-                break;
-            case 4:
-                // TODO
-                frag = judgingActivity.mRankFragment;
-                break;
-            default:
-                frag = judgingActivity.mHackFragments.get(index - 1);
-        }
+        if (index == 0)
+            frag = judgingActivity.mIntroFragment;
+        else if (index == judgingActivity.mHackFragments.size() + 1)
+            frag = judgingActivity.mRankFragment;
+        else
+            frag = judgingActivity.mHackFragments.get(index - 1);
 
         if (frag != null) {
             FragmentTransaction ft = fm.beginTransaction();

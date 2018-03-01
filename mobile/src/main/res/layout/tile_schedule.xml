@@ -15,7 +15,7 @@
         android:layout_alignParentTop="false"
         android:layout_centerVertical="true"
         android:capitalize="none"
-        android:fontFamily="@font/graphik"
+        android:fontFamily="@font/family_graphik_bold"
         android:text="SAT 12:30 AM"
         android:textAllCaps="true"
         android:textColor="@color/accent"
@@ -38,7 +38,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/graphik"
+            android:fontFamily="@font/family_graphik_bold"
             android:text="Opening Ceremony"
             android:textColor="@color/primaryTextDark"
             android:textSize="16dp" />

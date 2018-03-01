@@ -2,9 +2,9 @@
 <resources>
 
     <!-- Material Colors -->
-    <color name="primary">@color/hackfsu_purple</color>
-    <color name="primaryDark">@color/hackfsu_purple_dark</color>
-    <color name="accent">@color/hackfsu_pink</color>
+    <color name="primary">@color/hackfsu_18_purple</color>
+    <color name="primaryDark">@color/hackfsu_18_purple_dark</color>
+    <color name="accent">@color/hackfsu_18_pink</color>
     <color name="background">@color/grey_100</color>
 
     <color name="divider_dark">#1F000000</color>
@@ -34,16 +34,17 @@
     <color name="secondaryTextDark">@color/abc_secondary_text_material_light</color>
 
     <!-- HackFSU 2018 Colors-->
+    <color name="hackfsu_18_pink">#ED76CB</color>
+    <color name="hackfsu_18_red">#ef6c67</color>
+    <color name="hackfsu_18_orange">#fda500</color>
+    <color name="hackfsu_18_cyan">#65dde4</color>
+    <color name="hackfsu_18_purple">#8A35FB</color>
 
-    <color name="hackfsu_pink">#ED76CB</color>
-    <color name="hackfsu_red">#ef6c67</color>
-    <color name="hackfsu_orange">#fda500</color>
-    <color name="hackfsu_cyan">#65dde4</color>
-    <color name="hackfsu_purple">#8A35FB</color>
+    <color name="hackfsu_18_purple_dark">#7432D1</color>
+    <color name="hackfsu_18_login_field">#A274F5</color>
 
-    <color name="hackfsu_purple_dark">#7432D1</color>
 
-    <!-- HackFSU 2017 Colors -->
+    <!-- Old HackFSU Colors -->
     <color name="hackfsu_17_grey">#02e3e9</color>
     <color name="hackfsu_17_greyDark">#262129</color>
 
@@ -51,17 +52,17 @@
     <color name="hackfsu_17_purple">#f7f7f9</color>
 
     <!-- HackFSU 2016 Colors -->
-    <!--<color name="hackfsu_red">#ea495a</color>-->
-    <color name="hackfsu_redDark">#bf3d4a</color>
+    <color name="hackfsu_16_red">#ea495a</color>
+    <color name="hackfsu_16_redDark">#bf3d4a</color>
 
-    <color name="hackfsu_teal">#72c9be</color>
-    <color name="hackfsu_tealDark">#66b5aa</color>
+    <color name="hackfsu_16_teal">#72c9be</color>
+    <color name="hackfsu_16_tealDark">#66b5aa</color>
 
-    <color name="hackfsu_blue">#a8d3f1</color>
-    <color name="hackfsu_blueDark">#87b0d0</color>
+    <color name="hackfsu_16_blue">#a8d3f1</color>
+    <color name="hackfsu_16_blueDark">#87b0d0</color>
 
-    <color name="hackfsu_yellow">#e4bca1</color>
-    <color name="hackfsu_yellowDark">#c29a7f</color>
+    <color name="hackfsu_16_yellow">#e4bca1</color>
+    <color name="hackfsu_16_yellowDark">#c29a7f</color>
 
 
     <!-- Material Greys -->

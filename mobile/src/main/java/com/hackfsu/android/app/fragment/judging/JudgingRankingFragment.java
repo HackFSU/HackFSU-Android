@@ -112,11 +112,12 @@ public class JudgingRankingFragment extends JudgingBaseFragment {
             @Override
             public void onClick(View view) {
 
-                if (mHackSelector.selections.size() == mTableNumbers.size())
+                if (!mHackSelector.selections.contains(-1))
                     mListener.submitHackScores(mHackSelector.selections);
                 else {
-                    Toast.makeText(getContext(),
-                            "Please rank all of your assigned hacks", Toast.LENGTH_LONG)
+                    new MaterialDialog.Builder((Context) mListener)
+                            .content("Please rank all of your assigned hacks")
+                            .positiveText("Okay")
                             .show();
                 }
             }
