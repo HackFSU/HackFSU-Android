@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -79,12 +80,16 @@ public class LoginActivity extends AppCompatActivity {
     public void onClick(View view) {
         if (view.getId() == R.id.btn_login) {
 
+            Button loginBtn = (Button) view;
+            loginBtn.setClickable(false);
+
             String username = mUserText.getText().toString();
             String password = mPassText.getText().toString();
 
             if (!username.isEmpty() && !password.isEmpty()) {
                 login(username, password);
             } else {
+                loginBtn.setClickable(true);
                 Toast.makeText(this,
                         "Please enter your username and password", Toast.LENGTH_SHORT).show();
             }
