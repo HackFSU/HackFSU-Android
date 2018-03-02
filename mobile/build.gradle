@@ -26,8 +26,8 @@ android {
         applicationId 'com.hackfsu.android.hackfsu'
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 12
-        versionName '5.0'
+        versionCode 13
+        versionName '5.0.1'
     }
     buildTypes {
         debug {
@@ -39,7 +39,8 @@ android {
             resValue "string", "APP_NAME_BUILD", "HackFSU Debug"
         }
         release {
-            minifyEnabled true
+            minifyEnabled false
+            useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             buildConfigField "String", "API_HOST", "\"https://api.hackfsu.com\""

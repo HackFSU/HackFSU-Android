@@ -33,7 +33,7 @@ public class EventAPI extends API {
 
     public interface OnEventsReceivedListener {
         void onEvents(ArrayList<EventModel> eventList);
-        void onFailure();
+        void onFailure(String message);
     }
 
 
@@ -62,35 +62,37 @@ public class EventAPI extends API {
             @Override
             public void onResponse(Call<EventsResponse> call, Response<EventsResponse> response) {
 
+                String message = "Derp message";
+
+
                 if (response.isSuccessful() && response.body() != null) {
 
                     Log.d(EventAPI.class.getName(), "Request Successful: getHackerEvents");
                     Log.d(this.getClass().getName(), "Response code: " + response.code());
 
                     try {
-
-                        //".events" should be the ArrayList of events returned from the call
-                        // I couldn't reference getEvents here for what ever reason.
                         listener.onEvents(response.body().events);
                         return;
                     }
-                    catch (NullPointerException e) {
-                        Log.e(JudgeAPI.class.getName(), e.getLocalizedMessage());
+                    catch (Exception e) {
+//                        Log.e(JudgeAPI.class.getName(), e.getLocalizedMessage());
+                        message = "judgeAPI catch:" + e.getClass().getName();
                     }
 
                 } else {
                     Log.e("RequestCall", "Request failed");
+                    message = "response not successful";
 
                 }
 
-                listener.onFailure();
+                listener.onFailure(message);
 
             }
 
             @Override
             public void onFailure(Call<EventsResponse> call, Throwable t) {
                 Log.e("RequestCall", "Request failed");
-                listener.onFailure();
+                listener.onFailure("Request failed");
             }
         });
 

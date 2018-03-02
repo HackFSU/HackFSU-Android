@@ -151,23 +151,56 @@ public class ProfileFragment extends BaseFragment {
         eventAPI.getHackerEvents(new EventAPI.OnEventsReceivedListener() {
             @Override
             public void onEvents(ArrayList<EventModel> eventList) {
-                Log.d(ProfileFragment.class.getName(), "eventList size: " + eventList.size());
-                for (EventModel s: eventList) {
-                    Log.d(ProfileFragment.class.getName(), s.name);
+
+                if (eventList != null) {
+
+//                    try {
+//                    Toast.makeText(getContext(), ""+eventList.size(), Toast.LENGTH_LONG).show();
+                    Log.d(ProfileFragment.class.getName(), "eventList size: " + eventList.size());
+                    for (EventModel s: eventList) {
+                        Log.d(ProfileFragment.class.getName(), s.name);
+                    }
+//                    }
+//                    catch (Exception e) {
+//                        Toast.makeText(getContext(), "logging isssue", Toast.LENGTH_SHORT).show();
+//                    }
+
+                    //
+
+                    try {
+                        Collections.reverse(eventList);
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(getContext(), "reveres issue", Toast.LENGTH_SHORT).show();
+                    }
+
+                    //
+
+                    try {
+                        mEventRecyclerAdapter.replaceDataset(eventList);
+                        mEventRecyclerAdapter.notifyDataSetChanged();
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(getContext(), "adapter issue", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
-                Collections.reverse(eventList);
-                mEventRecyclerAdapter.replaceDataset(eventList);
-                mEventRecyclerAdapter.notifyDataSetChanged();
-                callback.onComplete();
+                try {
+                    callback.onComplete();
+                }
+                catch (Exception e) {
+                    Toast.makeText(getContext(), "callback issue: " + e.getClass().getName(), Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 
             @Override
-            public void onFailure() {
+            public void onFailure(String message) {
                 Log.e(ProfileFragment.class.getName(), "Failed getting Profile Events");
                 Toast.makeText(getContext(),
-                        "Whoops, couldn't get your events.", Toast.LENGTH_SHORT).show();
+                        message, Toast.LENGTH_SHORT).show();
                 callback.onComplete();
             }
 
@@ -203,7 +236,13 @@ public class ProfileFragment extends BaseFragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.eventNameView.setText(mDataset.get(position).name);
+
+            try {
+                holder.eventNameView.setText(mDataset.get(position).name);
+            }
+            catch (Exception e) {
+                Toast.makeText(getContext(), "onBind:"+e.getClass().getName(), Toast.LENGTH_SHORT).show();
+            }
 
             try {
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE h:mm a", Locale.US);

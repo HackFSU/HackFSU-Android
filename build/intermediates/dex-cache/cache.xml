@@ -2,22 +2,414 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="E:\DocumentsV\Android Projects\HackFSU\HackFSU-Android-master\mobile\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/org/jetbrains/annotations/13.0/annotations-13.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
         optimize="true"
-        revision="25.0.0"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="E:\DocumentsV\Android Projects\HackFSU\HackFSU-Android-master\mobile\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_137e9ab69737432bc3361e1fa382072a2d5b604e\classes.dex" />
+        revision="26.0.2"
+        sha1="919f0dfe192fb4e063e7dacadee7f8bb9a2672a9">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/46.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="E:\DocumentsV\Android Projects\HackFSU\HackFSU-Android-master\mobile\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/andrew/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="19"
         optimize="true"
-        revision="25.0.0"
-        sha1="178b29b6296914fd1b1dab1aefda085a98b027e2">
-        <dex dex="E:\DocumentsV\Android Projects\HackFSU\HackFSU-Android-master\mobile\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ccf54c158f97cd55f04ea741c19328d781f487a8\classes.dex" />
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/40.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/recyclerview-flexibledivider-1.2.6.aar/e85e7fab7044dc70397656247cde4b71/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cbdf8928adb2f3862c10c9f1c75ea324f6c9a3a9">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/bcacde6a8ccedcc56c127403d26b76072fe6214d/retrofit-2.3.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/firebase-messaging-11.8.0.aar/f43e9756cda8e89da6c7f992f9bb94b8/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c44026185adf61f12630db36ac6781481f559e7c">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/1c794444730586d169d5f7a3365cba80/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/20.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/0d165dd3092b36c5fda876ee5b1c457d/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="04cd0cacbedcb338f64665b88bad64d145325fbd">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/runtime-1.0.3.aar/c6f4720016a5d66e8770cbc95fec9ba4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7cc5473b9cf4ea159a263cd477fb3ecb2987b96">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/41.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.8.0.aar/3e353d320df750e25d5512fc0a14ed59/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="42c9659c973e311ffdb645ed057e5053e0ab5c78">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/design-27.0.2.aar/80585bbb6f3753636e88e5229548f9a1/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="031cc16b7b6e77b3c050134ecab9fa5c2640a069">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/konfetti-1.1.1.aar/d978257f912d2572148812543d31c851/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1364c9bdeaf54185d3d468f96eaafb8815d1fbb1">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jre7/1.2.30/b38fc19e670ebef931fef3ccdcb94eac2b65bb7d/kotlin-stdlib-jre7-1.2.30.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b38fc19e670ebef931fef3ccdcb94eac2b65bb7d">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/support-v4-27.0.2.aar/8a2cc9f9d302268921eafbe6dad443da/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bcd0bcdef85b31a656af76e39c0c95ce70800772">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/27.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/transition-27.0.2.aar/b579c16f61f20006a10f60872220a6fc/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a5fa2e3704f51b30b7b47e12a3a2909728799583">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/library-1.4.2.aar/f9637816ca8c20b941a6870d34e0afa2/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="74d45150416ad644b27f9a0f4b5e25741145b3d4">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.0.2.aar/6590e5ca250b99bae5aea9210c5ce245/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="14bfdbf5594d4d7c320de20831849050788ab1e3">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.3/7d7f60c4783872861222166f6164215f8951c7b1/common-1.0.3.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7d7f60c4783872861222166f6164215f8951c7b1">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/47.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/firebase-iid-11.8.0.aar/8ff9eff4762b1448151faabbac5c6da0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="264ad23f9752aabecfa41115c52a25a023a08839">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/851f736ee7443c87d9863d728065414b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5ad3911825107d8dd4b017fdecebfd23c08048dd">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/277547ee77fa57757de1a90e36ddf9d4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b432e82447a3af781e927b9ba0bbb9fe2a496d4a">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.0.2/b9ef4342c934a1a8b107506273dc8061662a322/support-annotations-27.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0b9ef4342c934a1a8b107506273dc8061662a322">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/36.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/core-0.9.6.0.aar/9d7aafcceb3d0f78bbd425c6bc4f488a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f61ae6782c30c26807a22ac88977f8b084d747f3">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/firebase-crash-11.8.0.aar/83d5dbd1b7ed67255f16b67c1eea4f6e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4b882397288de69e13ff147bdefe584cc6deb055">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.8.0.aar/c3db64007aa0bd09d7ccec6d83580214/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d2af2ef4d987d753f2e8ee2d1480ab964d5c7273">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.2.30/2dfac33f8b4e92c9dd1422cd286834701a6f6d6/kotlin-stdlib-1.2.30.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="02dfac33f8b4e92c9dd1422cd286834701a6f6d6">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/support-fragment-27.0.2.aar/f636434e585365697d98a9fe12c4dd27/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="618f75fe11febf263e3234c7da7dc892232a5608">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.0.2.aar/409e95d7906e47398a4457cd2d601018/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9296d6f092fcdba4fafb6ac26546a39babdab46a">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/firebase-common-11.8.0.aar/1433f7bd3d68d8ad9a71be5f640556da/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e6aeff19a2ce1eb896557be73cb9ceb56f8d1cf3">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/24.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.0.2.aar/cdca37d52564fe86b6c7f3442a870e77/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fe3916317a699975bcce0cba2d13fd2d8cf88922">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.0.2.aar/f6a51c381ac52ced44671c38f48d9473/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="caa03787689212c10939f308a55a8dc8a3333ed2">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.0.2.aar/0c55fbbf09475fe06b5bd1a899deb30f/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ac2ce6027755bcf49442e70597bec0feb9064f68">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/5a11f020cce2d11eb71ba916700600e18c4547e7/okhttp-3.8.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/ahbottomnavigation-2.1.0.aar/3ec1a866ac8e9a1f82c4d20dab8ff470/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="757d7e742ee90d50242abdc8616bfcfd04ad0575">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-11.8.0.aar/669af83cce3f5d828e1b7f4364400e0b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="122de0d704f76d2bb5cb9db66e00fe90a0a41e78">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.0.2.aar/4376c14e2f4f9301e1fe108273041fc4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed6560f31a6a40b5965f5879d8f2eab1f68def05">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/51.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/48.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/andrew/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.2.aar/5f5d659912b11f25fbe564f0f0c2add3/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="25c8cb628374f9a2d59ff9e1172753751e9a9f84">
+        <dex dex="/Users/andrew/Workspace/HackFSU/hackfsu-android/mobile/build/intermediates/transforms/preDex/release/34.jar" />
     </item>
 
 </items>
