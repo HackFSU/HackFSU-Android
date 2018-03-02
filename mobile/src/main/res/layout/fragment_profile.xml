@@ -26,17 +26,12 @@
                 <ImageView
                     android:id="@+id/iv_profile_qr"
                     android:layout_width="124dp"
-                    android:layout_height="124dp"
-                    android:layout_below="@+id/app_bar"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/fff" />
+                    android:layout_height="124dp"/>
 
                 <TextView
                     android:id="@+id/tv_profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/family_graphik_bold"
                     android:text="HackFSU Attendee"
@@ -47,8 +42,6 @@
                     android:id="@+id/tv_profile_groups"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/family_graphik_bold"
                     android:text="Status"

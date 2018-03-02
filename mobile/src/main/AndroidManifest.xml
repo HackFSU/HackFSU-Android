@@ -61,7 +61,8 @@
         </service>
 
         <activity android:name=".activity.MapViewActivity" />
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme.Judging.Activity"/>
         <activity android:name=".activity.AuthActivity"/>
         <activity android:name=".activity.JudgingActivity"
             android:theme="@style/AppTheme.Judging.Activity"/>

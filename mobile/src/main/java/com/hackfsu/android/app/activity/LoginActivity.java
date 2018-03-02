@@ -5,10 +5,13 @@ package com.hackfsu.android.app.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,6 +24,9 @@ import com.hackfsu.android.api.RetroAPI;
 import com.hackfsu.android.app.R;
 
 
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -36,14 +42,36 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mUserText;
     private EditText mPassText;
+    private KonfettiView mConfettiView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mUserText = (EditText)findViewById(R.id.editText);
-        mPassText = (EditText)findViewById(R.id.editText2);
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density  = getResources().getDisplayMetrics().density;
+        float dpHeight = outMetrics.heightPixels / density;
+        float dpWidth  = outMetrics.widthPixels / density;
+
+        mUserText = (EditText) findViewById(R.id.editText);
+        mPassText = (EditText) findViewById(R.id.editText2);
+
+        mConfettiView = (KonfettiView) findViewById(R.id.confetti);
+//        mConfettiView.build()
+//            .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+//            .setDirection(90.0)
+//            .setSpeed(0.25f, 0.5f)
+//            .setFadeOutEnabled(false)
+//            .addShapes(Shape.RECT, Shape.CIRCLE)
+//            .addSizes(new Size(12, 2))
+//            .setPosition(0, 0)
+//            .streamMaxParticles(5, 500);
+
+        Log.d("derp", ""+ dpWidth);
 
     }
 
@@ -128,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                 error();
-                
+
             }
 
         });

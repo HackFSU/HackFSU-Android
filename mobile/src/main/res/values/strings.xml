@@ -10,7 +10,7 @@
     <string name="nav_info">Info</string>
     <string name="nav_profile">Profile</string>
     <string name="title">FAMU &#38; FSU PRESENTS</string>
-    <string name="subtitle">HackFSU 5</string>
+    <string name="login_app_title">HackFSU 5</string>
     <string name="logout">Logout</string>
 
 

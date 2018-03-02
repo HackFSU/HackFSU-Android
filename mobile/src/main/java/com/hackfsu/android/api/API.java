@@ -32,7 +32,7 @@ public class API {
 
     public final static String API_HOST = BuildConfig.API_HOST;
 
-    private final static String ROUTE_HACKATHON = "https://2017.hackfsu.com" + "/api/hackathon/get";
+    private final static String ROUTE_HACKATHON = API_HOST + "/api/hackathon/get";
     private final static String ROUTE_UPDATES = "/updates";
     private final static String ROUTE_SCHEDULE = "/schedule_items";
     private final static String ROUTE_MAPS = "/maps";
