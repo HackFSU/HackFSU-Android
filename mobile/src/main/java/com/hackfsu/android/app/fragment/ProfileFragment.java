@@ -126,11 +126,14 @@ public class ProfileFragment extends BaseFragment {
                 preferences.getString("last_name", null));
 
         mNameText.setText(fullName);
-
+        String hexcode = preferences.getString("hexcode", "");
         Set<String> groupSet = preferences.getStringSet("groups", new ArraySet<String>());
         if (groupSet.contains("attendee")) groupSet.remove("attendee");
         if (groupSet.contains("judge")) mJudgingButton.setVisibility(View.VISIBLE);
-        String groupString = TextUtils.join("  |  ", groupSet);
+
+        ArrayList<String> subtitleItems = new ArrayList<>(groupSet);
+        subtitleItems.add(String.format(Locale.US, "#%s", hexcode));
+        String groupString = TextUtils.join("  |  ", subtitleItems);
         mGroupsText.setText(groupString);
 
         mJudgingButton.setOnClickListener(new View.OnClickListener(){
